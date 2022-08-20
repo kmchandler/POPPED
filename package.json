@@ -1,8 +1,8 @@
 {
-  "name": "next-firebase-starter",
+  "name": "popped",
   "private": true,
   "version": "1.0.0",
-  "author": "Trinity Christiana",
+  "author": "Kristen Chandler",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
