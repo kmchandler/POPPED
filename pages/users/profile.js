@@ -1,38 +1,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
-import CreateUserForm from './new';
-import User from '../../components/User';
-import { useAuth } from '../../utils/context/authContext';
-import { getUsersByUid } from '../../api/userData';
+import PropTypes from 'prop-types';
 
-export default function Profile() {
-  const [member, setMember] = useState([]);
-  const { user } = useAuth();
-
-  useEffect(() => {
-    getUsersByUid(user.uid).then(setMember);
-  }, []);
-
+export default function Profile({ userObj }) {
   return (
-    <div className="profilePageDiv">
-      <div className="mainProfilePage">
-        <div className="profile">
-          {member?.map((memberProfile) => (
-            <>
-              <User userObj={memberProfile} />
-              <Link passHref href={`/users/edit/${memberProfile.firebaseKey}`}>
-                <Button type="button" className="editProfileBtn" variant="outline-success">
-                  Edit Profile
-                </Button>
-              </Link>
-              <CreateUserForm className={memberProfile.uid === user.uid ? 'noShow' : ''} />
-            </>
-          ))}
-        </div>
+    <div className="userProfileDiv">
+      <div>
+        <img src={userObj.imageUrl} alt={userObj.username} />
+        <h1>{userObj.firstName} {userObj.lastName}</h1>
+        <h2>{userObj.username}</h2>
+        <h3>{userObj.favoriteGenres}</h3>
       </div>
+      <>
+        <Link passHref href={`/users/edit/${userObj.userFirebaseKey}`}>
+          <Button className="formButton" type="submit">{userObj.userFirebaseKey ? 'Update' : 'Add'} Profile</Button>
+        </Link>
+      </>
     </div>
   );
 }
+
+Profile.propTypes = {
+  userObj: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    username: PropTypes.string,
+    favoriteGenres: PropTypes.string,
+    imageUrl: PropTypes.string,
+    userFirebaseKey: PropTypes.string,
+  }),
+};
+Profile.defaultProps = {
+  userObj: [],
+};

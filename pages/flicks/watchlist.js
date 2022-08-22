@@ -35,7 +35,7 @@ export default function Watchlist() {
         </div>
         <div className="d-flex flex-wrap cardContainer">
           {filteredFlicks.map((flix) => (
-            <FlicksCard key={flix.flickFirebaseKey} playerObj={flix} onUpdate={getAllTheFlicks} />
+            <FlicksCard key={flix.flickFirebaseKey} flickObj={flix} onUpdate={getAllTheFlicks} />
           ))}
         </div>
       </div>
