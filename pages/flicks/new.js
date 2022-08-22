@@ -87,17 +87,18 @@ function FlickForm({ obj }) {
           <Form.Control type="text" placeholder="Title" name="flickTitle" value={formInput.title} onChange={handleChange} required />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingSelect" label="Team">
+        <FloatingLabel controlId="floatingSelect" label="Type">
           <Form.Select
-            aria-label="Team"
-            name="teamId"
+            aria-label="Type"
+            name="Tyoe"
+            type="select"
             onChange={handleChange}
             className="mb-3"
             required
           >
             <option value="">Select Type</option>
-            <option>Movie</option>
-            <option>TV Show</option>
+            <option value="movie">Movie</option>
+            <option value="tvShow">TV Show</option>
           </Form.Select>
         </FloatingLabel>
 
@@ -111,6 +112,7 @@ function FlickForm({ obj }) {
               checked={checkedGenre.indexOf(genre.genreName) >= 0}
               onChange={handleClickGenre}
               name={genre.genreName}
+              value={formInput.genre}
             />
           </div>
         ))}
@@ -125,6 +127,7 @@ function FlickForm({ obj }) {
               checked={checkedMood.indexOf(mood.moodsName) >= 0}
               onChange={handleClickMood}
               name={mood.moodsName}
+              value={formInput.moods}
             />
           </div>
         ))}
