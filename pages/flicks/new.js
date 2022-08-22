@@ -25,19 +25,16 @@ const initialState = {
 
 function FlickForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
-  const [checked1, setChecked1] = useState([]);
-  const [checked2, setChecked2] = useState([]);
-  const [checked3, setChecked3] = useState([]);
-  const [checkedFav, setCheckedFav] = useState([]);
+  const [checkedGenre, setCheckedGenre] = useState([]);
+  const [checkedMood, setCheckedMood] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
     if (obj.flickFirebaseKey) {
       setFormInput(obj);
-      setChecked1(obj.genre || '');
-      setChecked2(obj.favorite || '');
-      setChecked3(obj.watched || '');
+      setCheckedGenre(obj.genre || '');
+      setCheckedMood(obj.moods || '');
     }
   }, [obj, user]);
 
@@ -62,44 +59,24 @@ function FlickForm({ obj }) {
     }
   };
 
-  const handleClick1 = (e) => {
-    let updatedGenre = [...checked1];
+  const handleClickGenre = (e) => {
+    let updatedGenre = [...checkedGenre];
     if (e.target.checked) {
-      updatedGenre = [...checked1, e.target.name];
+      updatedGenre = [...checkedGenre, e.target.name];
     } else {
-      updatedGenre.splice(checked1.indexOf(e.target.name), 1);
+      updatedGenre.splice(checkedGenre.indexOf(e.target.name), 1);
     }
-    setChecked1(updatedGenre);
+    setCheckedGenre(updatedGenre);
   };
 
-  const handleClickFav = (e) => {
-    let updatedFavorite = [...checkedFav];
+  const handleClickMood = (e) => {
+    let updatedMood = [...checkedMood];
     if (e.target.checked) {
-      updatedFavorite = [...checkedFav, e.target.name];
+      updatedMood = [...checkedMood, e.target.name];
     } else {
-      updatedFavorite.splice(checkedFav.indexOf(e.target.name), 1);
+      updatedMood.splice(checkedMood.indexOf(e.target.name), 1);
     }
-    setCheckedFav(updatedFavorite);
-  };
-
-  const handleClick2 = (e) => {
-    let updatedMood = [...checked2];
-    if (e.target.checked) {
-      updatedMood = [...checked2, e.target.name];
-    } else {
-      updatedMood.splice(checked2.indexOf(e.target.name), 1);
-    }
-    setChecked2(updatedMood);
-  };
-
-  const handleClick3 = (e) => {
-    let updatedWatched = [...checked3];
-    if (e.target.checked) {
-      updatedWatched = [...checked3, e.target.name];
-    } else {
-      updatedWatched.splice(checked3.indexOf(e.target.name), 1);
-    }
-    setChecked3(updatedWatched);
+    setCheckedMood(updatedMood);
   };
 
   return (
@@ -109,8 +86,19 @@ function FlickForm({ obj }) {
         <FloatingLabel controlId="floatingInput1" label="Title" className="mb-3">
           <Form.Control type="text" placeholder="Title" name="flickTitle" value={formInput.title} onChange={handleChange} required />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingInput2" label="Type" className="mb-3">
-          <Form.Control type="text" placeholder="Type" name="type" value={formInput.type} onChange={handleChange} required />
+
+        <FloatingLabel controlId="floatingSelect" label="Team">
+          <Form.Select
+            aria-label="Team"
+            name="teamId"
+            onChange={handleChange}
+            className="mb-3"
+            required
+          >
+            <option value="">Select Type</option>
+            <option>Movie</option>
+            <option>TV Show</option>
+          </Form.Select>
         </FloatingLabel>
 
         <h5>Genre</h5>
@@ -120,8 +108,8 @@ function FlickForm({ obj }) {
               type="checkbox"
               id={genre.genreFirebaseKey}
               label={genre.genreName}
-              checked={checked1.indexOf(genre.genreName) >= 0}
-              onChange={handleClick1}
+              checked={checkedGenre.indexOf(genre.genreName) >= 0}
+              onChange={handleClickGenre}
               name={genre.genreName}
             />
           </div>
@@ -134,8 +122,8 @@ function FlickForm({ obj }) {
               type="checkbox"
               id={mood.moodFirebaseKey}
               label={mood.moodsName}
-              checked={checked1.indexOf(mood.moodsName) >= 0}
-              onChange={handleClick2}
+              checked={checkedMood.indexOf(mood.moodsName) >= 0}
+              onChange={handleClickMood}
               name={mood.moodsName}
             />
           </div>
@@ -144,20 +132,33 @@ function FlickForm({ obj }) {
         <FloatingLabel controlId="floatingInput5" label="Cast and Crew" className="mb-3">
           <Form.Control type="text" placeholder="Cast and Crew" name="Cast and Crew" value={formInput.castCrew} onChange={handleChange} />
         </FloatingLabel>
+
         <FloatingLabel controlId="floatingInput6" label="Recommended By" className="mb-3">
           <Form.Control type="text" placeholder="Recommended By" name="Recommended By" value={formInput.recommendedBy} onChange={handleChange} />
         </FloatingLabel>
 
         <Form.Check
-          label="Watched"
+          type="switch"
+          label="Watched?"
+          name="Watched"
           id="watched"
-          onClick={handleClick3}
+          checked={formInput.watched}
+          onChange={(e) => setFormInput((prevState) => ({
+            ...prevState,
+            watched: e.target.checked,
+          }))}
         />
 
         <Form.Check
-          label="Favorite"
-          id="favorite"
-          onClick={handleClickFav}
+          type="switch"
+          label="Favorite?"
+          name="Favorite"
+          id="watched"
+          checked={formInput.favorite}
+          onChange={(e) => setFormInput((prevState) => ({
+            ...prevState,
+            favorite: e.target.checked,
+          }))}
         />
 
         <FloatingLabel controlId="floatingInput9" label="Photo URL" className="mb-3">
