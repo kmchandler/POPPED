@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
-import { useAuth } from '../utils/context/authContext';
-import Search from '../components/Search';
-import FlicksCard from '../components/FlickCard';
-import { getFlicksByUid } from '../api/flicksData';
+import { useAuth } from '../../utils/context/authContext';
+import Search from '../../components/Search';
+import FlicksCard from '../../components/FlickCard';
+import { getFlicksByUid } from '../../api/flicksData';
 
 export default function Watchlist() {
   const [flicks, setFlicks] = useState([]);

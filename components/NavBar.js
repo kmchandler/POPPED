@@ -23,7 +23,7 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link passHref href="/watchlist">
+              <Link passHref href="/flicks/watchlist">
                 <a className="nav-link">
                   watchlist
                 </a>
@@ -72,7 +72,7 @@ export default function NavBar() {
                   <button type="button" className="signOutBtn btn" onClick={signOut}>
                     Sign Out
                   </button>
-                  <Link passHref href="/profile">
+                  <Link passHref href="/users/profile">
                     <button type="button" className="profileBtn btn">
                       Profile
                     </button>
