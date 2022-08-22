@@ -29,7 +29,7 @@ export default function Watchlist() {
         <h1 className="teamName">Watchlist</h1>
         <div className="teamHeaderDiv">
           <Search flicks={flicks} setFilteredFlicks={setFilteredFlicks} />
-          <Link href="/members/new" passHref>
+          <Link href="/flicks/new" passHref>
             <Button className="FlickButton">Add A Flick</Button>
           </Link>
         </div>
