@@ -1,24 +1,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { useAuth } from '../../utils/context/authContext';
+import { getUserByUid } from '../../api/userData';
+import ProfileCard from '../../components/ProfileCard';
 
-export default function Profile({ userObj }) {
+export default function Profile() {
+  const [profile, setProfile] = useState({});
+  const { user } = useAuth();
+
+  const getTheUser = async () => {
+    const result = await getUserByUid(user.uid);
+    setProfile(result);
+  };
+
+  useEffect(() => {
+    getTheUser();
+  }, []);
+
+  if (!profile) {
+    return null;
+  }
+
   return (
     <div className="userProfileDiv">
-      <div>
-        <img src={userObj.imageUrl} alt={userObj.username} />
-        <h1>{userObj.firstName} {userObj.lastName}</h1>
-        <h2>{userObj.username}</h2>
-        <h3>{userObj.favoriteGenres}</h3>
-      </div>
       <>
-        <Link passHref href={`/users/edit/${userObj.userFirebaseKey}`}>
-          <Button className="formButton" type="submit">{userObj.userFirebaseKey ? 'Update' : 'Add'} Profile</Button>
+        <Link passHref href={`/users/edit/${profile.userFirebaseKey}`}>
+          <Button className="formButton" type="submit">{profile.userFirebaseKey ? 'Update' : 'Create'} Profile</Button>
         </Link>
       </>
+      <ProfileCard key={profile.userFirebaseKey} userObj={profile} onUpdate={getTheUser} />
     </div>
   );
 }
@@ -34,5 +48,5 @@ Profile.propTypes = {
   }),
 };
 Profile.defaultProps = {
-  userObj: [],
+  userObj: {},
 };

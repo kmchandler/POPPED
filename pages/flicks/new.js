@@ -49,7 +49,11 @@ function FlickForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.flicksFirebaseKey) {
-      updateFlick(formInput)
+      const payload = {
+        ...formInput,
+        uid: user.uid,
+      };
+      updateFlick(payload)
         .then(() => router.push('/flicks/watchlist'));
     } else {
       const payload = { ...formInput, uid: user.uid };
