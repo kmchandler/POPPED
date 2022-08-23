@@ -36,7 +36,7 @@ function FlickForm({ obj }) {
       setCheckedGenre(obj.genre || '');
       setCheckedMood(obj.moods || '');
     }
-  }, [obj, user]);
+  }, [obj, obj.flicksFirebaseKey, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,12 +48,10 @@ function FlickForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    formInput.genre = checkedGenre;
+    formInput.moods = checkedMood;
     if (obj.flicksFirebaseKey) {
-      const payload = {
-        ...formInput,
-        uid: user.uid,
-      };
-      updateFlick(payload)
+      updateFlick(formInput)
         .then(() => router.push('/flicks/watchlist'));
     } else {
       const payload = { ...formInput, uid: user.uid };

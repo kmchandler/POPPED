@@ -11,6 +11,6 @@ export default function EditFlick() {
   useEffect(() => {
     getSingleFlick(flicksFirebaseKey).then(setEditItem);
   }, [flicksFirebaseKey]);
-
+  console.warn(editItem, 'editItem');
   return (<FlickForm obj={editItem} />);
 }
