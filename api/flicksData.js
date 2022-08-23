@@ -25,14 +25,14 @@ const createFlick = (flickObj) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-const getSingleFlick = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/flicks/${firebaseKey}.json`)
+const getSingleFlick = (flicksFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/flicks/${flicksFirebaseKey}.json`)
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
 
-const deleteSingleFlick = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.delete(`${dbUrl}/flicks/${firebaseKey}.json`)
+const deleteSingleFlick = (flicksFirebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/flicks/${flicksFirebaseKey}.json`)
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });

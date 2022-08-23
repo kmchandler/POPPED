@@ -23,7 +23,9 @@ function CreateUserForm({ obj }) {
 
   useEffect(() => {
     getUserByUid(user.uid).then(setProfile);
-    if (obj.userFirebaseKey) setFormInput(obj);
+    if (obj.userFirebaseKey) {
+      setFormInput(obj);
+    }
   }, [obj, user]);
 
   const handleChange = (e) => {
