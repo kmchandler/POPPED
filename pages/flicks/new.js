@@ -12,7 +12,6 @@ import moods from '../../sampleData/moods.json';
 import {
   createFlickGenres, createFlickMoods, updateFlickGenres, updateFlickMoods,
 } from '../../api/mergedData';
-import { getGenres } from '../../api/genresData';
 
 const initialState = {
   title: '',
@@ -56,25 +55,15 @@ function FlickForm({ obj }) {
     formInput.moods = checkedMood;
     if (obj.flicksFirebaseKey) {
       updateFlick(formInput).then((flick) => {
-        getGenres().then(genres);
-        const body = {
-          flicksFirebaseKey: flick.flicksFirebaseKey,
-          genreFirebaseKey: genres.genreFirebaseKey,
-        };
-        updateFlickGenres(body);
-        updateFlickMoods(body);
+        updateFlickGenres(flick);
+        updateFlickMoods(flick);
         router.push('/flicks/watchlist');
       });
     } else {
       const payload = { ...formInput, uid: user.uid };
       createFlick(payload).then((flick) => {
-        getGenres().then(genres);
-        const body = {
-          flicksFirebaseKey: flick.flicksFirebaseKey,
-          genreFirebaseKey: genres.genreFirebaseKey,
-        };
-        createFlickGenres(body);
-        createFlickMoods(body);
+        createFlickGenres(flick);
+        createFlickMoods(flick);
         router.push('/flicks/watchlist');
       });
     }

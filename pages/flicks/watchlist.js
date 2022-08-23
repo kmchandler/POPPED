@@ -30,7 +30,7 @@ export default function Watchlist() {
         <div className="teamHeaderDiv">
           <Search flicks={flicks} setFilteredFlicks={setFilteredFlicks} />
           <Link href="/flicks/new" passHref>
-            <Button className="FlickButton">Add A Flick</Button>
+            <Button className="flickButton">Add A Flick</Button>
           </Link>
         </div>
         <div className="d-flex flex-wrap cardContainer">
