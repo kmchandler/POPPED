@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
-import { createUser, getUsersByUid, updateUser } from '../api/userData';
+import { createUser, getUserByUid, updateUser } from '../api/userData';
 import genres from '../sampleData/genres.json';
 
 const initialState = {
@@ -22,7 +22,7 @@ function CreateUserForm({ obj }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    getUsersByUid(user.uid).then(setProfile);
+    getUserByUid(user.uid).then(setProfile);
     if (obj.userFirebaseKey) setFormInput(obj);
   }, [obj, user]);
 
@@ -37,10 +37,10 @@ function CreateUserForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.userFirebaseKey) {
-      updateUser(formInput).then(() => router.push('/profile'));
+      updateUser(formInput).then(() => router.push('/users/profile'));
     } else {
       createUser(formInput).then(() => {
-        router.push('/profile');
+        router.push('/users/profile');
       });
     }
   };
@@ -58,9 +58,11 @@ function CreateUserForm({ obj }) {
   return (
     <div className="profilePage">
       <form onSubmit={handleSubmit}>
-        <input required type="text" name="First Name" value={formInput.firstName} className="form-control" placeholder="First Name" onChange={handleChange} />
-        <input required type="text" name="Last Name" value={formInput.lastName} className="form-control" placeholder="Last Name" onChange={handleChange} />
-        <input required type="text" name="Username" value={formInput.username} className="form-control" placeholder="Username" onChange={handleChange} />
+        <h2>Update Profile</h2>
+        <input required type="text" name="firstName" value={formInput.firstName} className="form-control" placeholder="First Name" onChange={handleChange} />
+        <input required type="text" name="lastName" value={formInput.lastName} className="form-control" placeholder="Last Name" onChange={handleChange} />
+        <input required type="text" name="username" value={formInput.username} className="form-control" placeholder="Username" onChange={handleChange} />
+        <input required type="url" name="imageUrl" value={formInput.imageUrl} className="form-control" placeholder="Image Url" onChange={handleChange} />
         <h5>Favorite Genres</h5>
         {genres.map((genre) => (
           <div key={genre.genreFirebaseKey} className="mb-3">
