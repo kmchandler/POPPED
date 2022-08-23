@@ -9,6 +9,10 @@ import { useAuth } from '../../utils/context/authContext';
 import { updateFlick, createFlick } from '../../api/flicksData';
 import genres from '../../sampleData/genres.json';
 import moods from '../../sampleData/moods.json';
+import {
+  createFlickGenres, createFlickMoods, updateFlickGenres, updateFlickMoods,
+} from '../../api/mergedData';
+import { getGenres } from '../../api/genresData';
 
 const initialState = {
   title: '',
@@ -51,11 +55,26 @@ function FlickForm({ obj }) {
     formInput.genre = checkedGenre;
     formInput.moods = checkedMood;
     if (obj.flicksFirebaseKey) {
-      updateFlick(formInput)
-        .then(() => router.push('/flicks/watchlist'));
+      updateFlick(formInput).then((flick) => {
+        getGenres().then(genres);
+        const body = {
+          flicksFirebaseKey: flick.flicksFirebaseKey,
+          genreFirebaseKey: genres.genreFirebaseKey,
+        };
+        updateFlickGenres(body);
+        updateFlickMoods(body);
+        router.push('/flicks/watchlist');
+      });
     } else {
       const payload = { ...formInput, uid: user.uid };
-      createFlick(payload).then(() => {
+      createFlick(payload).then((flick) => {
+        getGenres().then(genres);
+        const body = {
+          flicksFirebaseKey: flick.flicksFirebaseKey,
+          genreFirebaseKey: genres.genreFirebaseKey,
+        };
+        createFlickGenres(body);
+        createFlickMoods(body);
         router.push('/flicks/watchlist');
       });
     }

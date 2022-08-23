@@ -15,6 +15,18 @@ const getGenresByUid = (uid) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getGenres = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/genres.json`)
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch((error) => reject(error));
+});
+
 const createGenre = (genreObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/genres.json?`, genreObj)
     .then((response) => {
@@ -49,4 +61,5 @@ export {
   getSingleGenre,
   deleteSingleGenre,
   updateGenre,
+  getGenres,
 };
