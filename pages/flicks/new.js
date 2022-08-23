@@ -104,6 +104,7 @@ function FlickForm({ obj }) {
             onChange={handleChange}
             className="mb-3"
             required
+            value={obj.type}
           >
             <option value="">Select Type</option>
             <option value="movie">Movie</option>
