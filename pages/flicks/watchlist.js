@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import Search from '../../components/Search';
-import FlicksCard from '../../components/FlickCard';
+import FlickCard from '../../components/FlickCard';
 import { getFlicksByUid } from '../../api/flicksData';
 
 export default function Watchlist() {
@@ -35,7 +35,7 @@ export default function Watchlist() {
         </div>
         <div className="d-flex flex-wrap cardContainer">
           {filteredFlicks.map((flix) => (
-            <FlicksCard key={flix.flickFirebaseKey} flickObj={flix} onUpdate={getAllTheFlicks} />
+            <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getAllTheFlicks} />
           ))}
         </div>
       </div>

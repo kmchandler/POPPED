@@ -72,7 +72,6 @@ function CreateUserForm({ obj }) {
               onChange={handleClickGenre}
               name={genre.genreName}
               value={formInput.genre}
-              key={genre.genreFirebaseKey}
             />
           </div>
         ))}

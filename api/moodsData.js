@@ -18,7 +18,7 @@ const getMoodsByUid = (uid) => new Promise((resolve, reject) => {
 const createMood = (moodObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/moods.json?`, moodObj)
     .then((response) => {
-      const payload = { firebaseKey: response.data.name };
+      const payload = { moodFirebaseKey: response.data.name };
       axios.patch(`${dbUrl}/moods/${response.data.name}.json`, payload).then(() => {
         getMoodsByUid(moodObj.uid).then((userArray) => resolve(userArray));
       });
@@ -38,7 +38,7 @@ const deleteSingleMood = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const updateMood = (moodObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/moods/${moodObj.firebaseKey}.json`, moodObj)
+  axios.patch(`${dbUrl}/moods/${moodObj.moodFirebaseKey}.json`, moodObj)
     .then(() => getMoodsByUid(moodObj.uid)).then(resolve)
     .catch(reject);
 });

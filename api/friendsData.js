@@ -18,7 +18,7 @@ const getFriendsByUid = (uid) => new Promise((resolve, reject) => {
 const createFriend = (friendObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/friends.json?`, friendObj)
     .then((response) => {
-      const payload = { firebaseKey: response.data.name };
+      const payload = { friendsFirebaseKey: response.data.name };
       axios.patch(`${dbUrl}/friends/${response.data.name}.json`, payload).then(() => {
         getFriendsByUid(friendObj.uid).then((userArray) => resolve(userArray));
       });
@@ -38,7 +38,7 @@ const deleteSingleFriend = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const updateFriend = (friendObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/friends/${friendObj.firebaseKey}.json`, friendObj)
+  axios.patch(`${dbUrl}/friends/${friendObj.name}.json`, friendObj)
     .then(() => getFriendsByUid(friendObj.uid)).then(resolve)
     .catch(reject);
 });

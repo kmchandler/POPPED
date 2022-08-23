@@ -31,7 +31,7 @@ const getUserGenres = () => new Promise((resolve, reject) => {
 const createUserGenres = (newUserGenreObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/user_genres.json`, newUserGenreObj)
     .then((response) => {
-      const body = { firebaseKey: response.data.name };
+      const body = { userFirebaseKey: response.data.userFirebaseKey, genreFirebaseKey: response.data.genreFirebaseKey };
       axios.patch(`${dbUrl}/user_genres/${response.data.name}.json`, body)
         .then(() => {
           getUserGenres(newUserGenreObj).then(resolve);
@@ -41,7 +41,7 @@ const createUserGenres = (newUserGenreObj) => new Promise((resolve, reject) => {
 });
 
 const updateUserGenres = (userGenreObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/user_genres/${userGenreObj.firebaseKey}.json`, userGenreObj)
+  axios.patch(`${dbUrl}/user_genres/${userGenreObj.name}.json`, userGenreObj)
     .then(() => getUserGenres(userGenreObj.uid).then(resolve))
     .catch(reject);
 });
@@ -80,7 +80,7 @@ const getFlickGenres = () => new Promise((resolve, reject) => {
 const createFlickGenres = (newFlickGenreObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/flick_genres.json`, newFlickGenreObj)
     .then((response) => {
-      const body = { firebaseKey: response.data.name };
+      const body = { flickFirebaseKey: response.data.flickFirebaseKey, genreFirebaseKey: response.data.genreFirebaseKey };
       axios.patch(`${dbUrl}/flick_genres/${response.data.name}.json`, body)
         .then(() => {
           getFlickGenres(newFlickGenreObj).then(resolve);
@@ -90,7 +90,7 @@ const createFlickGenres = (newFlickGenreObj) => new Promise((resolve, reject) =>
 });
 
 const updateFlickGenres = (flickGenreObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/flick_genres/${flickGenreObj.firebaseKey}.json`, flickGenreObj)
+  axios.patch(`${dbUrl}/flick_genres/${flickGenreObj.name}.json`, flickGenreObj)
     .then(() => getFlickGenres(flickGenreObj.uid).then(resolve))
     .catch(reject);
 });
@@ -129,7 +129,7 @@ const getFlickMoods = () => new Promise((resolve, reject) => {
 const createFlickMoods = (newFlickMoodsObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/flick_moods.json`, newFlickMoodsObj)
     .then((response) => {
-      const body = { firebaseKey: response.data.name };
+      const body = { flickFirebaseKey: response.data.flickFirebaseKey, genreFirebaseKey: response.data.genreFirebaseKey };
       axios.patch(`${dbUrl}/flick_moods/${response.data.name}.json`, body)
         .then(() => {
           getFlickMoods(newFlickMoodsObj).then(resolve);
@@ -139,7 +139,7 @@ const createFlickMoods = (newFlickMoodsObj) => new Promise((resolve, reject) => 
 });
 
 const updateFlickMoods = (flickMoodsObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/flick_moods/${flickMoodsObj.firebaseKey}.json`, flickMoodsObj)
+  axios.patch(`${dbUrl}/flick_moods/${flickMoodsObj.name}.json`, flickMoodsObj)
     .then(() => getFlickMoods(flickMoodsObj.uid).then(resolve))
     .catch(reject);
 });
@@ -178,7 +178,7 @@ const getFlicksCastCrew = () => new Promise((resolve, reject) => {
 const createFlicksCastCrew = (newFlicksCastCrewObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/flicks_castCrew.json`, newFlicksCastCrewObj)
     .then((response) => {
-      const body = { firebaseKey: response.data.name };
+      const body = { flickFirebaseKey: response.data.flickFirebaseKey, castCrewFirebaseKey: response.data.castCrewFirebaseKey };
       axios.patch(`${dbUrl}/flicks_castCrew/${response.data.name}.json`, body)
         .then(() => {
           getFlicksCastCrew(newFlicksCastCrewObj).then(resolve);
@@ -188,7 +188,7 @@ const createFlicksCastCrew = (newFlicksCastCrewObj) => new Promise((resolve, rej
 });
 
 const updateFlicksCastCrew = (flicksCastCrewObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/flicks_castCrew/${flicksCastCrewObj.firebaseKey}.json`, flicksCastCrewObj)
+  axios.patch(`${dbUrl}/flicks_castCrew/${flicksCastCrewObj.name}.json`, flicksCastCrewObj)
     .then(() => getFlicksCastCrew(flicksCastCrewObj.uid).then(resolve))
     .catch(reject);
 });

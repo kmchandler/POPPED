@@ -31,7 +31,7 @@ function FlickForm({ obj }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (obj.flickFirebaseKey) {
+    if (obj.flicksFirebaseKey) {
       setFormInput(obj);
       setCheckedGenre(obj.genre || '');
       setCheckedMood(obj.moods || '');
@@ -48,7 +48,7 @@ function FlickForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.flickFirebaseKey) {
+    if (obj.flicksFirebaseKey) {
       updateFlick(formInput)
         .then(() => router.push('/flicks/watchlist'));
     } else {
@@ -82,15 +82,14 @@ function FlickForm({ obj }) {
   return (
     <div className="flickFormContainer">
       <Form className="flickForm" onSubmit={handleSubmit}>
-        <h2 className="flickHeaderText mt-5">{obj.flickFirebaseKey ? 'Update' : 'Add'} Flick</h2>
+        <h2 className="flickHeaderText mt-5">{obj.flicksFirebaseKey ? 'Update' : 'Add'} Flick</h2>
         <FloatingLabel controlId="floatingInput1" label="Title" className="mb-3">
-          <Form.Control type="text" placeholder="Title" name="flickTitle" value={formInput.title} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Title" name="title" value={formInput.title} onChange={handleChange} required />
         </FloatingLabel>
-
         <FloatingLabel controlId="floatingSelect" label="Type">
           <Form.Select
             aria-label="Type"
-            name="Tyoe"
+            name="type"
             type="select"
             onChange={handleChange}
             className="mb-3"
@@ -98,7 +97,7 @@ function FlickForm({ obj }) {
           >
             <option value="">Select Type</option>
             <option value="movie">Movie</option>
-            <option value="tvShow">TV Show</option>
+            <option value="TV Show">TV Show</option>
           </Form.Select>
         </FloatingLabel>
 
@@ -133,17 +132,17 @@ function FlickForm({ obj }) {
         ))}
 
         <FloatingLabel controlId="floatingInput5" label="Cast and Crew" className="mb-3">
-          <Form.Control type="text" placeholder="Cast and Crew" name="Cast and Crew" value={formInput.castCrew} onChange={handleChange} />
+          <Form.Control type="text" placeholder="Cast and Crew" name="castCrew" value={formInput.castCrew} onChange={handleChange} />
         </FloatingLabel>
 
         <FloatingLabel controlId="floatingInput6" label="Recommended By" className="mb-3">
-          <Form.Control type="text" placeholder="Recommended By" name="Recommended By" value={formInput.recommendedBy} onChange={handleChange} />
+          <Form.Control type="text" placeholder="Recommended By" name="recommendedBy" value={formInput.recommendedBy} onChange={handleChange} />
         </FloatingLabel>
 
         <Form.Check
           type="switch"
           label="Watched?"
-          name="Watched"
+          name="watched"
           id="watched"
           checked={formInput.watched}
           onChange={(e) => setFormInput((prevState) => ({
@@ -155,7 +154,7 @@ function FlickForm({ obj }) {
         <Form.Check
           type="switch"
           label="Favorite?"
-          name="Favorite"
+          name="favorite"
           id="watched"
           checked={formInput.favorite}
           onChange={(e) => setFormInput((prevState) => ({
@@ -168,7 +167,7 @@ function FlickForm({ obj }) {
           <Form.Control type="url" placeholder="Photo URL" name="imageUrl" value={formInput.imageUrl} onChange={handleChange} required />
         </FloatingLabel>
 
-        <Button className="formButton" type="submit">{obj.flickFirebaseKey ? 'Update' : 'Add'} Flick</Button>
+        <Button className="formButton" type="submit">{obj.flicksFirebaseKey ? 'Update' : 'Add'} Flick</Button>
       </Form>
     </div>
   );
@@ -176,7 +175,7 @@ function FlickForm({ obj }) {
 
 FlickForm.propTypes = {
   obj: PropTypes.shape({
-    flickFirebaseKey: PropTypes.string,
+    flicksFirebaseKey: PropTypes.string,
     title: PropTypes.string,
     type: PropTypes.string,
     genre: PropTypes.string,

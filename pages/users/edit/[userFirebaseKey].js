@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { getSingleUser } from '../../../api/userData';
 import CreateUserForm from '../new';
 
-export default function EditMembers() {
+export default function EditUser() {
   const [editItem, setEditItem] = useState({});
   const router = useRouter();
   const { userFirebaseKey } = router.query;
