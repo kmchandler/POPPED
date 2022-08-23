@@ -18,9 +18,9 @@ const getGenresByUid = (uid) => new Promise((resolve, reject) => {
 const createGenre = (genreObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/genres.json?`, genreObj)
     .then((response) => {
-      const payload = { firebaseKey: response.data.name };
+      const payload = { genreFirebaseKey: response.data.genreFirebaseKey };
       axios.patch(`${dbUrl}/genres/${response.data.name}.json`, payload).then(() => {
-        getGenresByUid(genreObj.uid).then((GenreArray) => resolve(GenreArray));
+        getGenresByUid(genreObj.uid).then((genreArray) => resolve(genreArray));
       });
     }).catch((error) => reject(error));
 });

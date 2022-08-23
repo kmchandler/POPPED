@@ -5,10 +5,10 @@ import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { deleteSingleFlick } from '../api/flicksData';
 
-function FlicksCard({ flickObj, onUpdate }) {
+function FlickCard({ flickObj, onUpdate }) {
   const deleteThisFlick = () => {
     if (window.confirm(`Delete ${flickObj.title}?`)) {
-      deleteSingleFlick(flickObj.flickFirebaseKey).then(() => onUpdate());
+      deleteSingleFlick(flickObj.flicksFirebaseKey).then(() => onUpdate());
     }
   };
   return (
@@ -20,14 +20,14 @@ function FlicksCard({ flickObj, onUpdate }) {
           <br />
           <hr />
           <p className="flickCardType">Type: {flickObj.type}</p>
-          <p className="flickCardGenre">Type: {flickObj.genre}</p>
-          <p className="playerCardJobs">Moods: {flickObj?.moods?.join(', ')}</p>
+          <p className="flickCardGenre">Genre: {flickObj.genre}</p>
+          <p className="playerCardJobs">Moods: {flickObj.moods}</p>
           <p className="flickCardCastCrew">Cast and Crew: {flickObj.castCrew}</p>
           <p className="flickCardGenre">Recommended By: {flickObj.recommendedBy}</p>
-          <p className="flickCardWatched">Watched: {flickObj.watched}</p>
-          <p className="flickCardFavorite">Favorite: {flickObj.favorite}</p>
+          <p className="flickCardWatched">{flickObj.watched}</p>
+          <p className="flickCardFavorite">{flickObj.favorite}</p>
           <div className="flickCardBtns">
-            <Link href={`/flicks/edit/${flickObj.flickFirebaseKey}`} passHref>
+            <Link href={`/flicks/edit/${flickObj.flicksFirebaseKey}`} passHref>
               <Button className="editButton">EDIT</Button>
             </Link>
             <Button className="deleteButton m-2" onClick={deleteThisFlick}>
@@ -40,17 +40,17 @@ function FlicksCard({ flickObj, onUpdate }) {
   );
 }
 
-FlicksCard.propTypes = {
+FlickCard.propTypes = {
   flickObj: PropTypes.shape({
-    flickFirebaseKey: PropTypes.string,
+    flicksFirebaseKey: PropTypes.string,
     title: PropTypes.string,
     type: PropTypes.string,
     genre: PropTypes.string,
     moods: PropTypes.string,
     castCrew: PropTypes.string,
     recommendedBy: PropTypes.string,
-    watched: PropTypes.string,
-    favorite: PropTypes.string,
+    watched: PropTypes.bool,
+    favorite: PropTypes.bool,
     imageUrl: PropTypes.string,
     rating: PropTypes.string,
     uid: PropTypes.string,
@@ -58,4 +58,4 @@ FlicksCard.propTypes = {
   onUpdate: PropTypes.func.isRequired,
 };
 
-export default FlicksCard;
+export default FlickCard;
