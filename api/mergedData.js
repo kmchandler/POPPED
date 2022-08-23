@@ -90,7 +90,7 @@ const createFlickGenres = (newFlickGenreObj) => new Promise((resolve, reject) =>
 });
 
 const updateFlickGenres = (flickGenreObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/flick_genres/${flickGenreObj.name}.json`, flickGenreObj)
+  axios.patch(`${dbUrl}/flick_genres/${flickGenreObj.flickFirebaseKey}.json`, flickGenreObj)
     .then(() => getFlickGenres(flickGenreObj.uid).then(resolve))
     .catch(reject);
 });
