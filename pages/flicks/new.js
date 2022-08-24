@@ -7,16 +7,16 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { updateFlick, createFlick } from '../../api/flicksData';
-import genres from '../../sampleData/genres.json';
-import moods from '../../sampleData/moods.json';
 import {
-  createFlickGenres, createFlickMoods, updateFlickGenres, updateFlickMoods,
+  createFlickGenres, updateFlickGenres, updateFlickMoods,
 } from '../../api/mergedData';
+import { getGenres, getSingleGenreByName } from '../../api/genresData';
+import moods from '../../sampleData/moods.json';
 
 const initialState = {
   title: '',
   type: '',
-  genre: '',
+  // genre: '',
   moods: '',
   castCrew: '',
   recommendedBy: '',
@@ -30,14 +30,16 @@ function FlickForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [checkedGenre, setCheckedGenre] = useState([]);
   const [checkedMood, setCheckedMood] = useState([]);
+  const [genres, setGenres] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
+    getGenres().then(setGenres);
     if (obj.flicksFirebaseKey) {
       setFormInput(obj);
-      setCheckedGenre(obj.genre || '');
-      setCheckedMood(obj.moods || '');
+      // setCheckedGenre(obj.genre || '');
+      // setCheckedMood(obj.moods || '');
     }
   }, [obj, obj.flicksFirebaseKey, user]);
 
@@ -51,19 +53,24 @@ function FlickForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    formInput.genre = checkedGenre;
+    // formInput.genre = checkedGenre;
     formInput.moods = checkedMood;
     if (obj.flicksFirebaseKey) {
       updateFlick(formInput).then((flick) => {
-        updateFlickGenres(flick);
+        updateFlickGenres(flick.flicksFirebaseKey, checkedGenre);
         updateFlickMoods(flick);
         router.push('/flicks/watchlist');
       });
     } else {
       const payload = { ...formInput, uid: user.uid };
       createFlick(payload).then((flick) => {
-        createFlickGenres(flick);
-        createFlickMoods(flick);
+        checkedGenre.map((genreName) => (
+          getSingleGenreByName(genreName).then((gobj) => {
+            const flickGenre = { flickFirebaseKey: flick.flicksFirebaseKey, genreFirebsaeKey: gobj.genreFirebaseKey };
+            createFlickGenres(flickGenre);
+          })
+        ));
+        // createFlickMoods(flick);
         router.push('/flicks/watchlist');
       });
     }
@@ -104,7 +111,7 @@ function FlickForm({ obj }) {
             onChange={handleChange}
             className="mb-3"
             required
-            value={obj.type}
+            // value={obj.type}
           >
             <option value="">Select Type</option>
             <option value="movie">Movie</option>
@@ -122,7 +129,6 @@ function FlickForm({ obj }) {
               checked={checkedGenre.indexOf(genre.genreName) >= 0}
               onChange={handleClickGenre}
               name={genre.genreName}
-              value={formInput.genre}
             />
           </div>
         ))}
@@ -137,7 +143,6 @@ function FlickForm({ obj }) {
               checked={checkedMood.indexOf(mood.moodsName) >= 0}
               onChange={handleClickMood}
               name={mood.moodsName}
-              value={formInput.moods}
             />
           </div>
         ))}

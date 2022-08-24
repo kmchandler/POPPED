@@ -15,20 +15,20 @@ const getFlicksByUid = (uid) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getSingleFlick = (flicksFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/flicks/${flicksFirebaseKey}.json`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
 const createFlick = (flickObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/flicks.json`, flickObj)
     .then((response) => {
       const payload = { flicksFirebaseKey: response.data.name };
       axios.patch(`${dbUrl}/flicks/${response.data.name}.json`, payload).then(() => {
-        getFlicksByUid(flickObj.uid).then((flickArray) => resolve(flickArray));
+        getSingleFlick(payload.flicksFirebaseKey).then(resolve);
       });
     }).catch((error) => reject(error));
-});
-
-const getSingleFlick = (flicksFirebaseKey) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/flicks/${flicksFirebaseKey}.json`)
-    .then((response) => resolve(response.data))
-    .catch((error) => reject(error));
 });
 
 const deleteSingleFlick = (flicksFirebaseKey) => new Promise((resolve, reject) => {
