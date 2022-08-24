@@ -8,16 +8,16 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { updateFlick, createFlick } from '../../api/flicksData';
 import {
-  createFlickGenres, updateFlickGenres, updateFlickMoods,
+  createFlickGenres, createFlickMoods, updateFlickGenres, updateFlickMoods,
 } from '../../api/mergedData';
 import { getGenres, getSingleGenreByName } from '../../api/genresData';
-import moods from '../../sampleData/moods.json';
+import { getMoods, getSingleMoodByName } from '../../api/moodsData';
 
 const initialState = {
   title: '',
   type: '',
   // genre: '',
-  moods: '',
+  // moods: '',
   castCrew: '',
   recommendedBy: '',
   watched: false,
@@ -31,11 +31,13 @@ function FlickForm({ obj }) {
   const [checkedGenre, setCheckedGenre] = useState([]);
   const [checkedMood, setCheckedMood] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [moods, setMoods] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
     getGenres().then(setGenres);
+    getMoods().then(setMoods);
     if (obj.flicksFirebaseKey) {
       setFormInput(obj);
       // setCheckedGenre(obj.genre || '');
@@ -54,11 +56,11 @@ function FlickForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // formInput.genre = checkedGenre;
-    formInput.moods = checkedMood;
+    // formInput.moods = checkedMood;
     if (obj.flicksFirebaseKey) {
       updateFlick(formInput).then((flick) => {
         updateFlickGenres(flick.flicksFirebaseKey, checkedGenre);
-        updateFlickMoods(flick);
+        updateFlickMoods(flick.flicksFirebaseKey, checkedMood);
         router.push('/flicks/watchlist');
       });
     } else {
@@ -70,7 +72,12 @@ function FlickForm({ obj }) {
             createFlickGenres(flickGenre);
           })
         ));
-        // createFlickMoods(flick);
+        checkedMood.map((moodName) => (
+          getSingleMoodByName(moodName).then((moodObj) => {
+            const flickMood = { flickFirebaseKey: flick.flicksFirebaseKey, moodFirebsaeKey: moodObj.moodFirebaseKey };
+            createFlickMoods(flickMood);
+          })
+        ));
         router.push('/flicks/watchlist');
       });
     }
@@ -114,7 +121,7 @@ function FlickForm({ obj }) {
             // value={obj.type}
           >
             <option value="">Select Type</option>
-            <option value="movie">Movie</option>
+            <option value="Movie">Movie</option>
             <option value="TV Show">TV Show</option>
           </Form.Select>
         </FloatingLabel>

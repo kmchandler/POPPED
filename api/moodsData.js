@@ -15,6 +15,18 @@ const getMoodsByUid = (uid) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getMoods = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/moods.json`)
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch((error) => reject(error));
+});
+
 const createMood = (moodObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/moods.json?`, moodObj)
     .then((response) => {
@@ -29,6 +41,18 @@ const getSingleMood = (firebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/moods/${firebaseKey}.json`)
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
+});
+
+const getSingleMoodByName = (moodsName) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/moods.json?orderBy="moodsName"&equalTo="${moodsName}"`)
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data)[0]);
+      } else {
+        resolve({});
+      }
+    })
+    .catch(reject);
 });
 
 const deleteSingleMood = (firebaseKey) => new Promise((resolve, reject) => {
@@ -49,4 +73,6 @@ export {
   getSingleMood,
   deleteSingleMood,
   updateMood,
+  getSingleMoodByName,
+  getMoods,
 };
