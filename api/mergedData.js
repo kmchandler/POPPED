@@ -93,12 +93,6 @@ const updateFlickGenres = (flickGenreObj) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteFlickGenres = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.delete(`${dbUrl}/flick_genres/${firebaseKey}.json`)
-    .then(resolve)
-    .catch(reject);
-});
-
 // flick_moods
 const getFlickMoodsByUid = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/flick_moods.json?orderBy="userId"&equalTo="${uid}"`)
@@ -124,16 +118,14 @@ const getFlickMoods = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const createFlickMoods = (newFlickMoodsObj) => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/flick_moods.json`, newFlickMoodsObj)
+const createFlickMoods = (flickMoodsObj) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/flick_moods.json`, flickMoodsObj)
     .then((response) => {
-      const body = { flickFirebaseKey: response.data.flickFirebaseKey, genreFirebaseKey: response.data.genreFirebaseKey };
+      const body = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/flick_moods/${response.data.name}.json`, body)
-        .then(() => {
-          getFlickMoods(newFlickMoodsObj).then(resolve);
-        });
-    })
-    .catch(reject);
+        .then(resolve)
+        .catch(reject);
+    });
 });
 
 const updateFlickMoods = (flickMoodsObj) => new Promise((resolve, reject) => {
@@ -192,5 +184,5 @@ const updateFlickMoods = (flickMoodsObj) => new Promise((resolve, reject) => {
 // });
 
 export {
-  getFlickGenres, createFlickGenres, updateFlickGenres, deleteFlickGenres, getFlickMoods, createFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickMoodsByUid,
+  getFlickGenres, createFlickGenres, updateFlickGenres, getFlickMoods, createFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickMoodsByUid,
 };
