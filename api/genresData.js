@@ -43,6 +43,18 @@ const getSingleGenre = (firebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getSingleGenreByName = (genreName) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/genres.json?orderBy="genreName"&equalTo="${genreName}"`)
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data)[0]);
+      } else {
+        resolve({});
+      }
+    })
+    .catch(reject);
+});
+
 const deleteSingleGenre = (firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/genres/${firebaseKey}.json`)
     .then((response) => resolve(response.data))
@@ -62,4 +74,5 @@ export {
   deleteSingleGenre,
   updateGenre,
   getGenres,
+  getSingleGenreByName,
 };
