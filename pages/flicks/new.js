@@ -35,6 +35,8 @@ function FlickForm({ obj }) {
   const router = useRouter();
   const { user } = useAuth();
 
+  const fbkey = obj.flicksFirebaseKey;
+
   useEffect(() => {
     getGenres().then(setGenres);
     getMoods().then(setMoods);
@@ -43,7 +45,7 @@ function FlickForm({ obj }) {
       // setCheckedGenre(obj.genre || '');
       // setCheckedMood(obj.moods || '');
     }
-  }, [obj, obj.flicksFirebaseKey, user]);
+  }, [obj, fbkey, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

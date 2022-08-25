@@ -5,12 +5,16 @@ import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { deleteSingleFlick } from '../api/flicksData';
 
-function FlickCard({ flickObj, onUpdate }) {
+function FlickCard({
+  flickObj, onUpdate,
+}) {
   const deleteThisFlick = () => {
     if (window.confirm(`Delete ${flickObj.title}?`)) {
       deleteSingleFlick(flickObj.flicksFirebaseKey).then(() => onUpdate());
     }
   };
+
+  console.warn(flickObj);
   return (
     <>
       <Card className="flickCardDiv" style={{ width: '18rem', margin: '10px' }}>
@@ -20,7 +24,7 @@ function FlickCard({ flickObj, onUpdate }) {
           <br />
           <hr />
           <p className="flickCardType">Type: {flickObj.type}</p>
-          <p className="flickCardGenre">Genre: {flickObj.genre}</p>
+          <p className="flickCardGenre">Genre: {flickObj.genres}</p>
           <p className="playerCardJobs">Moods: {flickObj.moods}</p>
           <p className="flickCardCastCrew">Cast and Crew: {flickObj.castCrew}</p>
           <p className="flickCardGenre">Recommended By: {flickObj.recommendedBy}</p>
@@ -42,10 +46,11 @@ function FlickCard({ flickObj, onUpdate }) {
 
 FlickCard.propTypes = {
   flickObj: PropTypes.shape({
+    flick: PropTypes.string,
     flicksFirebaseKey: PropTypes.string,
     title: PropTypes.string,
     type: PropTypes.string,
-    genre: PropTypes.string,
+    genres: PropTypes.string,
     moods: PropTypes.string,
     castCrew: PropTypes.string,
     recommendedBy: PropTypes.string,

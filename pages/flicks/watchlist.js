@@ -5,19 +5,17 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import Search from '../../components/Search';
 import FlickCard from '../../components/FlickCard';
-import { getFlicksByUid } from '../../api/flicksData';
+import { getFlicksByUidWithMetaData } from '../../api/flicksData';
 
 export default function Watchlist() {
   const [flicks, setFlicks] = useState([]);
   const [filteredFlicks, setFilteredFlicks] = useState([]);
   const { user } = useAuth();
 
-  const getAllTheFlicks = () => {
-    getFlicksByUid(user.uid).then((flick) => {
-      setFlicks(flick);
-      setFilteredFlicks(flick);
-    });
-  };
+  const getAllTheFlicks = () => getFlicksByUidWithMetaData(user.uid).then((flicksWithMetaData) => {
+    setFlicks(flicksWithMetaData);
+    setFilteredFlicks(flicksWithMetaData);
+  });
 
   useEffect(() => {
     getAllTheFlicks();

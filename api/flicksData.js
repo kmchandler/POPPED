@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { clientCredentials } from '../utils/client';
+import { getGenres } from './genresData';
+import { getMoods } from './moodsData';
 
 const dbUrl = clientCredentials.databaseURL;
 
@@ -8,6 +10,27 @@ const getFlicksByUid = (uid) => new Promise((resolve, reject) => {
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch((error) => reject(error));
+});
+
+const getFlicksByUidWithMetaData = async (uid) => {
+  const flicks = await getFlicksByUid(uid);
+  return flicks.map(async (flick) => {
+    const genres = await getGenres(flick.flicksFirebaseKey);
+    const moods = await getMoods(flick.flicksFirebaseKey);
+    return [flick, genres, moods];
+  });
+};
+
+const getFlicksByUidObj = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/flicks.json?orderBy="uid"&equalTo="${uid}"`)
+    .then((response) => {
+      if (response.data) {
+        resolve(response.data);
       } else {
         resolve([]);
       }
@@ -45,8 +68,10 @@ const updateFlick = (flickObj) => new Promise((resolve, reject) => {
 
 export {
   getFlicksByUid,
+  getFlicksByUidObj,
   createFlick,
   getSingleFlick,
   deleteSingleFlick,
   updateFlick,
+  getFlicksByUidWithMetaData,
 };

@@ -67,6 +67,18 @@ const updateGenre = (genreObj) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getGenresByGenreFirebaseKey = (genreFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/genres.json?orderBy="genreFirebaseKey"&equalTo="${genreFirebaseKey}"`)
+    .then((response) => {
+      if (response.data) {
+        resolve(response.data);
+      } else {
+        resolve([]);
+      }
+    })
+    .catch((error) => reject(error));
+});
+
 export {
   getGenresByUid,
   createGenre,
@@ -75,4 +87,5 @@ export {
   updateGenre,
   getGenres,
   getSingleGenreByName,
+  getGenresByGenreFirebaseKey,
 };
