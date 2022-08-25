@@ -22,7 +22,7 @@ const getFlicksByUidWithMetaData = async (uid) => {
   return flicks.map(async (flick) => {
     const genres = await getGenres(flick.flicksFirebaseKey);
     const moods = await getMoods(flick.flicksFirebaseKey);
-    return { flick, genres, moods };
+    return [flick, genres, moods];
   });
 };
 

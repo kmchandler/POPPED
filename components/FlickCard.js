@@ -18,7 +18,7 @@ function FlickCard({
   return (
     <>
       <Card className="flickCardDiv" style={{ width: '18rem', margin: '10px' }}>
-        <Card.Img className="cardImage" variant="top" src={flickObj.flick.imageUrl} alt={flickObj.title} style={{ height: '400px' }} />
+        <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '400px' }} />
         <Card.Body className="cardBody">
           <Card.Title className="flickTitle">{flickObj.title}</Card.Title>
           <br />
