@@ -16,8 +16,6 @@ import { getMoods, getSingleMoodByName } from '../../api/moodsData';
 const initialState = {
   title: '',
   type: '',
-  // genre: '',
-  // moods: '',
   castCrew: '',
   recommendedBy: '',
   watched: false,
@@ -42,8 +40,6 @@ function FlickForm({ obj }) {
     getMoods().then(setMoods);
     if (obj.flicksFirebaseKey) {
       setFormInput(obj);
-      // setCheckedGenre(obj.genre || '');
-      // setCheckedMood(obj.moods || '');
     }
   }, [obj, fbkey, user]);
 
@@ -57,8 +53,6 @@ function FlickForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // formInput.genre = checkedGenre;
-    // formInput.moods = checkedMood;
     if (obj.flicksFirebaseKey) {
       updateFlick(formInput).then((flick) => {
         updateFlickGenres(flick.flicksFirebaseKey, checkedGenre);
@@ -70,13 +64,13 @@ function FlickForm({ obj }) {
       createFlick(payload).then((flick) => {
         checkedGenre.map((genreName) => (
           getSingleGenreByName(genreName).then((gobj) => {
-            const flickGenre = { flickFirebaseKey: flick.flicksFirebaseKey, genreFirebsaeKey: gobj.genreFirebaseKey };
+            const flickGenre = { flickFirebaseKey: flick.flicksFirebaseKey, genreFirebaseKey: gobj.genreFirebaseKey };
             createFlickGenres(flickGenre);
           })
         ));
         checkedMood.map((moodName) => (
           getSingleMoodByName(moodName).then((moodObj) => {
-            const flickMood = { flickFirebaseKey: flick.flicksFirebaseKey, moodFirebsaeKey: moodObj.moodFirebaseKey };
+            const flickMood = { flickFirebaseKey: flick.flicksFirebaseKey, moodFirebaseKey: moodObj.moodFirebaseKey };
             createFlickMoods(flickMood);
           })
         ));

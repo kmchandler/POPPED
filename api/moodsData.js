@@ -67,6 +67,18 @@ const updateMood = (moodObj) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getMoodsByMoodFirebaseKey = (moodFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/moods.json?orderBy="moodFirebaseKey"&equalTo="${moodFirebaseKey}"`)
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data)[0]);
+      } else {
+        resolve([]);
+      }
+    })
+    .catch((error) => reject(error));
+});
+
 export {
   getMoodsByUid,
   createMood,
@@ -75,4 +87,5 @@ export {
   updateMood,
   getSingleMoodByName,
   getMoods,
+  getMoodsByMoodFirebaseKey,
 };

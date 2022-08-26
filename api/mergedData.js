@@ -2,7 +2,7 @@ import axios from 'axios';
 import { clientCredentials } from '../utils/client';
 import { getFlicksByUid, getFlicksByUidObj } from './flicksData';
 import { getGenresByGenreFirebaseKey } from './genresData';
-import { getMoods } from './moodsData';
+import { getMoodsByMoodFirebaseKey } from './moodsData';
 
 const dbUrl = clientCredentials.databaseURL;
 
@@ -122,10 +122,20 @@ const getFlickGenresForFlick = async (flickFirebaseKey) => {
   return JSON.stringify(response.data) === '{}' ? [] : Object.values(response.data);
 };
 
-// get genres for flick
 const getGenresForFlick = async (flickFirebaseKey) => {
   const flickGenres = await getFlickGenresForFlick(flickFirebaseKey);
   const promises = flickGenres.map((flickGenre) => getGenresByGenreFirebaseKey(flickGenre.genreFirebaseKey));
+  return Promise.all(promises);
+};
+
+const getFlickMoodsForFlick = async (flickFirebaseKey) => {
+  const response = await axios.get(`${dbUrl}/flick_moods.json?orderBy="flickFirebaseKey"&equalTo="${flickFirebaseKey}"`);
+  return JSON.stringify(response.data) === '{}' ? [] : Object.values(response.data);
+};
+
+const getMoodsForFlick = async (flickFirebaseKey) => {
+  const flickMoods = await getFlickMoodsForFlick(flickFirebaseKey);
+  const promises = flickMoods.map((flickMood) => getMoodsByMoodFirebaseKey(flickMood.moodFirebaseKey));
   return Promise.all(promises);
 };
 
@@ -133,7 +143,7 @@ const getFlicksByUidWithMetaData = async (uid) => {
   const flicks = await getFlicksByUid(uid);
   const promises = flicks.map(async (flick) => {
     const genres = await getGenresForFlick(flick.flicksFirebaseKey);
-    const moods = await getMoods(flick.flicksFirebaseKey);
+    const moods = await getMoodsForFlick(flick.flicksFirebaseKey);
     return {
       ...flick,
       genres,
@@ -235,5 +245,5 @@ const updateFlickMoods = (flickMoodsObj) => new Promise((resolve, reject) => {
 // });
 
 export {
-  getFlickGenres, createFlickGenres, updateFlickGenres, getFlickMoods, createFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresToRender, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData,
+  getFlickGenres, createFlickGenres, updateFlickGenres, getFlickMoods, createFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresToRender, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData, getMoodsForFlick,
 };
