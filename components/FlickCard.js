@@ -14,6 +14,7 @@ function FlickCard({
     }
   };
 
+  console.warn(flickObj);
   return (
     <>
       <Card className="flickCardDiv" style={{ width: '18rem', margin: '10px' }}>
