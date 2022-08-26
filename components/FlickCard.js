@@ -14,7 +14,7 @@ function FlickCard({
     }
   };
 
-  console.warn(flickObj);
+  console.warn(flickObj.moods);
   return (
     <>
       <Card className="flickCardDiv" style={{ width: '18rem', margin: '10px' }}>
