@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import Search from '../../components/Search';
 import FlickCard from '../../components/FlickCard';
-import { getFlicksByUidWithMetaData } from '../../api/flicksData';
+import { getFlicksByUidWithMetaData } from '../../api/mergedData';
 
 export default function Watchlist() {
   const [flicks, setFlicks] = useState([]);
