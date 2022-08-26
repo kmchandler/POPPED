@@ -24,8 +24,8 @@ function FlickCard({
           <br />
           <hr />
           <p className="flickCardType">Type: {flickObj.type}</p>
-          <p className="flickCardGenre">Genre: {flickObj.genres}</p>
-          <p className="playerCardJobs">Moods: {flickObj.moods}</p>
+          <p className="flickCardGenre">Genre: {flickObj.genres.map((genre) => genre.genreName)}</p>
+          <p className="playerCardJobs">Moods: {flickObj.moods.map((mood) => mood.moodsName)}</p>
           <p className="flickCardCastCrew">Cast and Crew: {flickObj.castCrew}</p>
           <p className="flickCardGenre">Recommended By: {flickObj.recommendedBy}</p>
           <p className="flickCardWatched">{flickObj.watched}</p>
@@ -50,8 +50,8 @@ FlickCard.propTypes = {
     flicksFirebaseKey: PropTypes.string,
     title: PropTypes.string,
     type: PropTypes.string,
-    genres: PropTypes.string,
-    moods: PropTypes.string,
+    genres: PropTypes.arrayOf(PropTypes.string),
+    moods: PropTypes.arrayOf(PropTypes.string),
     castCrew: PropTypes.string,
     recommendedBy: PropTypes.string,
     watched: PropTypes.bool,

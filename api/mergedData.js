@@ -116,6 +116,11 @@ const getFlickGenresToRender = (flickFirebaseKey, uid) => new Promise((resolve, 
   }).catch(reject);
 });
 
+const getFlickGenresForFlick = async (flickFirebaseKey) => {
+  const response = await axios.get(`${dbUrl}/flick_genres.json?orderBy="flickFirebaseKey"&equalTo="${flickFirebaseKey}"`);
+  return JSON.stringify(response.data) === '{}' ? [] : Object.values(response.data);
+};
+
 // flick_moods
 const getFlickMoodsByUid = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/flick_moods.json?orderBy="userId"&equalTo="${uid}"`)
@@ -207,5 +212,5 @@ const updateFlickMoods = (flickMoodsObj) => new Promise((resolve, reject) => {
 // });
 
 export {
-  getFlickGenres, createFlickGenres, updateFlickGenres, getFlickMoods, createFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresToRender,
+  getFlickGenres, createFlickGenres, updateFlickGenres, getFlickMoods, createFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresToRender, getFlickGenresForFlick,
 };
