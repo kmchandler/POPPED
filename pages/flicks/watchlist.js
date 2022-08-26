@@ -12,10 +12,11 @@ export default function Watchlist() {
   const [filteredFlicks, setFilteredFlicks] = useState([]);
   const { user } = useAuth();
 
-  const getAllTheFlicks = () => getFlicksByUidWithMetaData(user.uid).then((flicksWithMetaData) => {
+  const getAllTheFlicks = async () => {
+    const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     setFlicks(flicksWithMetaData);
     setFilteredFlicks(flicksWithMetaData);
-  });
+  };
 
   useEffect(() => {
     getAllTheFlicks();

@@ -71,7 +71,7 @@ const getGenresByGenreFirebaseKey = (genreFirebaseKey) => new Promise((resolve, 
   axios.get(`${dbUrl}/genres.json?orderBy="genreFirebaseKey"&equalTo="${genreFirebaseKey}"`)
     .then((response) => {
       if (response.data) {
-        resolve(response.data);
+        resolve(Object.values(response.data)[0]);
       } else {
         resolve([]);
       }
