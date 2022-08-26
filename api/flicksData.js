@@ -1,8 +1,5 @@
 import axios from 'axios';
 import { clientCredentials } from '../utils/client';
-import { getGenresByGenreFirebaseKey } from './genresData';
-import { getMoods } from './moodsData';
-import { getFlickGenresForFlick } from './mergedData';
 
 const dbUrl = clientCredentials.databaseURL;
 
@@ -17,32 +14,6 @@ const getFlicksByUid = (uid) => new Promise((resolve, reject) => {
     })
     .catch((error) => reject(error));
 });
-
-// get genres for flick
-const getGenresForFlick = async (flickFirebaseKey) => {
-  const flickGenres = await getFlickGenresForFlick(flickFirebaseKey);
-  const promises = flickGenres.map((flickGenre) => getGenresByGenreFirebaseKey(flickGenre.genreFirebaseKey));
-  return Promise.all(promises);
-};
-
-// get all the flick_genres for flick, use mergedData
-// result will be a list of flick_genres
-// for each flick_genre, hit the genre talbe with the genreFirebaseKey
-
-const getFlicksByUidWithMetaData = async (uid) => {
-  const flicks = await getFlicksByUid(uid);
-  const promises = flicks.map(async (flick) => {
-    const genres = await getGenresForFlick(flick.flicksFirebaseKey);
-    const moods = await getMoods(flick.flicksFirebaseKey);
-    return {
-      ...flick,
-      genres,
-      moods,
-    };
-  });
-
-  return Promise.all(promises);
-};
 
 const getFlicksByUidObj = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/flicks.json?orderBy="uid"&equalTo="${uid}"`)
@@ -91,5 +62,4 @@ export {
   getSingleFlick,
   deleteSingleFlick,
   updateFlick,
-  getFlicksByUidWithMetaData,
 };
