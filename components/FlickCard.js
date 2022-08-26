@@ -14,7 +14,6 @@ function FlickCard({
     }
   };
 
-  console.warn(flickObj[0]);
   return (
     <>
       <Card className="flickCardDiv" style={{ width: '18rem', margin: '10px' }}>
@@ -50,8 +49,8 @@ FlickCard.propTypes = {
     flicksFirebaseKey: PropTypes.string,
     title: PropTypes.string,
     type: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    moods: PropTypes.arrayOf(PropTypes.string),
+    genres: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+    moods: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
     castCrew: PropTypes.string,
     recommendedBy: PropTypes.string,
     watched: PropTypes.bool,
