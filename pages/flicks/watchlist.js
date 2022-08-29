@@ -16,6 +16,7 @@ export default function Watchlist() {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     setFlicks(flicksWithMetaData);
     setFilteredFlicks(flicksWithMetaData);
+    console.warn(flicks);
   };
 
   useEffect(() => {

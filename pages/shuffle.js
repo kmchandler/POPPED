@@ -17,15 +17,19 @@ export default function Shuffle() {
   const user = useAuth();
   // const router = useRouter();
 
-  const getSetupPage = async () => {
+  const getFlicks = async () => {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     setFlicks(flicksWithMetaData);
+  };
+
+  const getMoodsGenres = () => {
     getGenres().then(setGenres);
     getMoods().then(setMoods);
   };
 
   useEffect(() => {
-    getSetupPage();
+    getFlicks();
+    getMoodsGenres();
   }, [user]);
 
   const handleChange = (e) => {
@@ -66,23 +70,23 @@ export default function Shuffle() {
   // render that array onto a flick card
   // if no flicks match, render no matches found, please try again
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const genreArray = flicks.filter((flick) => checkedGenre.some((genre) => flick.genres.genreFirebaseKey === genre.genreFirebaseKey));
-    const moodsArray = flicks.filter((flick) => checkedMood.some((mood) => flick.moods.moodFirebaseKey === mood.moodFirebaseKey));
-    const typeArray = flicks.some((flick) => flick.type === formInput.type);
-    const recommendedByArray = flicks.some((flick) => flick.recommendedBy.includes(formInput.recommendedBy));
-    const genresMoodsArray = genreArray.filter((genre) => moodsArray.some((mood) => genre.flicksFirebaseKey === mood.flicksFirebaseKey));
-    const typeRecommendedByArray = typeArray.filter((type) => recommendedByArray.some((recommendation) => type.flicksFirebaseKey === recommendation.flicksFirebaseKey));
-    const genreMoodTypeRecommendedBy = genresMoodsArray.filter((gm) => typeRecommendedByArray((trb) => gm.flicksFirebaseKey === trb.flicksFirebaseKey));
-    const watchedArray = flicks.filter((flick) => flick.watched === formInput.watched);
-    const shuffleArray = genreMoodTypeRecommendedBy.filter((gmtr) => watchedArray.some((watchedFlicks) => gmtr.flicksFirebaseKey === watchedFlicks.flicksFirebaseKey));
-    console.warn(shuffleArray);
+  const handleSubmit = () => {
+    console.warn(flicks);
+    // const genreArray = flicks.filter((flick) => checkedGenre.some((genre) => flick.genres.genreFirebaseKey === genre.genreFirebaseKey));
+    // const moodsArray = flicks.filter((flick) => checkedMood.some((mood) => flick.moods.moodFirebaseKey === mood.moodFirebaseKey));
+    // const typeArray = flicks.some((flick) => flick.type === formInput.type);
+    // const recommendedByArray = flicks.some((flick) => flick.recommendedBy.includes(formInput.recommendedBy));
+    // const genresMoodsArray = genreArray.filter((genre) => moodsArray.some((mood) => genre.flicksFirebaseKey === mood.flicksFirebaseKey));
+    // const typeRecommendedByArray = typeArray.filter((type) => recommendedByArray.some((recommendation) => type.flicksFirebaseKey === recommendation.flicksFirebaseKey));
+    // const genreMoodTypeRecommendedBy = genresMoodsArray.filter((gm) => typeRecommendedByArray((trb) => gm.flicksFirebaseKey === trb.flicksFirebaseKey));
+    // const watchedArray = flicks.filter((flick) => flick.watched === formInput.watched);
+    // const shuffleArray = genreMoodTypeRecommendedBy.filter((gmtr) => watchedArray.some((watchedFlicks) => gmtr.flicksFirebaseKey === watchedFlicks.flicksFirebaseKey));
+    // console.warn(shuffleArray);
     // router.push('/watchThis');
   };
 
   return (
-    <form>
+    <form onSubmit={(e) => e.preventDefault()}>
       <h3>i feel like watching...</h3>
       <div>
         <h5>type</h5>
@@ -148,7 +152,7 @@ export default function Shuffle() {
           <input type="text" name="recommendedBy" value={formInput.recommendedBy} className="form-control" placeholder="Recommended By" onChange={handleChange} />
         </div>
       </div>
-      <button type="submit" onSubmit={handleSubmit}>shuffle</button>
+      <button type="button" onClick={handleSubmit}>shuffle</button>
     </form>
   );
 }
