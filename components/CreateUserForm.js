@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
 import { createUser, getUserByUid, updateUser } from '../api/userData';
-import genres from '../sampleData/genres.json';
+import { getGenres } from '../api/genresData';
 
 const initialState = {
   firstName: '',
@@ -17,6 +17,7 @@ const initialState = {
 function CreateUserForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [checkedGenre, setCheckedGenre] = useState([]);
+  const [genres, setGenres] = useState([]);
   const [, setProfile] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
@@ -26,6 +27,7 @@ function CreateUserForm({ obj }) {
     if (obj.userFirebaseKey) {
       setFormInput(obj);
     }
+    getGenres().then(setGenres);
   }, [obj, user]);
 
   const handleChange = (e) => {
