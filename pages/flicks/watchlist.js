@@ -16,6 +16,8 @@ export default function Watchlist() {
   const [genres, setGenres] = useState([]);
   const { user } = useAuth();
 
+  console.warn(filteredFlicks);
+
   const getAllTheFlicks = async () => {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     setFlicks(flicksWithMetaData);
