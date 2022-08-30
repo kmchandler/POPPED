@@ -10,7 +10,7 @@ export default function Search({ setFilteredFlicks, flicks }) {
   const handleChange = (e) => {
     const { value } = e.target;
     setInput(value);
-    const results = flickObj.flicks.filter((flick) => flick?.title?.toLowerCase().includes(value.toLowerCase()) || flick?.genre?.toString().toLowerCase().includes(value.toLowerCase()));
+    const results = flickObj.filter((flick) => flick?.title?.toLowerCase().includes(value.toLowerCase()) || flick?.genres?.genreName?.toString().toLowerCase().includes(value.toLowerCase()));
     setFilteredFlicks({ flicks: results });
   };
   return (
