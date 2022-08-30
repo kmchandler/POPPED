@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 
 function ShuffleCard({ watchObj }) {
-  console.warn(watchObj);
   return (
     <>
       <Card className="ShuffleCardDiv" style={{ width: '25rem', margin: '10px', height: '45rem' }}>
