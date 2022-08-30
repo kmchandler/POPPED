@@ -11,7 +11,7 @@ export default function WatchThis() {
 
   useEffect(() => {
     getSingleFlickWithMetaData(flicksFirebaseKey).then(setResult);
-  }, []);
+  }, [flicksFirebaseKey]);
 
   if (!result.flicksFirebaseKey) {
     return null;
