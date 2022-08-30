@@ -60,9 +60,6 @@ export default function Shuffle() {
     setCheckedMood(updatedMood);
   };
 
-  // render that chosen flick onto a flick card
-  // if no flicks match, render no matches found, please try again
-
   const handleSubmit = () => {
     const flickData = flicks.reduce((acc, flick) => {
       if (checkedGenre.length > 0) {
@@ -87,9 +84,11 @@ export default function Shuffle() {
       return acc;
     }, []);
 
-    const result = flickData[Math.floor(Math.random() * flickData.length)];
-    console.warn(result);
-    router.push(`/flicks/watchThis/${result.flicksFirebaseKey}`);
+    if (flickData > 0) {
+      const result = flickData[Math.floor(Math.random() * flickData.length)];
+      router.push(`/flicks/watchThis/${result.flicksFirebaseKey}`);
+    }
+    router.push('/flicks/tryAgain');
   };
 
   return (

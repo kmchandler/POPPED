@@ -9,6 +9,8 @@ export default function WatchThis() {
   const router = useRouter();
   const { flicksFirebaseKey } = router.query;
 
+  const onClick = () => router.push('/shuffle');
+
   useEffect(() => {
     getSingleFlickWithMetaData(flicksFirebaseKey).then(setResult);
   }, [flicksFirebaseKey]);
@@ -16,5 +18,10 @@ export default function WatchThis() {
   if (!result.flicksFirebaseKey) {
     return null;
   }
-  return (<ShuffleCard watchObj={result} />);
+  return (
+    <div>
+      <button type="button" onClick={onClick}>try again</button>
+      <ShuffleCard watchObj={result} />
+    </div>
+  );
 }
