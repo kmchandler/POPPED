@@ -6,17 +6,17 @@ function ShuffleCard({ watchObj }) {
   console.warn(watchObj);
   return (
     <>
-      <Card className="ShuffleCardDiv" style={{ width: '18rem', margin: '10px' }}>
-        <Card.Img className="cardImage" variant="top" src={watchObj.imageUrl} alt={watchObj.title} style={{ height: '400px' }} />
+      <Card className="ShuffleCardDiv" style={{ width: '25rem', margin: '10px', height: '45rem' }}>
+        <Card.Img className="cardImage" variant="top" src={watchObj.imageUrl} alt={watchObj.title} style={{ height: '300px' }} />
         <Card.Body className="cardBody">
           <Card.Title className="watchTitle">{watchObj.title}</Card.Title>
-          <br />
           <hr />
-          <p className="watchCardType">Type: {watchObj.type}</p>
-          <p className="watchCardGenre">Genre: {watchObj?.genres?.map((genre) => genre.genreName)}</p>
-          <p className="playerCardJobs">Moods: {watchObj?.moods?.map((mood) => mood.moodsName)}</p>
-          <p className="watchCardCastCrew">Cast and Crew: {watchObj.castCrew}</p>
-          <p className="watchCardGenre">Recommended By: {watchObj.recommendedBy}</p>
+          <p className="watchCardGenre">{watchObj.genres.length > 0 ? 'Genres: ' : ''}{watchObj.genres ? watchObj.genres.map((genre, index) => (index ? ', ' : '') + genre.genreName) : ''}</p>
+          <p className="playerCardJobs">{watchObj.moods.length > 0 ? 'Moods: ' : ''}{watchObj.moods ? watchObj.moods.map((mood, index) => (index ? ', ' : '') + mood.moodsName) : ''}</p>
+          <p className="watchCardCastCrew">{watchObj.castCrew ? 'Cast/Crew: ' : ''}{watchObj.castCrew ? watchObj.castCrew : ''}</p>
+          <p className="watchCardRecommendedBy">{watchObj.recommendedBy ? 'Recommended By: ' : ''}{watchObj.recommendedBy ? watchObj.recommendedBy : ''}</p>
+          <p className="watchCardWatched">{watchObj.watched ? 'Watched' : ''}</p>
+          <p className="watchCardFavorite">{watchObj.favorite ? 'Favorite' : ''}</p>
           <p className="watchCardWatched">{watchObj.watched}</p>
           <p className="watchCardFavorite">{watchObj.favorite}</p>
         </Card.Body>

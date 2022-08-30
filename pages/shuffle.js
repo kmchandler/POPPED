@@ -71,24 +71,27 @@ export default function Shuffle() {
         if (!moodFound) return acc;
       }
       if (formInput.watched) {
-        if (flick.watched === formInput.watched) return acc;
+        const watchedFlick = flick.watched === formInput.watched;
+        if (!watchedFlick) return acc;
       }
       if (formInput.type) {
-        if (flick.type === formInput.type) return acc;
+        const flickType = flick.type === formInput.type;
+        if (!flickType) return acc;
       }
       if (formInput.recommendedBy) {
-        const recommendation = flick.recommendedBy.some((rec) => rec.includes(formInput.recommendedBy));
+        const recommendation = flick.recommendedBy.includes(formInput.recommendedBy);
         if (!recommendation) return acc;
       }
       acc.push(flick);
       return acc;
     }, []);
 
-    if (flickData > 0) {
+    if (flickData.length >= 1) {
       const result = flickData[Math.floor(Math.random() * flickData.length)];
       router.push(`/flicks/watchThis/${result.flicksFirebaseKey}`);
+    } else if (flickData.length <= 0) {
+      router.push('/flicks/tryAgain');
     }
-    router.push('/flicks/tryAgain');
   };
 
   return (

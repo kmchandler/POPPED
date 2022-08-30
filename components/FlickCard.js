@@ -16,19 +16,18 @@ function FlickCard({
 
   return (
     <>
-      <Card className="flickCardDiv" style={{ width: '18rem', margin: '10px' }}>
-        <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '400px' }} />
-        <Card.Body className="cardBody">
+      <Card className="flickCardDiv" style={{ width: '25rem', margin: '10px', height: '45rem' }}>
+        <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '300px' }} />
+        <Card.Body className="cardBody flickCardBody">
           <Card.Title className="flickTitle">{flickObj.title}</Card.Title>
-          <br />
           <hr />
           <p className="flickCardType">Type: {flickObj.type}</p>
-          <p className="flickCardGenre">Genre: {flickObj.genres.map((genre) => genre.genreName)}</p>
-          <p className="playerCardJobs">Moods: {flickObj.moods.map((mood) => mood.moodsName)}</p>
-          <p className="flickCardCastCrew">Cast and Crew: {flickObj.castCrew}</p>
-          <p className="flickCardGenre">Recommended By: {flickObj.recommendedBy}</p>
-          <p className="flickCardWatched">{flickObj.watched}</p>
-          <p className="flickCardFavorite">{flickObj.favorite}</p>
+          <p className="flickCardGenre">{flickObj.genres.length > 0 ? 'Genres: ' : ''}{flickObj.genres ? flickObj.genres.map((genre, index) => (index ? ', ' : '') + genre.genreName) : ''}</p>
+          <p className="playerCardJobs">{flickObj.moods.length > 0 ? 'Moods: ' : ''}{flickObj.moods ? flickObj.moods.map((mood, index) => (index ? ', ' : '') + mood.moodsName) : ''}</p>
+          <p className="flickCardCastCrew">{flickObj.castCrew ? 'Cast/Crew: ' : ''}{flickObj.castCrew ? flickObj.castCrew : ''}</p>
+          <p className="flickCardRecommendedBy">{flickObj.recommendedBy ? 'Recommended By: ' : ''}{flickObj.recommendedBy ? flickObj.recommendedBy : ''}</p>
+          <p className="flickCardflicked">{flickObj.flicked ? 'flicked' : ''}</p>
+          <p className="flickCardFavorite">{flickObj.favorite ? 'Favorite' : ''}</p>
           <div className="flickCardBtns">
             <Link href={`/flicks/edit/${flickObj.flicksFirebaseKey}`} passHref>
               <Button className="editButton">EDIT</Button>
@@ -53,7 +52,7 @@ FlickCard.propTypes = {
     moods: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
     castCrew: PropTypes.string,
     recommendedBy: PropTypes.string,
-    watched: PropTypes.bool,
+    flicked: PropTypes.bool,
     favorite: PropTypes.bool,
     imageUrl: PropTypes.string,
     rating: PropTypes.string,
