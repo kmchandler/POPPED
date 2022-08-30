@@ -60,8 +60,6 @@ export default function Shuffle() {
     setCheckedMood(updatedMood);
   };
 
-  // find every flick that fits all the critetia and make a new array of those flicks
-  // iterate over that array and pick a random integer
   // render that chosen flick onto a flick card
   // if no flicks match, render no matches found, please try again
 
@@ -76,12 +74,10 @@ export default function Shuffle() {
         if (!moodFound) return acc;
       }
       if (formInput.watched) {
-        const watchedOrNot = flick.watched.some((watchedFilm) => watchedFilm === formInput.watched);
-        if (!watchedOrNot) return acc;
+        if (flick.watched === formInput.watched) return acc;
       }
       if (formInput.type) {
-        const typeFound = flick.type.some((typeOf) => typeOf === formInput.type);
-        if (!typeFound) return acc;
+        if (flick.type === formInput.type) return acc;
       }
       if (formInput.recommendedBy) {
         const recommendation = flick.recommendedBy.some((rec) => rec.includes(formInput.recommendedBy));
@@ -93,11 +89,6 @@ export default function Shuffle() {
     console.warn(flickData);
     // router.push('/watchThis');
   };
-
-  const theTypes = flicks.map((flick) => flick.watched);
-  const theWatched = flicks.map((flick) => flick.type);
-  console.warn(theTypes);
-  console.warn(theWatched);
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
