@@ -94,6 +94,11 @@ export default function Shuffle() {
     // router.push('/watchThis');
   };
 
+  const theTypes = flicks.map((flick) => flick.watched);
+  const theWatched = flicks.map((flick) => flick.type);
+  console.warn(theTypes);
+  console.warn(theWatched);
+
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <h3>i feel like watching...</h3>
