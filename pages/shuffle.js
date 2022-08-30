@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Form from 'react-bootstrap/Form';
 import { useAuth } from '../utils/context/authContext';
 import { getGenres } from '../api/genresData';
@@ -15,7 +15,7 @@ export default function Shuffle() {
   const [moods, setMoods] = useState([]);
   const [flicks, setFlicks] = useState([]);
   const { user } = useAuth();
-  // const router = useRouter();
+  const router = useRouter();
 
   const getFlicks = async () => {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
@@ -86,8 +86,10 @@ export default function Shuffle() {
       acc.push(flick);
       return acc;
     }, []);
-    console.warn(flickData);
-    // router.push('/watchThis');
+
+    const result = flickData[Math.floor(Math.random() * flickData.length)];
+    console.warn(result);
+    router.push(`/flicks/watchThis/${result.flicksFirebaseKey}`);
   };
 
   return (
