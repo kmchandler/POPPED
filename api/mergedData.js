@@ -154,26 +154,8 @@ const getFlicksByUidWithMetaData = async (uid) => {
   return Promise.all(promises);
 };
 
-// need to write a function to getSingleFlickWithMetaData
-
-const getSingleFlickWithMetaData = async (flicksFirebaseKey) => {
-  const flicks = await getSingleFlick(flicksFirebaseKey);
-  const promises = flicks.map(async (flick) => {
-    const genres = await getGenresForFlick(flick.flicksFirebaseKey);
-    const moods = await getMoodsForFlick(flick.flicksFirebaseKey);
-    return {
-      ...flick,
-      genres,
-      moods,
-    };
-  });
-
-  return Promise.all(promises);
-};
-
-// flick_moods
-const getFlickMoodsByUid = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/flick_moods.json?orderBy="userId"&equalTo="${uid}"`)
+const getFlickMoods = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/flick_moods`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));
@@ -184,8 +166,20 @@ const getFlickMoodsByUid = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getFlickMoods = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/flick_moods`)
+const getSingleFlickWithMetaData = async (flicksFirebaseKey) => {
+  const flick = await getSingleFlick(flicksFirebaseKey);
+  const genres = await getGenresForFlick(flick.flicksFirebaseKey);
+  const moods = await getMoodsForFlick(flick.flicksFirebaseKey);
+  return {
+    ...flick,
+    genres,
+    moods,
+  };
+};
+
+// flick_moods
+const getFlickMoodsByUid = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/flick_moods.json?orderBy="userId"&equalTo="${uid}"`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));
