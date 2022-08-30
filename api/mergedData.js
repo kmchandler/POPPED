@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { clientCredentials } from '../utils/client';
-import { getFlicksByUid, getFlicksByUidObj } from './flicksData';
+import { getFlicksByUid, getFlicksByUidObj, getSingleFlick } from './flicksData';
 import { getGenresByGenreFirebaseKey } from './genresData';
 import { getMoodsByMoodFirebaseKey } from './moodsData';
 
@@ -154,6 +154,23 @@ const getFlicksByUidWithMetaData = async (uid) => {
   return Promise.all(promises);
 };
 
+// need to write a function to getSingleFlickWithMetaData
+
+const getSingleFlickWithMetaData = async (flicksFirebaseKey) => {
+  const flicks = await getSingleFlick(flicksFirebaseKey);
+  const promises = flicks.map(async (flick) => {
+    const genres = await getGenresForFlick(flick.flicksFirebaseKey);
+    const moods = await getMoodsForFlick(flick.flicksFirebaseKey);
+    return {
+      ...flick,
+      genres,
+      moods,
+    };
+  });
+
+  return Promise.all(promises);
+};
+
 // flick_moods
 const getFlickMoodsByUid = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/flick_moods.json?orderBy="userId"&equalTo="${uid}"`)
@@ -245,5 +262,5 @@ const updateFlickMoods = (flickMoodsObj) => new Promise((resolve, reject) => {
 // });
 
 export {
-  getFlickGenres, createFlickGenres, updateFlickGenres, getFlickMoods, createFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresToRender, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData, getMoodsForFlick,
+  getFlickGenres, createFlickGenres, updateFlickGenres, getFlickMoods, createFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresToRender, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData, getMoodsForFlick, getSingleFlickWithMetaData,
 };
