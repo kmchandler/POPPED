@@ -14,7 +14,7 @@ export default function Shuffle() {
   const [genres, setGenres] = useState([]);
   const [moods, setMoods] = useState([]);
   const [flicks, setFlicks] = useState([]);
-  const user = useAuth();
+  const { user } = useAuth();
   // const router = useRouter();
 
   const getFlicks = async () => {
@@ -60,28 +60,37 @@ export default function Shuffle() {
     setCheckedMood(updatedMood);
   };
 
-  // get an array of all checked genres
-  // get an aray of all checked moods
-  // get an array of all flicks that match type
-  // get an array of all flicks that match recommendedBy
-  // get an array of all flicks that match watched
-  // find every flick that is in all 5 arrays and make a new array of those flicks
+  // find every flick that fits all the critetia and make a new array of those flicks
   // iterate over that array and pick a random integer
-  // render that array onto a flick card
+  // render that chosen flick onto a flick card
   // if no flicks match, render no matches found, please try again
 
   const handleSubmit = () => {
-    console.warn(flicks);
-    // const genreArray = flicks.filter((flick) => checkedGenre.some((genre) => flick.genres.genreFirebaseKey === genre.genreFirebaseKey));
-    // const moodsArray = flicks.filter((flick) => checkedMood.some((mood) => flick.moods.moodFirebaseKey === mood.moodFirebaseKey));
-    // const typeArray = flicks.some((flick) => flick.type === formInput.type);
-    // const recommendedByArray = flicks.some((flick) => flick.recommendedBy.includes(formInput.recommendedBy));
-    // const genresMoodsArray = genreArray.filter((genre) => moodsArray.some((mood) => genre.flicksFirebaseKey === mood.flicksFirebaseKey));
-    // const typeRecommendedByArray = typeArray.filter((type) => recommendedByArray.some((recommendation) => type.flicksFirebaseKey === recommendation.flicksFirebaseKey));
-    // const genreMoodTypeRecommendedBy = genresMoodsArray.filter((gm) => typeRecommendedByArray((trb) => gm.flicksFirebaseKey === trb.flicksFirebaseKey));
-    // const watchedArray = flicks.filter((flick) => flick.watched === formInput.watched);
-    // const shuffleArray = genreMoodTypeRecommendedBy.filter((gmtr) => watchedArray.some((watchedFlicks) => gmtr.flicksFirebaseKey === watchedFlicks.flicksFirebaseKey));
-    // console.warn(shuffleArray);
+    const flickData = flicks.reduce((acc, flick) => {
+      if (checkedGenre.length > 0) {
+        const genreFound = flick.genres.some((genre) => checkedGenre.some((checkedGenreObj) => checkedGenreObj === genre.genreName));
+        if (!genreFound) return acc;
+      }
+      if (checkedMood > 0) {
+        const moodFound = flick.moods.some((mood) => checkedMood.some((checkedMoodObj) => checkedMoodObj === mood.genreName));
+        if (!moodFound) return acc;
+      }
+      if (formInput.watched) {
+        const watchedOrNot = flick.watched.some((watchedFilm) => watchedFilm === formInput.watched);
+        if (!watchedOrNot) return acc;
+      }
+      if (formInput.type) {
+        const typeFound = flick.type.some((typeOf) => typeOf === formInput.type);
+        if (!typeFound) return acc;
+      }
+      if (formInput.recommendedBy) {
+        const recommendation = flick.recommendedBy.some((rec) => rec.includes(formInput.recommendedBy));
+        if (!recommendation) return acc;
+      }
+      acc.push(flick);
+      return acc;
+    }, []);
+    console.warn(flickData);
     // router.push('/watchThis');
   };
 
@@ -113,8 +122,8 @@ export default function Shuffle() {
         value={formInput.watched}
       >
         <option value="">something old or something new?</option>
-        <option value="Movie">Watched</option>
-        <option value="TV Show">Haven&apos;t watched</option>
+        <option value="true">Watched</option>
+        <option value="false">Haven&apos;t watched</option>
       </Form.Select>
       <div>
         <h5>genre</h5>
