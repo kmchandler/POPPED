@@ -34,8 +34,12 @@ export default function Watchlist() {
       [name]: value,
     }));
     // if value is "none" setFilteredFlicks to be all teh flicks you want to show.
-    const filteredResults = flicks.filter((flick) => flick.genres.some((genre) => genre.genreName === value));
-    setFilteredFlicks(filteredResults);
+    if (value === 'none') {
+      setFilteredFlicks(flicks);
+    } else {
+      const filteredResults = flicks.filter((flick) => flick.genres.some((genre) => genre.genreName === value));
+      setFilteredFlicks(filteredResults);
+    }
   };
 
   // const handleClick = (e) => {
@@ -63,6 +67,7 @@ export default function Watchlist() {
             value={formInput.genre}
           >
             <option value="">Filter By Genre</option>
+            <option value="none">All Genres</option>
             {
             genres.map((genre) => (
               <option
