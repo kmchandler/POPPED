@@ -16,8 +16,6 @@ export default function Watchlist() {
   const [genres, setGenres] = useState([]);
   const { user } = useAuth();
 
-  console.warn(filteredFlicks);
-
   const getAllTheFlicks = async () => {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     setFlicks(flicksWithMetaData);
@@ -35,13 +33,16 @@ export default function Watchlist() {
       ...prevState,
       [name]: value,
     }));
+    // if value is "none" setFilteredFlicks to be all teh flicks you want to show.
+    const filteredResults = flicks.filter((flick) => flick.genres.some((genre) => genre.genreName === value));
+    setFilteredFlicks(filteredResults);
   };
 
-  const handleClick = (e) => {
-    const filterText = e.target.id;
-    const filteredResults = flicks.filter((flick) => flick.genres.genreName.includes(filterText));
-    return filteredResults;
-  };
+  // const handleClick = (e) => {
+  //   const filterText = e.target.id;
+  //   const filteredResults = flicks.filter((flick) => flick.genres.genreName.includes(filterText));
+  //   return filteredResults;
+  // };
 
   return (
     <>
@@ -66,7 +67,7 @@ export default function Watchlist() {
             genres.map((genre) => (
               <option
                 key={genre.genreFirebaseKey}
-                value={genre.genreFirebaseKey}
+                value={genre.genreName}
                 id={genre.genreName}
               >
                 {genre.genreName}
@@ -74,12 +75,10 @@ export default function Watchlist() {
             ))
           }
           </Form.Select>
-          <button type="button" onClick={handleClick}>Filter</button>
+          {/* <button type="button" onClick={handleClick}>Filter</button> */}
         </form>
         <div className="d-flex flex-wrap cardContainer">
-          {filteredFlicks.map((flix) => (
-            <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getAllTheFlicks} />
-          ))}
+          {filteredFlicks.map((flix) => <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getAllTheFlicks} />)}
         </div>
       </div>
     </>

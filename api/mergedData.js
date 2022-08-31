@@ -102,11 +102,13 @@ const createFlickGenres = (flickGenreObj) => new Promise((resolve, reject) => {
     });
 });
 
-const updateFlickGenres = (flickGenreObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/flick_genres/${flickGenreObj.flickFirebaseKey}.json`, flickGenreObj)
+const updateFlickGenres = (flickGenreObj, checkedGenre) => new Promise((resolve, reject) => {
+  axios.patch(`${dbUrl}/flick_genres/${flickGenreObj.flickFirebaseKey}.json`, flickGenreObj, checkedGenre)
     .then(() => getFlickGenres(flickGenreObj.uid).then(resolve))
     .catch(reject);
 });
+
+// for each checked genre, need to patch
 
 const getFlickGenresToRender = (flickFirebaseKey, uid) => new Promise((resolve, reject) => {
   getFlicksByUidObj(uid).then((flickObj) => {

@@ -55,8 +55,9 @@ function FlickForm({ obj }) {
     e.preventDefault();
     if (obj.flicksFirebaseKey) {
       updateFlick(formInput).then((flick) => {
-        updateFlickGenres(flick.flicksFirebaseKey, checkedGenre);
-        updateFlickMoods(flick.flicksFirebaseKey, checkedMood);
+        debugger;
+        updateFlickGenres(flick, checkedGenre);
+        updateFlickMoods(flick, checkedMood);
         router.push('/flicks/watchlist');
       });
     } else {
