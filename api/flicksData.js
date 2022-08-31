@@ -51,7 +51,7 @@ const deleteSingleFlick = (flicksFirebaseKey) => new Promise((resolve, reject) =
 
 const updateFlick = (flickObj) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/flicks/${flickObj.flicksFirebaseKey}.json`, flickObj)
-    .then(() => getFlicksByUid(flickObj.uid)).then(resolve)
+    .then(() => getSingleFlick(flickObj.flicksFirebaseKey)).then(resolve)
     .catch(reject);
 });
 
