@@ -33,7 +33,6 @@ export default function Watchlist() {
       ...prevState,
       [name]: value,
     }));
-    // if value is "none" setFilteredFlicks to be all teh flicks you want to show.
     if (value === 'none') {
       setFilteredFlicks(flicks);
     } else {
@@ -41,12 +40,6 @@ export default function Watchlist() {
       setFilteredFlicks(filteredResults);
     }
   };
-
-  // const handleClick = (e) => {
-  //   const filterText = e.target.id;
-  //   const filteredResults = flicks.filter((flick) => flick.genres.genreName.includes(filterText));
-  //   return filteredResults;
-  // };
 
   return (
     <>
@@ -80,7 +73,6 @@ export default function Watchlist() {
             ))
           }
           </Form.Select>
-          {/* <button type="button" onClick={handleClick}>Filter</button> */}
         </form>
         <div className="d-flex flex-wrap cardContainer">
           {filteredFlicks.map((flix) => <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getAllTheFlicks} />)}

@@ -10,8 +10,7 @@ export default function Search({ setFilteredFlicks, flicks }) {
   const handleChange = (e) => {
     const { value } = e.target;
     setInput(value);
-    // flick.genres.genreName doesn't exist -flick.genres is an array
-    const results = flickObj.filter((flick) => flick?.title?.toLowerCase().includes(value.toLowerCase()) || flick?.genres?.genreName?.toString().toLowerCase().includes(value.toLowerCase()));
+    const results = flickObj.filter((flick) => flick?.title?.toLowerCase().includes(value.toLowerCase()) || flick?.castCrew?.toString().toLowerCase().includes(value.toLowerCase()) || flick?.recommendedBy?.toString().toLowerCase().includes(value.toLowerCase()));
     setFilteredFlicks(results);
   };
   return (
