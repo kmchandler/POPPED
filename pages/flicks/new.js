@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { updateFlick, createFlick } from '../../api/flicksData';
 import {
-  createFlickGenres, createFlickMoods, updateFlickGenres, updateFlickMoods,
+  createFlickGenre, createFlickMood, updateFlickGenres, updateFlickMoods,
 } from '../../api/mergedData';
 import { getGenres, getSingleGenreByName } from '../../api/genresData';
 import { getMoods, getSingleMoodByName } from '../../api/moodsData';
@@ -55,7 +55,6 @@ function FlickForm({ obj }) {
     e.preventDefault();
     if (obj.flicksFirebaseKey) {
       updateFlick(formInput).then((flick) => {
-        debugger;
         updateFlickGenres(flick, checkedGenre);
         updateFlickMoods(flick, checkedMood);
         router.push('/flicks/watchlist');
@@ -66,13 +65,13 @@ function FlickForm({ obj }) {
         checkedGenre.map((genreName) => (
           getSingleGenreByName(genreName).then((gobj) => {
             const flickGenre = { flickFirebaseKey: flick.flicksFirebaseKey, genreFirebaseKey: gobj.genreFirebaseKey };
-            createFlickGenres(flickGenre);
+            createFlickGenre(flickGenre);
           })
         ));
         checkedMood.map((moodName) => (
           getSingleMoodByName(moodName).then((moodObj) => {
             const flickMood = { flickFirebaseKey: flick.flicksFirebaseKey, moodFirebaseKey: moodObj.moodFirebaseKey };
-            createFlickMoods(flickMood);
+            createFlickMood(flickMood);
           })
         ));
         router.push('/flicks/watchlist');
