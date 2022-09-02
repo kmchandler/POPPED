@@ -51,7 +51,7 @@ export default function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link passHref href="/moods">
+              <Link passHref href="/moods/moods">
                 <a className="nav-link">
                   moods
                 </a>
