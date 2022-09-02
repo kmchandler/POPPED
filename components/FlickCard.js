@@ -13,7 +13,6 @@ function FlickCard({
       deleteSingleFlick(flickObj.flicksFirebaseKey).then(() => onUpdate());
     }
   };
-
   return (
     <>
       <Card className="flickCardDiv" style={{ width: '25rem', margin: '10px', height: '45rem' }}>
@@ -22,8 +21,8 @@ function FlickCard({
           <Card.Title className="flickTitle">{flickObj.title}</Card.Title>
           <hr />
           <p className="flickCardType">Type: {flickObj.type}</p>
-          <p className="flickCardGenre">{flickObj.genres.length > 0 ? 'Genres: ' : ''}{flickObj.genres ? flickObj.genres.map((genre, index) => (index ? ', ' : '') + genre.genreName) : ''}</p>
-          <p className="playerCardJobs">{flickObj.moods.length > 0 ? 'Moods: ' : ''}{flickObj.moods ? flickObj.moods.map((mood, index) => (index ? ', ' : '') + mood.moodsName) : ''}</p>
+          <p className="flickCardGenre">{flickObj.genres.length > 0 ? 'Genres: ' : ''}{flickObj.genres ? flickObj.genres.map((genre, index) => (index ? ', ' : '') + genre?.genreName) : ''}</p>
+          <p className="flickCardMood">{flickObj.moods.length > 0 ? 'Moods: ' : ''}{flickObj.moods ? flickObj.moods.map((mood, index) => (index ? ', ' : '') + mood?.moodsName) : ''}</p>
           <p className="flickCardCastCrew">{flickObj.castCrew ? 'Cast/Crew: ' : ''}{flickObj.castCrew ? flickObj.castCrew : null}</p>
           <p className="flickCardRecommendedBy">{flickObj.recommendedBy ? 'Recommended By: ' : ''}{flickObj.recommendedBy ? flickObj.recommendedBy : ''}</p>
           <p className="flickCardflicked">{flickObj.watched ? 'Watched' : null}</p>
