@@ -168,7 +168,7 @@ const updateFlickGenres = async (flick, checkedGenre) => {
       promise = createFlickGenre(flickGenre);
     } else if (!checkedGenre.map((cg) => cg?.genreName).includes(genre?.genreName)) {
       const flickGenres = await getFlickGenresForFlick(flick.flickFirebaseKey);
-      const flickToDelete = flickGenres.find((flickGenre) => flickGenre.genreFirebaseKey === genre.genreFirebaseKey);
+      const flickToDelete = flickGenres.some((flickGenre) => flickGenre.genreFirebaseKey === genre.genreFirebaseKey);
       promise = deleteFlickGenre(flickToDelete.firebaseKey);
     }
     return promise;
