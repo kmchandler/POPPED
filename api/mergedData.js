@@ -116,7 +116,7 @@ const getMoodsForFlick = async (flickFirebaseKey) => {
 const createFlickGenre = (flickGenreObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/flick_genres.json`, flickGenreObj)
     .then((response) => {
-      const body = { flickFirebaseKey: response.data.name };
+      const body = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/flick_genres/${response.data.name}.json`, body)
         .then(resolve)
         .catch(reject);
@@ -163,10 +163,10 @@ const updateFlickGenres = async (flick, checkedGenre) => {
   const genres = await getGenresForFlick(flick.flicksFirebaseKey);
   const promises = checkedGenre.map(async (genre) => {
     let promise;
-    if (!genres.map((flickGenre) => flickGenre.genreName).includes(genre.genreName)) {
-      const flickGenre = { flickFirebaseKey: flick.flicksFirebaseKey, genreFirebaseKey: genre.genreFirebaseKey };
+    if (!genres.map((flickGenre) => flickGenre?.genreName).includes(genre?.genreName)) {
+      const flickGenre = { flickFirebaseKey: flick.flicksFirebaseKey, genreFirebaseKey: genre?.genreFirebaseKey };
       promise = createFlickGenre(flickGenre);
-    } else if (!checkedGenre.map((cg) => cg.genreName).includes(genre.genreName)) {
+    } else if (!checkedGenre.map((cg) => cg?.genreName).includes(genre?.genreName)) {
       const flickGenres = await getFlickGenresForFlick(flick.flickFirebaseKey);
       const flickToDelete = flickGenres.find((flickGenre) => flickGenre.genreFirebaseKey === genre.genreFirebaseKey);
       promise = deleteFlickGenre(flickToDelete.firebaseKey);
@@ -180,11 +180,10 @@ const updateFlickMoods = async (flick, checkedMood) => {
   const moods = await getMoodsForFlick(flick.flicksFirebaseKey);
   const promises = checkedMood.map(async (mood) => {
     let promise;
-    console.warn(moods);
-    if (!moods.map((flickMood) => flickMood.moodName).includes(mood.moodsName)) {
+    if (!moods.map((flickMood) => flickMood?.moodName).includes(mood?.moodsName)) {
       const flickMood = { flickFirebaseKey: flick.flicksFirebaseKey, moodFirebaseKey: mood.moodFirebaseKey };
       promise = createFlickMood(flickMood);
-    } else if (!checkedMood.map((cm) => cm.moodsName).includes(mood.moodsName)) {
+    } else if (!checkedMood.map((cm) => cm?.moodsName).includes(mood?.moodsName)) {
       const flickMoods = await getFlickMoodsForFlick(flick.flickFirebaseKey);
       const flickToDelete = flickMoods.find((flickMood) => flickMood.moodFirebaseKey === mood.moodFirebaseKey);
       promise = deleteFlickMood(flickToDelete.firebaseKey);

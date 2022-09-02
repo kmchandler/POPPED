@@ -18,6 +18,8 @@ const initialState = {
   type: '',
   castCrew: '',
   recommendedBy: '',
+  genres: [],
+  moods: [],
   watched: false,
   favorite: false,
   imageUrl: '',
@@ -55,9 +57,8 @@ function FlickForm({ obj }) {
     e.preventDefault();
     if (obj.flicksFirebaseKey) {
       updateFlick(formInput).then((flick) => {
-        updateFlickGenres(flick, checkedGenre);
-
-        // handle moods
+        const updatedGenres = checkedGenre.map((cg) => genres.find((genre) => genre.genreName === cg));
+        updateFlickGenres(flick, updatedGenres);
         const updatedMoods = checkedMood.map((cm) => moods.find((mood) => mood.moodsName === cm));
         updateFlickMoods(flick, updatedMoods);
         router.push('/flicks/watchlist');
@@ -132,7 +133,7 @@ function FlickForm({ obj }) {
               type="checkbox"
               id={genre.genreFirebaseKey}
               label={genre.genreName}
-              checked={checkedGenre.indexOf(genre.genreName) >= 0} // TODO FIX THIS
+              checked={checkedGenre.find((cg) => cg?.genreName === genre.genreName)}
               onChange={handleClickGenre}
               name={genre.genreName}
             />
@@ -146,7 +147,7 @@ function FlickForm({ obj }) {
               type="checkbox"
               id={mood.moodFirebaseKey}
               label={mood.moodsName}
-              checked={checkedMood.find((cm) => cm.moodsName === mood.moodsName)}
+              checked={checkedMood.find((cm) => cm?.moodsName === mood.moodsName)}
               onChange={handleClickMood}
               name={mood.moodsName}
             />
