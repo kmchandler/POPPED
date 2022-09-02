@@ -56,7 +56,10 @@ function FlickForm({ obj }) {
     if (obj.flicksFirebaseKey) {
       updateFlick(formInput).then((flick) => {
         updateFlickGenres(flick, checkedGenre);
-        updateFlickMoods(flick, checkedMood);
+
+        // handle moods
+        const updatedMoods = checkedMood.map((cm) => moods.find((mood) => mood.moodsName === cm));
+        updateFlickMoods(flick, updatedMoods);
         router.push('/flicks/watchlist');
       });
     } else {
