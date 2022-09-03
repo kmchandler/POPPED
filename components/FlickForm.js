@@ -55,9 +55,7 @@ function FlickForm({ obj }) {
     e.preventDefault();
     if (obj.flicksFirebaseKey) {
       updateFlick(formInput).then((flick) => {
-        const updatedGenres = checkedGenre.map((cg) => genres.find((genre) => genre.genreName === cg));
-        updateFlickGenres(flick, updatedGenres);
-        const genrePromise = updateFlickGenres(flick, updatedGenres);
+        const genrePromise = updateFlickGenres(flick, checkedGenre);
         const moodsPromise = updateFlickMoods(flick, checkedMood);
 
         Promise.all([moodsPromise, genrePromise]).then(() => router.push('/flicks/watchlist'));
@@ -87,7 +85,7 @@ function FlickForm({ obj }) {
     const newGenreObj = genres.find((genre) => genre.genreName === e.target.name);
 
     if (e.target.checked) {
-      updatedGenre = [...checkedGenre, e.target.name];
+      updatedGenre = [...checkedGenre, newGenreObj];
     } else {
       updatedGenre.splice(checkedGenre.findIndex((cg) => cg.genreName === newGenreObj.genreName), 1);
     }
@@ -136,10 +134,9 @@ function FlickForm({ obj }) {
               type="checkbox"
               id={genre.genreFirebaseKey}
               label={genre.genreName}
-              checked={checkedGenre.find((cg) => cg?.genreName === genre.genreName)}
+              defaultChecked={checkedGenre.find((cg) => cg?.genreName === genre.genreName)}
               onChange={handleClickGenre}
               name={genre.genreName}
-              value={!!checkedGenre.genreName}
             />
           </div>
         ))}
