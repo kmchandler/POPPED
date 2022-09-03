@@ -134,7 +134,7 @@ function FlickForm({ obj }) {
               checked={checkedGenre.find((cg) => cg?.genreName === genre.genreName)}
               onChange={handleClickGenre}
               name={genre.genreName}
-              value={checkedGenre.genreName || []}
+              value={!!checkedGenre.genreName}
             />
           </div>
         ))}
@@ -149,7 +149,7 @@ function FlickForm({ obj }) {
               checked={checkedMood.find((cm) => cm?.moodsName === mood.moodsName)}
               onChange={handleClickMood}
               name={mood.moodsName}
-              value={checkedMood.moodsName || []}
+              value={!!checkedMood.moodsName}
             />
           </div>
         ))}

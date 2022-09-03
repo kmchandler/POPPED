@@ -52,18 +52,162 @@ body {
   margin-right: auto;
 }
 
-.faceFrownIcon {
+.anxiousIcon {
   justify-self: center;
-  height: 15%;
-  width: 15%;
+  height: 35%;
+  width: 35%;
   padding: 0;
   margin: 0;
 }
 
-.faceSmileIcon {
+.blahIcon {
   justify-self: center;
-  height: 15%;
-  width: 15%;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.blahIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.boredIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.buzzedIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.chillIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.happyIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.heartbrokenIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.highIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.happyIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.mischievousIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.moodyIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.nostalgicIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.mischievousIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.sadIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.sickIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.sillyIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.sadIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.stressedIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
+  padding: 0;
+  margin: 0;
+}
+
+.wistfulIcon {
+  justify-self: center;
+  height: 35%;
+  width: 35%;
   padding: 0;
   margin: 0;
 }

@@ -8,9 +8,9 @@ import {
 } from 'react-icons/tb';
 import { GiMapleLeaf } from 'react-icons/gi';
 import { ImHeartBroken } from 'react-icons/im';
-import { IoSnow, IoIosWine } from 'react-icons/io';
+import { IoIosWine } from 'react-icons/io';
 import {
-  BsFillCloudLightningRainFill, BsFillMoonStarsFill, BsEmojiExpressionless, BsEmojiWink, BsSkipBackward,
+  BsFillCloudLightningRainFill, BsFillMoonStarsFill, BsEmojiExpressionless, BsEmojiWink, BsSkipBackward, BsSnow2,
 } from 'react-icons/bs';
 
 export default function moods() {
@@ -42,13 +42,13 @@ export default function moods() {
       </Link>
       <Link passHref href="/moods/chill">
         <div className="chillIcon">
-          <IoSnow className="chillIcon" />
+          <BsSnow2 className="chillIcon" />
           <h3 className="chillText">chill</h3>
         </div>
       </Link>
       <Link passHref href="/moods/happy">
         <div className="happyIcon">
-          <SunIcon className="faceSmileIcon" />
+          <SunIcon className="happyIcon" />
           <h3 className="happyText">happy</h3>
         </div>
       </Link>
@@ -84,7 +84,7 @@ export default function moods() {
       </Link>
       <Link passHref href="/moods/sad">
         <div className="sadIcon">
-          <CloudIcon className="faceFrownIcon" />
+          <CloudIcon className="sadIcon" />
           <h3 className="sadText">sad</h3>
         </div>
       </Link>
