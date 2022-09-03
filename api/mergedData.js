@@ -172,7 +172,7 @@ const updateFlickGenres = async (flick, checkedGenres) => {
 
   const addPromises = genresToAdd.map(async (genreToAdd) => {
     const flickGenre = { flickFirebaseKey: flick.flicksFirebaseKey, genreFirebaseKey: genreToAdd.genreFirebaseKey };
-    return createFlickMood(flickGenre);
+    return createFlickGenre(flickGenre);
   });
 
   return Promise.all([...deletePromises, ...addPromises]);
