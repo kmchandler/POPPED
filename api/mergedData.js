@@ -159,38 +159,42 @@ const deleteFlickMood = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateFlickGenres = async (flick, checkedGenre) => {
-  const genres = await getGenresForFlick(flick.flicksFirebaseKey);
-  const promises = checkedGenre.map(async (genre) => {
-    let promise;
-    if (!genres.map((flickGenre) => flickGenre?.genreName).includes(genre?.genreName)) {
-      const flickGenre = { flickFirebaseKey: flick.flicksFirebaseKey, genreFirebaseKey: genre?.genreFirebaseKey };
-      promise = createFlickGenre(flickGenre);
-    } else if (!checkedGenre.map((cg) => cg?.genreName).includes(genre?.genreName)) {
-      const flickGenres = await getFlickGenresForFlick(flick.flickFirebaseKey);
-      const flickToDelete = flickGenres.some((flickGenre) => flickGenre.genreFirebaseKey === genre.genreFirebaseKey);
-      promise = deleteFlickGenre(flickToDelete.firebaseKey);
-    }
-    return promise;
+const updateFlickGenres = async (flick, checkedGenres) => {
+  const genresForFlick = await getGenresForFlick(flick.flicksFirebaseKey);
+  const genresToDelete = genresForFlick.filter((genreForFlick) => !checkedGenres.find((cg) => cg.genreName === genreForFlick.genreName));
+  const genresToAdd = checkedGenres.filter((checkedGenre) => !genresForFlick.find((genreForFlick) => genreForFlick.genreName === checkedGenre.genreName));
+
+  const deletePromises = genresToDelete.map(async (genreToDelete) => {
+    const flickGenres = await getFlickGenresForFlick(flick.flicksFirebaseKey);
+    const flickToDelete = flickGenres.find((flickGenre) => flickGenre.genreFirebaseKey === genreToDelete.genreFirebaseKey);
+    return deleteFlickGenre(flickToDelete.firebaseKey);
   });
-  return Promise.all(promises);
+
+  const addPromises = genresToAdd.map(async (genreToAdd) => {
+    const flickGenre = { flickFirebaseKey: flick.flicksFirebaseKey, genreFirebaseKey: genreToAdd.genreFirebaseKey };
+    return createFlickMood(flickGenre);
+  });
+
+  return Promise.all([...deletePromises, ...addPromises]);
 };
 
-const updateFlickMoods = async (flick, checkedMood) => {
-  const moods = await getMoodsForFlick(flick.flicksFirebaseKey);
-  const promises = checkedMood.map(async (mood) => {
-    let promise;
-    if (!moods.map((flickMood) => flickMood?.moodName).includes(mood?.moodsName)) {
-      const flickMood = { flickFirebaseKey: flick.flicksFirebaseKey, moodFirebaseKey: mood.moodFirebaseKey };
-      promise = createFlickMood(flickMood);
-    } else if (!checkedMood.map((cm) => cm?.moodsName).includes(mood?.moodsName)) {
-      const flickMoods = await getFlickMoodsForFlick(flick.flickFirebaseKey);
-      const flickToDelete = flickMoods.find((flickMood) => flickMood.moodFirebaseKey === mood.moodFirebaseKey);
-      promise = deleteFlickMood(flickToDelete.firebaseKey);
-    }
-    return promise;
+const updateFlickMoods = async (flick, checkedMoods) => {
+  const moodsForFlick = await getMoodsForFlick(flick.flicksFirebaseKey);
+  const moodsToDelete = moodsForFlick.filter((moodForFlick) => !checkedMoods.find((cm) => cm.moodsName === moodForFlick.moodsName));
+  const moodsToAdd = checkedMoods.filter((checkedMood) => !moodsForFlick.find((moodForFlick) => moodForFlick.moodsName === checkedMood.moodsName));
+
+  const deletePromises = moodsToDelete.map(async (moodToDelete) => {
+    const flickMoods = await getFlickMoodsForFlick(flick.flicksFirebaseKey);
+    const flickToDelete = flickMoods.find((flickMood) => flickMood.moodFirebaseKey === moodToDelete.moodFirebaseKey);
+    return deleteFlickMood(flickToDelete.firebaseKey);
   });
-  return Promise.all(promises);
+
+  const addPromises = moodsToAdd.map(async (moodToAdd) => {
+    const flickMood = { flickFirebaseKey: flick.flicksFirebaseKey, moodFirebaseKey: moodToAdd.moodFirebaseKey };
+    return createFlickMood(flickMood);
+  });
+
+  return Promise.all([...deletePromises, ...addPromises]);
 };
 
 const getFlicksByUidWithMetaData = async (uid) => {

@@ -57,9 +57,10 @@ function FlickForm({ obj }) {
       updateFlick(formInput).then((flick) => {
         const updatedGenres = checkedGenre.map((cg) => genres.find((genre) => genre.genreName === cg));
         updateFlickGenres(flick, updatedGenres);
-        const updatedMoods = checkedMood.map((cm) => moods.find((mood) => mood.moodsName === cm));
-        updateFlickMoods(flick, updatedMoods);
-        router.push('/flicks/watchlist');
+        const genrePromise = updateFlickGenres(flick, updatedGenres);
+        const moodsPromise = updateFlickMoods(flick, checkedMood);
+
+        Promise.all([moodsPromise, genrePromise]).then(() => router.push('/flicks/watchlist'));
       });
     } else {
       const payload = { ...formInput, uid: user.uid };
@@ -83,20 +84,24 @@ function FlickForm({ obj }) {
 
   const handleClickGenre = (e) => {
     let updatedGenre = [...checkedGenre];
+    const newGenreObj = genres.find((genre) => genre.genreName === e.target.name);
+
     if (e.target.checked) {
       updatedGenre = [...checkedGenre, e.target.name];
     } else {
-      updatedGenre.splice(checkedGenre.indexOf(e.target.name), 1);
+      updatedGenre.splice(checkedGenre.findIndex((cg) => cg.genreName === newGenreObj.genreName), 1);
     }
     setCheckedGenre(updatedGenre);
   };
 
   const handleClickMood = (e) => {
     let updatedMood = [...checkedMood];
+    const newMoodObj = moods.find((mood) => mood.moodsName === e.target.name);
+
     if (e.target.checked) {
-      updatedMood = [...checkedMood, e.target.name];
+      updatedMood = [...checkedMood, newMoodObj];
     } else {
-      updatedMood.splice(checkedMood.indexOf(e.target.name), 1);
+      updatedMood.splice(checkedMood.findIndex((cm) => cm.moodsName === newMoodObj.moodsName), 1);
     }
     setCheckedMood(updatedMood);
   };
@@ -146,10 +151,9 @@ function FlickForm({ obj }) {
               type="checkbox"
               id={mood.moodFirebaseKey}
               label={mood.moodsName}
-              checked={checkedMood.find((cm) => cm?.moodsName === mood.moodsName)}
+              defaultChecked={checkedMood.find((cm) => cm?.moodsName === mood.moodsName)}
               onChange={handleClickMood}
               name={mood.moodsName}
-              value={!!checkedMood.moodsName}
             />
           </div>
         ))}
