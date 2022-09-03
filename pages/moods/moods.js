@@ -4,10 +4,16 @@ import {
   CloudIcon, SunIcon, BellIcon, Battery0Icon,
 } from '@heroicons/react/24/outline';
 import {
-  BsFillCloudLightningRainFill, TbMoodTongue, TbMoodConfuzed, TbMoodNeutral, GiMapleLeaf, ImHeartBroken, BsFillMoonStarsFill, BsEmojiExpressionless, BsEmojiWink, BsSkipBackward, IoSnow, IoIosWine,
-} from 'react-icons';
+  TbMoodTongue, TbMoodConfuzed, TbMoodNeutral,
+} from 'react-icons/tb';
+import { GiMapleLeaf } from 'react-icons/gi';
+import { ImHeartBroken } from 'react-icons/im';
+import { IoSnow, IoIosWine } from 'react-icons/io';
+import {
+  BsFillCloudLightningRainFill, BsFillMoonStarsFill, BsEmojiExpressionless, BsEmojiWink, BsSkipBackward,
+} from 'react-icons/bs';
 
-export default function Moods() {
+export default function moods() {
   return (
     <>
       <Link passHref href="/moods/anxious">
