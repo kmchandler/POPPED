@@ -3,21 +3,22 @@ import { clientCredentials } from '../utils/client';
 import { getFlicksByUid, getSingleFlick } from './flicksData';
 import { getGenresByGenreFirebaseKey } from './genresData';
 import { getMoodsByMoodFirebaseKey } from './moodsData';
+import { getSingleUser } from './userData';
 
 const dbUrl = clientCredentials.databaseURL;
 
 // // user_genres
-// const getUserGenresByUid = (uid) => new Promise((resolve, reject) => {
-//   axios.get(`${dbUrl}/user_genres.json?orderBy="userId"&equalTo="${uid}"`)
-//     .then((response) => {
-//       if (response.data) {
-//         resolve(Object.values(response.data));
-//       } else {
-//         resolve([]);
-//       }
-//     })
-//     .catch(reject);
-// });
+const getUserGenresByUid = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/user_genres.json?orderBy="userId"&equalTo="${uid}"`)
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
 
 // const getUserGenres = () => new Promise((resolve, reject) => {
 //   axios.get(`${dbUrl}/user_genres.json`)
@@ -31,29 +32,63 @@ const dbUrl = clientCredentials.databaseURL;
 //     .catch(reject);
 // });
 
-// const createUserGenres = (newUserGenreObj) => new Promise((resolve, reject) => {
-//   axios.post(`${dbUrl}/user_genres.json`, newUserGenreObj)
-//     .then((response) => {
-//       const body = { userFirebaseKey: response.data.userFirebaseKey, genreFirebaseKey: response.data.genreFirebaseKey };
-//       axios.patch(`${dbUrl}/user_genres/${response.data.name}.json`, body)
-//         .then(() => {
-//           getUserGenres(newUserGenreObj).then(resolve);
-//         });
-//     })
-//     .catch(reject);
-// });
+const createUserGenre = (newUserGenreObj) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/user_genres.json`, newUserGenreObj)
+    .then((response) => {
+      const body = { firebaseKey: response.data.name };
+      axios.patch(`${dbUrl}/user_genres/${response.data.name}.json`, body)
+        .then(resolve)
+        .catch(reject);
+    });
+});
 
-// const updateUserGenres = (userGenreObj) => new Promise((resolve, reject) => {
-//   axios.patch(`${dbUrl}/user_genres/${userGenreObj.name}.json`, userGenreObj)
-//     .then(() => getUserGenres(userGenreObj.uid).then(resolve))
-//     .catch(reject);
-// });
+const getUserGenresForUser = async (userFirebaseKey) => {
+  const response = await axios.get(`${dbUrl}/user_genres.json?orderBy="userFirebaseKey"&equalTo="${userFirebaseKey}"`);
+  return JSON.stringify(response.data) === '{}' ? [] : Object.values(response.data);
+};
 
-// const deleteUserGenres = (firebaseKey) => new Promise((resolve, reject) => {
-//   axios.delete(`${dbUrl}/user_genres/${firebaseKey}.json`)
-//     .then(resolve)
-//     .catch(reject);
-// });
+const getGenresForUser = async (userFirebaseKey) => {
+  const userGenres = await getUserGenresForUser(userFirebaseKey);
+  const promises = userGenres.map((userGenre) => getGenresByGenreFirebaseKey(userGenre.genreFirebaseKey));
+  return Promise.all(promises);
+};
+
+const deleteUserGenre = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/user_genres/${firebaseKey}.json`)
+    .then(resolve)
+    .catch(reject);
+});
+
+const updateUserGenres = async (user, checkedGenres) => {
+  const genresForUser = await getGenresForUser(user.userFirebaseKey);
+  const genresToDelete = genresForUser.filter((genreForUser) => !checkedGenres.find((cg) => cg.genreName === genreForUser.genreName));
+  const genresToAdd = checkedGenres.filter((checkedGenre) => !genresForUser.find((genreForUser) => genreForUser.genreName === checkedGenre.genreName));
+
+  const deletePromises = genresToDelete.map(async (genreToDelete) => {
+    const userGenres = await getUserGenresForUser(user.userFirebaseKey);
+    const theGenresToDelete = userGenres.find((userGenre) => userGenre.genreFirebaseKey === genreToDelete.genreFirebaseKey);
+    return deleteUserGenre(theGenresToDelete.firebaseKey);
+  });
+
+  const addPromises = genresToAdd.map(async (genreToAdd) => {
+    const userGenre = { userFirebaseKey: user.userFirebaseKey, genreFirebaseKey: genreToAdd.genreFirebaseKey };
+    return createUserGenre(userGenre);
+  });
+
+  return Promise.all([...deletePromises, ...addPromises]);
+};
+
+const getUserByUidWithMetaData = async (uid) => {
+  const users = await getSingleUser(uid);
+  const promises = users.map(async (user) => {
+    const genres = await getGenresForUser(user.userFirebaseKey);
+    return {
+      ...user,
+      genres,
+    };
+  });
+  return Promise.all(promises);
+};
 
 const getFlickGenresByUid = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/flick_genres.json?orderBy="userId"&equalTo="${uid}"`)
@@ -235,5 +270,5 @@ const getFlickMoodsByUid = (uid) => new Promise((resolve, reject) => {
 });
 
 export {
-  getFlickGenres, updateFlickGenres, getFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData, getSingleFlickWithMetaData, createFlickGenre, createFlickMood, deleteFlickGenre, deleteFlickMood,
+  getFlickGenres, updateFlickGenres, getFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData, getSingleFlickWithMetaData, createFlickGenre, createFlickMood, deleteFlickGenre, deleteFlickMood, createUserGenre, updateUserGenres, deleteUserGenre, getUserGenresByUid, getUserByUidWithMetaData,
 };
