@@ -63,19 +63,22 @@ function FlickForm({ obj }) {
     } else {
       const payload = { ...formInput, uid: user.uid };
       createFlick(payload).then((flick) => {
-        checkedGenre.map((genreName) => (
-          getSingleGenreByName(genreName).then((gobj) => {
-            const flickGenre = { flickFirebaseKey: flick.flicksFirebaseKey, genreFirebaseKey: gobj.genreFirebaseKey };
-            createFlickGenre(flickGenre);
+        const genrePromises = checkedGenre.map((genre) => (
+          getSingleGenreByName(genre.genreName).then((genreObj) => {
+            const flickGenreObj = { flickFirebaseKey: flick.flicksFirebaseKey, genreFirebaseKey: genreObj.genreFirebaseKey };
+            return createFlickGenre(flickGenreObj);
           })
         ));
-        checkedMood.map((moodName) => (
-          getSingleMoodByName(moodName).then((moodObj) => {
-            const flickMood = { flickFirebaseKey: flick.flicksFirebaseKey, moodFirebaseKey: moodObj.moodFirebaseKey };
-            createFlickMood(flickMood);
+
+        const moodPromises = checkedMood.map((mood) => (
+          getSingleMoodByName(mood.moodsName).then((moodObj) => {
+            const flickMoodObj = { flickFirebaseKey: flick.flicksFirebaseKey, moodFirebaseKey: moodObj.moodFirebaseKey };
+            return createFlickMood(flickMoodObj);
           })
         ));
-        router.push('/flicks/watchlist');
+
+        Promise.all([...genrePromises, ...moodPromises])
+          .then(() => router.push('/flicks/watchlist'));
       });
     }
   };
