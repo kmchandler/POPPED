@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
-import { getUserByUidWithMetaData } from '../../../api/mergedData';
+import { getSingleUserWithMetaData } from '../../../api/mergedData';
 import CreateUserForm from '../new';
 
 export default function EditUser() {
@@ -9,7 +9,7 @@ export default function EditUser() {
   const { userFirebaseKey } = router.query;
 
   useEffect(() => {
-    getUserByUidWithMetaData(userFirebaseKey).then(setEditItem);
+    getSingleUserWithMetaData(userFirebaseKey).then(setEditItem);
   }, [userFirebaseKey]);
 
   return (<CreateUserForm obj={editItem} />);

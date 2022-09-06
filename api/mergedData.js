@@ -53,6 +53,15 @@ const getGenresForUser = async (userFirebaseKey) => {
   return Promise.all(promises);
 };
 
+const getSingleUserWithMetaData = async (userFirebaseKey) => {
+  const user = await getSingleUser(userFirebaseKey);
+  const genres = await getGenresForUser(user.flicksFirebaseKey);
+  return {
+    ...user,
+    genres,
+  };
+};
+
 const deleteUserGenre = (firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/user_genres/${firebaseKey}.json`)
     .then(resolve)
@@ -270,5 +279,5 @@ const getFlickMoodsByUid = (uid) => new Promise((resolve, reject) => {
 });
 
 export {
-  getFlickGenres, updateFlickGenres, getFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData, getSingleFlickWithMetaData, createFlickGenre, createFlickMood, deleteFlickGenre, deleteFlickMood, createUserGenre, updateUserGenres, deleteUserGenre, getUserGenresByUid, getUserByUidWithMetaData,
+  getFlickGenres, updateFlickGenres, getFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData, getSingleFlickWithMetaData, createFlickGenre, createFlickMood, deleteFlickGenre, deleteFlickMood, createUserGenre, updateUserGenres, deleteUserGenre, getUserGenresByUid, getUserByUidWithMetaData, getGenresForUser, getSingleUserWithMetaData,
 };
