@@ -1,13 +1,22 @@
+/* eslint-disable no-template-curly-in-string */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { useRouter } from 'next/router';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 import ProfileDropdown from './ProfileDropdown';
 
-export default function NavBar() {
+export default function NavBar({ navObj }) {
   const { user } = useAuth();
+  const router = useRouter();
+
+  const goToProfile = () => {
+    router.push(`/users/${navObj.userFirebaseKey}`);
+  };
+
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark .me-auto .ml-auto">
       <div className="container-fluid navbarContents">
@@ -72,11 +81,9 @@ export default function NavBar() {
                   <button type="button" className="signOutBtn btn" onClick={signOut}>
                     Sign Out
                   </button>
-                  <Link passHref href="/users/profile">
-                    <button type="button" className="profileBtn btn">
-                      Profile
-                    </button>
-                  </Link>
+                  <button type="button" className="profileBtn btn" onClick={goToProfile}>
+                    Profile
+                  </button>
                 </div>
               </ul>
             </li>
@@ -87,3 +94,9 @@ export default function NavBar() {
     </nav>
   );
 }
+
+NavBar.propTypes = {
+  navObj: PropTypes.shape({
+    userFirebaseKey: PropTypes.string,
+  }).isRequired,
+};

@@ -1,25 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { React, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { useAuth } from '../../utils/context/authContext';
-import { getUserByUid } from '../../api/userData';
 import ProfileCard from '../../components/ProfileCard';
+import { getSingleUserWithMetaData } from '../../api/mergedData';
 
 export default function Profile() {
   const [profile, setProfile] = useState({});
-  const { user } = useAuth();
+  const router = useRouter();
+  const { userFirebaseKey } = router.query;
 
   const getTheUser = async () => {
-    const result = await getUserByUid(user.uid);
-    setProfile(result);
+    const fetchedProfile = await getSingleUserWithMetaData(userFirebaseKey);
+    setProfile(fetchedProfile);
   };
 
   useEffect(() => {
     getTheUser();
-  }, []);
+  }, [userFirebaseKey]);
 
   if (!profile) {
     return null;
@@ -42,7 +43,7 @@ Profile.propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     username: PropTypes.string,
-    favoriteGenres: PropTypes.string,
+    genres: PropTypes.objectOf(PropTypes.string),
     imageUrl: PropTypes.string,
     userFirebaseKey: PropTypes.string,
   }),

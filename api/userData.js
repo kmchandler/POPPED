@@ -31,8 +31,8 @@ const getSingleUser = (userFirebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const deleteSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.delete(`${dbUrl}/users/${firebaseKey}.json`)
+const deleteSingleUser = (userFirebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/users/${userFirebaseKey}.json`)
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });

@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
 import { createUser, getUserByUid, updateUser } from '../api/userData';
-import { getGenres } from '../api/genresData';
+import { getGenres, getSingleGenreByName } from '../api/genresData';
+import { createUserGenre, updateUserGenres } from '../api/mergedData';
 
 const initialState = {
   firstName: '',
   lastName: '',
   username: '',
-  favoriteGenres: '',
   imageUrl: '',
 };
 
@@ -26,6 +26,7 @@ function CreateUserForm({ obj }) {
     getUserByUid(user.uid).then(setProfile);
     if (obj.userFirebaseKey) {
       setFormInput(obj);
+      setCheckedGenre(obj.genres || []);
     }
     getGenres().then(setGenres);
   }, [obj, user]);
@@ -41,20 +42,34 @@ function CreateUserForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.userFirebaseKey) {
-      updateUser(formInput).then(() => router.push('/users/profile'));
+      updateUser(formInput).then((userObject) => {
+        const genrePromise = updateUserGenres(userObject, checkedGenre);
+
+        Promise.all([genrePromise]).then(() => router.push(`/users/${obj.userFirebaseKey}`));
+      });
     } else {
-      createUser(formInput).then(() => {
-        router.push('/users/profile');
+      const payload = { ...formInput, uid: user.uid };
+      createUser(payload).then((userObj) => {
+        const genrePromises = checkedGenre.map((genre) => (
+          getSingleGenreByName(genre.genreName).then((genreObj) => {
+            const userGenreObj = { userFirebaseKey: userObj.userFirebaseKey, genreFirebaseKey: genreObj.genreFirebaseKey };
+            return createUserGenre(userGenreObj);
+          })
+        ));
+        Promise.all([...genrePromises])
+          .then(() => router.push(`/users/${obj.userFirebaseKey}`));
       });
     }
   };
 
-  const handleClickGenre = (e) => {
+  const handleClickGenre = (evt) => {
     let updatedGenre = [...checkedGenre];
-    if (e.target.checked) {
-      updatedGenre = [...checkedGenre, e.target.name];
+    const newGenreObj = genres.find((genre) => genre.genreName === evt.target.name);
+
+    if (evt.target.checked) {
+      updatedGenre = [...checkedGenre, newGenreObj];
     } else {
-      updatedGenre.splice(checkedGenre.indexOf(e.target.name), 1);
+      updatedGenre.splice(checkedGenre.findIndex((cg) => cg.genreName === newGenreObj.genreName), 1);
     }
     setCheckedGenre(updatedGenre);
   };
@@ -74,14 +89,13 @@ function CreateUserForm({ obj }) {
               type="checkbox"
               id={genre.genreFirebaseKey}
               label={genre.genreName}
-              checked={checkedGenre.indexOf(genre.genreName) >= 0}
+              defaultChecked={checkedGenre.find((cg) => cg?.genreName === genre.genreName)}
               onChange={handleClickGenre}
               name={genre.genreName}
-              value={formInput.genre}
             />
           </div>
         ))}
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>
           Submit
         </button>
       </form>
@@ -94,9 +108,9 @@ CreateUserForm.propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     username: PropTypes.string,
-    favoriteGenres: PropTypes.string,
     imageUrl: PropTypes.string,
     userFirebaseKey: PropTypes.string,
+    genres: PropTypes.arrayOf(PropTypes.string),
   }),
 };
 
