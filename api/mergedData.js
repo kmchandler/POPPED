@@ -42,7 +42,7 @@ const getGenresForUser = async (userFirebaseKey) => {
 };
 
 const getSingleUserWithMetaData = async (userFirebaseKey) => {
-  // debugger;
+  debugger;
   const user = await getSingleUser(userFirebaseKey);
   const genres = await getGenresForUser(user.genreFirebaseKey);
   return {

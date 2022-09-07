@@ -8,7 +8,7 @@ import { getUserByUid } from '../api/userData';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
-  const [profile, setProfile] = useState([]);
+  const [profile, setProfile] = useState({});
 
   // if user state is null, then show loader
   if (userLoading) {
