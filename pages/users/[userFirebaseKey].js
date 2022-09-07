@@ -6,8 +6,7 @@ import { React, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import ProfileCard from '../../components/ProfileCard';
-// import { getSingleUserWithMetaData } from '../../api/mergedData';
-import { getSingleUser } from '../../api/userData';
+import { getSingleUserWithMetaData } from '../../api/mergedData';
 
 export default function Profile() {
   const [profile, setProfile] = useState({});
@@ -15,9 +14,8 @@ export default function Profile() {
   const { userFirebaseKey } = router.query;
 
   const getTheUser = async () => {
-    // getSingleUserWithMetaData(userFirebaseKey).then(setProfile);
-    getSingleUser(userFirebaseKey).then(setProfile);
-    console.warn(profile);
+    const fetchedProfile = await getSingleUserWithMetaData(userFirebaseKey);
+    setProfile(fetchedProfile);
   };
 
   useEffect(() => {
@@ -45,7 +43,7 @@ Profile.propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     username: PropTypes.string,
-    favoriteGenres: PropTypes.string,
+    genres: PropTypes.objectOf(PropTypes.string),
     imageUrl: PropTypes.string,
     userFirebaseKey: PropTypes.string,
   }),

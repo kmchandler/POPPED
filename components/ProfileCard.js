@@ -8,7 +8,8 @@ export default function ProfileCard({ userObj }) {
       <img src={userObj.imageUrl} alt={userObj.username} />
       <h1>{userObj.firstName} {userObj.lastName}</h1>
       <h2>{userObj.username}</h2>
-      <h3>{userObj.favoriteGenres}</h3>
+      <h3>Faorite Genres:</h3>
+      {userObj.genres?.map((genre) => <h3>{genre.genreName}</h3>)}
     </div>
   );
 }
@@ -18,11 +19,11 @@ ProfileCard.propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     username: PropTypes.string,
-    favoriteGenres: PropTypes.string,
+    genres: PropTypes.arrayOf(PropTypes.string),
     imageUrl: PropTypes.string,
     userFirebaseKey: PropTypes.string,
   }),
 };
 ProfileCard.defaultProps = {
-  userObj: [],
+  userObj: {},
 };
