@@ -8,8 +8,6 @@ export default function ProfileDropdown() {
     <div className="profileDropdown">
       <img src={user.photoURL} alt={user.displayName} />
       <h5>{user.displayName}</h5>
-      <h6>{user.email}</h6>
-      <h6>{user.metadata.lastSignInTime}</h6>
     </div>
   );
 }

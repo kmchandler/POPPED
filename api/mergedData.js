@@ -3,7 +3,7 @@ import { clientCredentials } from '../utils/client';
 import { getFlicksByUid, getSingleFlick } from './flicksData';
 import { getGenresByGenreFirebaseKey } from './genresData';
 import { getMoodsByMoodFirebaseKey } from './moodsData';
-import { getSingleUser } from './userData';
+import { getSingleUser, getUserByUid } from './userData';
 
 const dbUrl = clientCredentials.databaseURL;
 
@@ -19,18 +19,6 @@ const getUserGenresByUid = (uid) => new Promise((resolve, reject) => {
     })
     .catch(reject);
 });
-
-// const getUserGenres = () => new Promise((resolve, reject) => {
-//   axios.get(`${dbUrl}/user_genres.json`)
-//     .then((response) => {
-//       if (response.data) {
-//         resolve(Object.values(response.data));
-//       } else {
-//         resolve([]);
-//       }
-//     })
-//     .catch(reject);
-// });
 
 const createUserGenre = (newUserGenreObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/user_genres.json`, newUserGenreObj)
@@ -54,8 +42,9 @@ const getGenresForUser = async (userFirebaseKey) => {
 };
 
 const getSingleUserWithMetaData = async (userFirebaseKey) => {
+  // debugger;
   const user = await getSingleUser(userFirebaseKey);
-  const genres = await getGenresForUser(user.flicksFirebaseKey);
+  const genres = await getGenresForUser(user.genreFirebaseKey);
   return {
     ...user,
     genres,
@@ -88,15 +77,12 @@ const updateUserGenres = async (user, checkedGenres) => {
 };
 
 const getUserByUidWithMetaData = async (uid) => {
-  const users = await getSingleUser(uid);
-  const promises = users.map(async (user) => {
-    const genres = await getGenresForUser(user.userFirebaseKey);
-    return {
-      ...user,
-      genres,
-    };
-  });
-  return Promise.all(promises);
+  const user = await getUserByUid(uid);
+  const genres = await getGenresForUser(user.userFirebaseKey);
+  return {
+    ...user,
+    genres,
+  };
 };
 
 const getFlickGenresByUid = (uid) => new Promise((resolve, reject) => {
@@ -279,5 +265,5 @@ const getFlickMoodsByUid = (uid) => new Promise((resolve, reject) => {
 });
 
 export {
-  getFlickGenres, updateFlickGenres, getFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData, getSingleFlickWithMetaData, createFlickGenre, createFlickMood, deleteFlickGenre, deleteFlickMood, createUserGenre, updateUserGenres, deleteUserGenre, getUserGenresByUid, getUserByUidWithMetaData, getGenresForUser, getSingleUserWithMetaData,
+  getFlickGenres, updateFlickGenres, getFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData, getSingleFlickWithMetaData, createFlickGenre, createFlickMood, deleteFlickGenre, deleteFlickMood, createUserGenre, updateUserGenres, deleteUserGenre, getUserGenresByUid, getUserByUidWithMetaData, getGenresForUser, getSingleUserWithMetaData, getUserGenresForUser,
 };

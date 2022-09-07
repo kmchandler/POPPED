@@ -45,7 +45,7 @@ function CreateUserForm({ obj }) {
       updateUser(formInput).then((userObject) => {
         const genrePromise = updateUserGenres(userObject, checkedGenre);
 
-        Promise.all([genrePromise]).then(() => router.push('/users/profile'));
+        Promise.all([genrePromise]).then(() => router.push(`/users/${obj.userFirebaseKey}`));
       });
     } else {
       const payload = { ...formInput, uid: user.uid };
@@ -57,7 +57,7 @@ function CreateUserForm({ obj }) {
           })
         ));
         Promise.all([...genrePromises])
-          .then(() => router.push('/users/profile'));
+          .then(() => router.push(`/users/${obj.userFirebaseKey}`));
       });
     }
   };
@@ -108,10 +108,9 @@ CreateUserForm.propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     username: PropTypes.string,
-    favoriteGenres: PropTypes.string,
     imageUrl: PropTypes.string,
     userFirebaseKey: PropTypes.string,
-    genres: PropTypes.string,
+    genres: PropTypes.arrayOf(PropTypes.string),
   }),
 };
 
