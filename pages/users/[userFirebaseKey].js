@@ -5,22 +5,31 @@ import Link from 'next/link';
 import { React, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { useAuth } from '../../utils/context/authContext';
 import ProfileCard from '../../components/ProfileCard';
-import { getSingleUserWithMetaData } from '../../api/mergedData';
+import { getFlicksByUidWithMetaData, getSingleUserWithMetaData } from '../../api/mergedData';
 
 export default function Profile() {
   const [profile, setProfile] = useState({});
+  const [flicks, setFlicks] = useState([]);
   const router = useRouter();
   const { userFirebaseKey } = router.query;
+  const { user } = useAuth();
 
   const getTheUser = async () => {
     const fetchedProfile = await getSingleUserWithMetaData(userFirebaseKey);
     setProfile(fetchedProfile);
   };
 
+  const getAllTheFlicks = async () => {
+    const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
+    setFlicks(flicksWithMetaData);
+  };
+
   useEffect(() => {
     getTheUser();
-  }, [userFirebaseKey]);
+    getAllTheFlicks();
+  }, []);
 
   if (!profile) {
     return null;
@@ -33,7 +42,7 @@ export default function Profile() {
           <Button className="formButton" type="submit">{profile.userFirebaseKey ? 'Update' : 'Create'} Profile</Button>
         </Link>
       </>
-      <ProfileCard key={profile.userFirebaseKey} userObj={profile} onUpdate={getTheUser} />
+      <ProfileCard userObj={profile} flicksList={flicks} />
     </div>
   );
 }

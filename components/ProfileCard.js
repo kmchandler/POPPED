@@ -1,23 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useAuth } from '../utils/context/authContext';
-import { getFlicksByUidWithMetaData } from '../api/mergedData';
 
-export default function ProfileCard({ userObj }) {
-  const [flicks, setFlicks] = useState([]);
-  const { user } = useAuth();
-
-  const getAllTheFlicks = async () => {
-    const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
-    setFlicks(flicksWithMetaData);
-  };
-
-  useEffect(() => {
-    getAllTheFlicks();
-  }, [user]);
-
+export default function ProfileCard({ userObj, flicksList }) {
+  console.log(flicksList);
   return (
     <div>
       <img src={userObj.imageUrl} alt={userObj.username} />
@@ -25,8 +12,8 @@ export default function ProfileCard({ userObj }) {
       <h2>{userObj.username}</h2>
       <h3>Favorite Genres:</h3>
       {userObj.genres?.map((genre) => <h3>{genre.genreName}</h3>)}
-      <h3>Favorite Flicks:</h3>
-      {flicks?.map((flick) => {
+      <h3>Favorited Flicks:</h3>
+      {flicksList.map((flick) => {
         if (!flick.favorite) return null;
 
         return <h3>{flick.flickName}</h3>;
@@ -44,9 +31,10 @@ ProfileCard.propTypes = {
     imageUrl: PropTypes.string,
     userFirebaseKey: PropTypes.string,
   }),
-  user: PropTypes.shape({
-    uid: PropTypes.string,
-  }).isRequired,
+  flicksList: PropTypes.arrayOf(PropTypes.shape({
+    favorite: PropTypes.bool,
+    flickName: PropTypes.string,
+  })).isRequired,
 };
 
 ProfileCard.defaultProps = {
