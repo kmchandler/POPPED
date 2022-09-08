@@ -6,16 +6,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { signOut } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
 import ProfileDropdown from './ProfileDropdown';
 
 export default function NavBar({ navObj }) {
-  const { user } = useAuth();
   const router = useRouter();
 
   const goToProfile = () => {
     router.push(`/users/${navObj.userFirebaseKey}`);
   };
+
+  let profileImage = '';
+
+  if (navObj.imageUrl !== '') {
+    profileImage = navObj.imageUrl;
+  } else {
+    profileImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png';
+  }
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark .me-auto .ml-auto">
@@ -72,12 +78,12 @@ export default function NavBar({ navObj }) {
         <div className="navbarProfile" id="navbarTogglerDemo01">
           <ul className="navbar-nav">
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                <img src={user.photoURL} width="30px" height="30px" alt="user" className="user-icon" />
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <img src={profileImage} width="35px" height="35px" alt="user" className="user-icon rounded-circle" />
               </a>
               <ul className="dropdown-menu dropdown-menu-end">
                 <div className="profileDropdownBottomDiv">
-                  <ProfileDropdown />
+                  <ProfileDropdown userObj={navObj} />
                   <button type="button" className="signOutBtn btn" onClick={signOut}>
                     Sign Out
                   </button>
@@ -98,5 +104,6 @@ export default function NavBar({ navObj }) {
 NavBar.propTypes = {
   navObj: PropTypes.shape({
     userFirebaseKey: PropTypes.string,
+    imageUrl: PropTypes.string,
   }).isRequired,
 };

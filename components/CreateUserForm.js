@@ -81,7 +81,7 @@ function CreateUserForm({ obj }) {
         <input required type="text" name="firstName" value={formInput.firstName} className="form-control" placeholder="First Name" onChange={handleChange} />
         <input required type="text" name="lastName" value={formInput.lastName} className="form-control" placeholder="Last Name" onChange={handleChange} />
         <input required type="text" name="username" value={formInput.username} className="form-control" placeholder="Username" onChange={handleChange} />
-        <input required type="url" name="imageUrl" value={formInput.imageUrl} className="form-control" placeholder="Image Url" onChange={handleChange} />
+        <input type="url" name="imageUrl" value={formInput.imageUrl} className="form-control" placeholder="Image Url" onChange={handleChange} />
         <h5>Favorite Genres</h5>
         {genres.map((genre) => (
           <div key={genre.genreFirebaseKey} className="mb-3">
