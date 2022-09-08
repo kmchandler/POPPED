@@ -16,7 +16,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     }
   }, [user]);
 
-  if (userLoading || !profile) {
+  if (userLoading) {
     return <Loading />;
   }
 
