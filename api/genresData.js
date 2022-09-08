@@ -61,12 +61,6 @@ const deleteSingleGenre = (firebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const updateGenre = (genreObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/genres/${genreObj.firebaseKey}.json`, genreObj)
-    .then(() => getGenresByUid(genreObj.uid)).then(resolve)
-    .catch(reject);
-});
-
 const getGenresByGenreFirebaseKey = (genreFirebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/genres.json?orderBy="genreFirebaseKey"&equalTo="${genreFirebaseKey}"`)
     .then((response) => {
@@ -84,7 +78,6 @@ export {
   createGenre,
   getSingleGenre,
   deleteSingleGenre,
-  updateGenre,
   getGenres,
   getSingleGenreByName,
   getGenresByGenreFirebaseKey,

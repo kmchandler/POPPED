@@ -61,12 +61,6 @@ const deleteSingleMood = (firebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const updateMood = (moodObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/moods/${moodObj.moodFirebaseKey}.json`, moodObj)
-    .then(() => getMoodsByUid(moodObj.uid)).then(resolve)
-    .catch(reject);
-});
-
 const getMoodsByMoodFirebaseKey = (moodFirebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/moods.json?orderBy="moodFirebaseKey"&equalTo="${moodFirebaseKey}"`)
     .then((response) => {
@@ -84,7 +78,6 @@ export {
   createMood,
   getSingleMood,
   deleteSingleMood,
-  updateMood,
   getSingleMoodByName,
   getMoods,
   getMoodsByMoodFirebaseKey,

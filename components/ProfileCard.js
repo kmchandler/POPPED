@@ -20,8 +20,6 @@ export default function ProfileCard({ userObj, flicksList }) {
     return favoritedFlicks;
   });
 
-  console.warn(favoritedFlicks);
-
   return (
     <div>
       <img src={profileImage} alt={userObj.username} className="rounded-circle" />

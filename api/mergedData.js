@@ -7,19 +7,6 @@ import { getSingleUser, getUserByUid } from './userData';
 
 const dbUrl = clientCredentials.databaseURL;
 
-// // user_genres
-const getUserGenresByUid = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/user_genres.json?orderBy="userId"&equalTo="${uid}"`)
-    .then((response) => {
-      if (response.data) {
-        resolve(Object.values(response.data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch(reject);
-});
-
 const createUserGenre = (newUserGenreObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/user_genres.json`, newUserGenreObj)
     .then((response) => {
@@ -83,42 +70,6 @@ const getUserByUidWithMetaData = async (uid) => {
     genres,
   };
 };
-
-const getFlickGenresByUid = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/flick_genres.json?orderBy="userId"&equalTo="${uid}"`)
-    .then((response) => {
-      if (response.data) {
-        resolve(Object.values(response.data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch(reject);
-});
-
-const getFlickGenresByUidObj = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/flick_genres.json?orderBy="userId"&equalTo="${uid}"`)
-    .then((response) => {
-      if (response.data) {
-        resolve(response.data);
-      } else {
-        resolve([]);
-      }
-    })
-    .catch(reject);
-});
-
-const getFlickGenres = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/flick_genres.json`)
-    .then((response) => {
-      if (response.data) {
-        resolve(Object.values(response.data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch(reject);
-});
 
 const getFlickGenresForFlick = async (flickFirebaseKey) => {
   const response = await axios.get(`${dbUrl}/flick_genres.json?orderBy="flickFirebaseKey"&equalTo="${flickFirebaseKey}"`);
@@ -251,18 +202,6 @@ const getSingleFlickWithMetaData = async (flicksFirebaseKey) => {
   };
 };
 
-const getFlickMoodsByUid = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/flick_moods.json?orderBy="userId"&equalTo="${uid}"`)
-    .then((response) => {
-      if (response.data) {
-        resolve(Object.values(response.data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch(reject);
-});
-
 export {
-  getFlickGenres, updateFlickGenres, getFlickMoods, updateFlickMoods, getFlickGenresByUid, getFlickGenresByUidObj, getFlickMoodsByUid, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData, getSingleFlickWithMetaData, createFlickGenre, createFlickMood, deleteFlickGenre, deleteFlickMood, createUserGenre, updateUserGenres, deleteUserGenre, getUserGenresByUid, getUserByUidWithMetaData, getGenresForUser, getSingleUserWithMetaData, getUserGenresForUser,
+  updateFlickGenres, getFlickMoods, updateFlickMoods, getFlickGenresForFlick, getGenresForFlick, getFlicksByUidWithMetaData, getSingleFlickWithMetaData, createFlickGenre, createFlickMood, deleteFlickGenre, deleteFlickMood, createUserGenre, updateUserGenres, deleteUserGenre, getUserByUidWithMetaData, getGenresForUser, getSingleUserWithMetaData, getUserGenresForUser,
 };

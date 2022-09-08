@@ -15,18 +15,6 @@ const getFlicksByUid = (uid) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getFlicksByUidObj = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/flicks.json?orderBy="uid"&equalTo="${uid}"`)
-    .then((response) => {
-      if (response.data) {
-        resolve(response.data);
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
-});
-
 const getSingleFlick = (flicksFirebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/flicks/${flicksFirebaseKey}.json`)
     .then((response) => resolve(response.data))
@@ -57,7 +45,6 @@ const updateFlick = (flickObj) => new Promise((resolve, reject) => {
 
 export {
   getFlicksByUid,
-  getFlicksByUidObj,
   createFlick,
   getSingleFlick,
   deleteSingleFlick,
