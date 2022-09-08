@@ -1,21 +1,46 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
+import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import FavoritedFlicksCard from './FavoritedFlicksCard';
 
 export default function ProfileCard({ userObj, flicksList }) {
+  let profileImage = '';
+  if (userObj.imageUrl !== '') {
+    profileImage = userObj.imageUrl;
+  } else {
+    profileImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png';
+  }
+
+  const favoritedFlicks = [];
+  flicksList.map((flick) => {
+    if (flick.favorite) favoritedFlicks.push(flick);
+    return favoritedFlicks;
+  });
+
+  console.warn(favoritedFlicks);
+
   return (
     <div>
-      <img src={userObj.imageUrl} alt={userObj.username} />
+      <img src={profileImage} alt={userObj.username} className="rounded-circle" />
       <h1>{userObj.firstName} {userObj.lastName}</h1>
       <h2>{userObj.username}</h2>
+      <Link href="/flicks/watchlist" passHref>
+        <Button className="watchlistButton">VIEW WATCHLIST</Button>
+      </Link>
       <h3>Favorite Genres:</h3>
       {userObj.genres?.map((genre) => <h4>{genre.genreName}</h4>)}
       <h3>Favorited Flicks:</h3>
       {flicksList.map((flick) => {
         if (!flick.favorite) return null;
 
-        return <h4>{flick.title}</h4>;
+        return (
+          <>
+            {favoritedFlicks.map((flix) => <FavoritedFlicksCard key={flix.flicksFirebaseKey} flickObj={flix} />)}
+          </>
+        );
       })}
     </div>
   );
