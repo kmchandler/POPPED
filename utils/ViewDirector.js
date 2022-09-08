@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
@@ -8,16 +8,21 @@ import { getUserByUid } from '../api/userData';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      getUserByUid(user.uid).then(setProfile);
+    }
+  }, [user]);
 
   // if user state is null, then show loader
-  if (userLoading) {
+  if (userLoading || !profile) {
     return <Loading />;
   }
 
   // what the user should see if they are logged in
   if (user) {
-    getUserByUid(user.uid).then(setProfile);
     return (
       <>
         <NavBar navObj={profile} />

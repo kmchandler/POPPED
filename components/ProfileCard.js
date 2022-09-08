@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ProfileCard({ userObj, flicksList }) {
-  console.log(flicksList);
+  console.warn(flicksList);
   return (
     <div>
       <img src={userObj.imageUrl} alt={userObj.username} />
