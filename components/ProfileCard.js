@@ -4,19 +4,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ProfileCard({ userObj, flicksList }) {
-  console.warn(flicksList);
+  console.warn(flicksList, 'flicksList');
   return (
     <div>
       <img src={userObj.imageUrl} alt={userObj.username} />
       <h1>{userObj.firstName} {userObj.lastName}</h1>
       <h2>{userObj.username}</h2>
       <h3>Favorite Genres:</h3>
-      {userObj.genres?.map((genre) => <h3>{genre.genreName}</h3>)}
+      {userObj.genres?.map((genre) => <h4>{genre.genreName}</h4>)}
       <h3>Favorited Flicks:</h3>
       {flicksList.map((flick) => {
         if (!flick.favorite) return null;
 
-        return <h3>{flick.flickName}</h3>;
+        return <h4>{flick.title}</h4>;
       })}
     </div>
   );
@@ -33,7 +33,7 @@ ProfileCard.propTypes = {
   }),
   flicksList: PropTypes.arrayOf(PropTypes.shape({
     favorite: PropTypes.bool,
-    flickName: PropTypes.string,
+    title: PropTypes.string,
   })).isRequired,
 };
 
