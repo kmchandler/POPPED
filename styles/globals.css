@@ -494,11 +494,11 @@ body {
  }
 
  .typeSelect {
-  width: 400px;
+  width: 450px;
  }
 
  .statusSelect {
-  width: 400px;
+  width: 450px;
  }
 
  .recommendedByField {
@@ -520,4 +520,41 @@ body {
   margin-top: 20px;
   column-gap: 145px;
   margin-left: -5px;
+ }
+
+ .flickFormContainer {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+ }
+
+ .genreDivFlick {
+  columns: 2 auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  column-gap: 100px;
+  margin-left: 30px;
+ }
+
+ .moodDivFlick {
+  columns: 2 auto;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  column-gap: 100px;
+  margin-left: 30px;
+ }
+
+ .flickHeaderText {
+  margin-bottom: 20px;;
+ }
+
+ .flickFormButton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ }
+
+ .photoUrlFlick {
+  margin-top: 10px;
  }

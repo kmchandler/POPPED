@@ -110,65 +110,69 @@ function FlickForm({ obj }) {
   return (
     <div className="flickFormContainer">
       <Form className="flickForm" onSubmit={handleSubmit}>
-        <h2 className="flickHeaderText mt-5">{obj.flicksFirebaseKey ? 'Update' : 'Add'} Flick</h2>
-        <FloatingLabel controlId="floatingInput1" label="Title" className="mb-3">
-          <Form.Control type="text" placeholder="Title" name="title" value={formInput.title} onChange={handleChange} required />
+        <h2 className="flickHeaderText mt-5">{obj.flicksFirebaseKey ? 'update' : 'add'} flick</h2>
+        <FloatingLabel controlId="floatingInput1" label="title" className="mb-3">
+          <Form.Control type="text" placeholder="title" name="title" value={formInput.title} onChange={handleChange} required />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingSelect" label="Type">
+        <FloatingLabel controlId="floatingSelect" label="type">
           <Form.Select
             aria-label="Type"
             name="type"
             type="select"
             onChange={handleChange}
-            className="mb-3"
+            className="mb-3 typeSelect"
             required
             value={formInput.type}
           >
-            <option value="">Select Type</option>
-            <option value="Movie">Movie</option>
-            <option value="TV Show">TV Show</option>
+            <option value="">select type</option>
+            <option value="Movie">movie</option>
+            <option value="TV Show">tv show</option>
           </Form.Select>
         </FloatingLabel>
 
-        <h5>Genre</h5>
-        {genres.map((genre) => (
-          <div key={genre.genreFirebaseKey} className="mb-3">
-            <Form.Check
-              type="checkbox"
-              id={genre.genreFirebaseKey}
-              label={genre.genreName}
-              defaultChecked={checkedGenre.find((cg) => cg?.genreName === genre.genreName)}
-              onChange={handleClickGenre}
-              name={genre.genreName}
-            />
-          </div>
-        ))}
+        <h5>genre</h5>
+        <div className="genreDivFlick">
+          {genres.map((genre) => (
+            <div key={genre.genreFirebaseKey} className="mb-3">
+              <Form.Check
+                type="checkbox"
+                id={genre.genreFirebaseKey}
+                label={genre.genreName}
+                defaultChecked={checkedGenre.find((cg) => cg?.genreName === genre.genreName)}
+                onChange={handleClickGenre}
+                name={genre.genreName}
+              />
+            </div>
+          ))}
+        </div>
 
-        <h5>Moods</h5>
-        {moods.map((mood) => (
-          <div key={mood.moodFirebaseKey} className="mb-3">
-            <Form.Check
-              type="checkbox"
-              id={mood.moodFirebaseKey}
-              label={mood.moodsName}
-              defaultChecked={checkedMood.find((cm) => cm?.moodsName === mood.moodsName)}
-              onChange={handleClickMood}
-              name={mood.moodsName}
-            />
-          </div>
-        ))}
+        <h5>moods</h5>
+        <div className="moodDivFlick">
+          {moods.map((mood) => (
+            <div key={mood.moodFirebaseKey} className="mb-3">
+              <Form.Check
+                type="checkbox"
+                id={mood.moodFirebaseKey}
+                label={mood.moodsName}
+                defaultChecked={checkedMood.find((cm) => cm?.moodsName === mood.moodsName)}
+                onChange={handleClickMood}
+                name={mood.moodsName}
+              />
+            </div>
+          ))}
+        </div>
 
-        <FloatingLabel controlId="floatingInput5" label="Cast and Crew" className="mb-3">
-          <Form.Control type="text" placeholder="Cast and Crew" name="castCrew" value={formInput.castCrew} onChange={handleChange} />
+        <FloatingLabel controlId="floatingInput5" label="cast and crew" className="mb-3">
+          <Form.Control type="text" placeholder="cast and crew" name="castCrew" value={formInput.castCrew} onChange={handleChange} />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput6" label="Recommended By" className="mb-3">
-          <Form.Control type="text" placeholder="Recommended By" name="recommendedBy" value={formInput.recommendedBy} onChange={handleChange} />
+        <FloatingLabel controlId="floatingInput6" label="recommended by" className="mb-3">
+          <Form.Control type="text" placeholder="recommended by" name="recommendedBy" value={formInput.recommendedBy} onChange={handleChange} />
         </FloatingLabel>
 
         <Form.Check
           type="switch"
-          label="Watched?"
+          label="watched?"
           name="watched"
           id="watched"
           checked={formInput.watched}
@@ -180,7 +184,7 @@ function FlickForm({ obj }) {
 
         <Form.Check
           type="switch"
-          label="Favorite?"
+          label="favorite?"
           name="favorite"
           id="watched"
           checked={formInput.favorite}
@@ -190,11 +194,11 @@ function FlickForm({ obj }) {
           }))}
         />
 
-        <FloatingLabel controlId="floatingInput9" label="Photo URL" className="mb-3">
-          <Form.Control type="url" placeholder="Photo URL" name="imageUrl" value={formInput.imageUrl} onChange={handleChange} required />
+        <FloatingLabel controlId="floatingInput9" label="photo url" className="mb-3 photoUrlFlick">
+          <Form.Control type="url" placeholder="photo url" name="imageUrl" value={formInput.imageUrl} onChange={handleChange} required />
         </FloatingLabel>
 
-        <Button className="formButton" type="submit">{obj.flicksFirebaseKey ? 'Update' : 'Add'} Flick</Button>
+        <Button className="flickFormButton" type="submit">{obj.flicksFirebaseKey ? 'update' : 'add'} flick</Button>
       </Form>
     </div>
   );
