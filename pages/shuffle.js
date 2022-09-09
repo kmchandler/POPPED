@@ -98,7 +98,6 @@ export default function Shuffle() {
     <form className="shuffleFormDiv" onSubmit={(e) => e.preventDefault()}>
       <h3 className="iFeelLike">i feel like watching...</h3>
       <div>
-        <h5>type</h5>
         <div className="typeSelect">
           <Form.Select
             aria-label="Type"
@@ -114,7 +113,6 @@ export default function Shuffle() {
           </Form.Select>
         </div>
       </div>
-      <h5>status</h5>
       <div className="statusSelect">
         <Form.Select
           aria-label="Watched"
@@ -129,7 +127,7 @@ export default function Shuffle() {
           <option value="false">haven&apos;t watched</option>
         </Form.Select>
       </div>
-      <h5>genre</h5>
+      <h5 className="shuffleGenre">genre</h5>
       <div className="genreDiv">
         {genres.map((genre) => (
           <div key={genre.genreFirebaseKey} className="mb-3">
@@ -144,7 +142,7 @@ export default function Shuffle() {
           </div>
         ))}
       </div>
-      <h5>mood</h5>
+      <h5 className="shuffleMood">mood</h5>
       <div className="moodDiv">
         {moods.map((mood) => (
           <div key={mood.moodFirebaseKey} className="mb-3">
@@ -161,7 +159,6 @@ export default function Shuffle() {
       </div>
       <div>
         <div>
-          <h5>recommended by</h5>
           <input type="text" name="recommendedBy" value={formInput.recommendedBy} className="form-control recommendedByField" placeholder="recommended by" onChange={handleChange} />
         </div>
       </div>

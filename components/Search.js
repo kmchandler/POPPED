@@ -17,9 +17,8 @@ export default function Search({ setFilteredFlicks, flicks }) {
     <Form className="searchBar">
       <Form.Control
         type="search"
-        placeholder="Search"
+        placeholder="search"
         className="me-2"
-        aria-label="Search"
         value={input}
         name="playerSearch"
         onChange={handleChange}

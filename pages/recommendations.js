@@ -30,7 +30,7 @@ export default function Recommendations() {
     return (
       <div className="noRecsDiv">
         <h1 className="noRecommendationHeader">recommendations</h1>
-        <h3 className="noRecommendations">No recommendations found.</h3>
+        <h3 className="noRecommendations">no recommendations found.</h3>
       </div>
     );
   } return (

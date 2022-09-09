@@ -58,8 +58,8 @@ export default function Watchlist() {
             className="mb-3"
             value={formInput.genre}
           >
-            <option value="">Filter By Genre</option>
-            <option value="none">All Genres</option>
+            <option value="">filter by genre</option>
+            <option value="none">all genres</option>
             {
             genres.map((genre) => (
               <option
@@ -74,7 +74,7 @@ export default function Watchlist() {
           </Form.Select>
         </form>
         <Link href="/flicks/new" passHref>
-          <Button className="flickButton">Add A Flick</Button>
+          <Button className="flickButton">add a flick</Button>
         </Link>
         <div className="d-flex flex-wrap cardContainer watchlistCardDiv">
           {filteredFlicks.map((flix) => <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getAllTheFlicks} />)}

@@ -77,12 +77,12 @@ function CreateUserForm({ obj }) {
   return (
     <div className="profilePage">
       <form onSubmit={handleSubmit}>
-        <h2>Update Profile</h2>
-        <input required type="text" name="firstName" value={formInput.firstName} className="form-control" placeholder="First Name" onChange={handleChange} />
-        <input required type="text" name="lastName" value={formInput.lastName} className="form-control" placeholder="Last Name" onChange={handleChange} />
-        <input required type="text" name="username" value={formInput.username} className="form-control" placeholder="Username" onChange={handleChange} />
-        <input type="url" name="imageUrl" value={formInput.imageUrl} className="form-control" placeholder="Image Url" onChange={handleChange} />
-        <h5>Favorite Genres</h5>
+        <h2>update profile</h2>
+        <input required type="text" name="firstName" value={formInput.firstName} className="form-control" placeholder="first name" onChange={handleChange} />
+        <input required type="text" name="lastName" value={formInput.lastName} className="form-control" placeholder="last name" onChange={handleChange} />
+        <input required type="text" name="username" value={formInput.username} className="form-control" placeholder="username" onChange={handleChange} />
+        <input type="url" name="imageUrl" value={formInput.imageUrl} className="form-control" placeholder="image url" onChange={handleChange} />
+        <h5>favorite genres</h5>
         {genres.map((genre) => (
           <div key={genre.genreFirebaseKey} className="mb-3">
             <Form.Check
@@ -96,7 +96,7 @@ function CreateUserForm({ obj }) {
           </div>
         ))}
         <button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>
-          Submit
+          submit
         </button>
       </form>
     </div>
