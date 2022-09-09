@@ -95,38 +95,42 @@ export default function Shuffle() {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <h3>i feel like watching...</h3>
+    <form className="shuffleFormDiv" onSubmit={(e) => e.preventDefault()}>
+      <h3 className="iFeelLike">i feel like watching...</h3>
       <div>
         <h5>type</h5>
+        <div className="typeSelect">
+          <Form.Select
+            aria-label="Type"
+            name="type"
+            type="select"
+            onChange={handleChange}
+            className="mb-3"
+            value={formInput.type}
+          >
+            <option value="">select type</option>
+            <option value="Movie">movie</option>
+            <option value="TV Show">tv show</option>
+          </Form.Select>
+        </div>
+      </div>
+      <h5>status</h5>
+      <div className="statusSelect">
         <Form.Select
-          aria-label="Type"
-          name="type"
+          aria-label="Watched"
+          name="watched"
           type="select"
           onChange={handleChange}
           className="mb-3"
-          value={formInput.type}
+          value={formInput.watched}
         >
-          <option value="">Select Type</option>
-          <option value="Movie">Movie</option>
-          <option value="TV Show">TV Show</option>
+          <option value="">something old or something new?</option>
+          <option value="true">watched</option>
+          <option value="false">haven&apos;t watched</option>
         </Form.Select>
       </div>
-      <h5>status</h5>
-      <Form.Select
-        aria-label="Watched"
-        name="watched"
-        type="select"
-        onChange={handleChange}
-        className="mb-3"
-        value={formInput.watched}
-      >
-        <option value="">something old or something new?</option>
-        <option value="true">Watched</option>
-        <option value="false">Haven&apos;t watched</option>
-      </Form.Select>
-      <div>
-        <h5>genre</h5>
+      <h5>genre</h5>
+      <div className="genreDiv">
         {genres.map((genre) => (
           <div key={genre.genreFirebaseKey} className="mb-3">
             <Form.Check
@@ -140,8 +144,8 @@ export default function Shuffle() {
           </div>
         ))}
       </div>
-      <div>
-        <h5>mood</h5>
+      <h5>mood</h5>
+      <div className="moodDiv">
         {moods.map((mood) => (
           <div key={mood.moodFirebaseKey} className="mb-3">
             <Form.Check
@@ -158,7 +162,7 @@ export default function Shuffle() {
       <div>
         <div>
           <h5>recommended by</h5>
-          <input type="text" name="recommendedBy" value={formInput.recommendedBy} className="form-control" placeholder="Recommended By" onChange={handleChange} />
+          <input type="text" name="recommendedBy" value={formInput.recommendedBy} className="form-control recommendedByField" placeholder="recommended by" onChange={handleChange} />
         </div>
       </div>
       <button type="button" onClick={handleSubmit}>shuffle</button>

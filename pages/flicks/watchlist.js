@@ -44,7 +44,7 @@ export default function Watchlist() {
   return (
     <>
       <div className="text-center my-4 flickCardsDiv">
-        <h1 className="flickName">Watchlist</h1>
+        <h1 className="flickName">watchlist</h1>
         <div className="flickHeaderDiv">
           <div className="watchlistSearchbar">
             <Search flicks={flicks} setFilteredFlicks={setFilteredFlicks} />
