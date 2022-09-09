@@ -24,9 +24,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     return (
       <>
         <NavBar navObj={profile} />
-        <div className="container">
-          <Component {...pageProps} />
-        </div>
+        <Component {...pageProps} />
       </>
     );
   }
