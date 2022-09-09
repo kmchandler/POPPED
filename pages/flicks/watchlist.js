@@ -46,10 +46,9 @@ export default function Watchlist() {
       <div className="text-center my-4 flickCardsDiv">
         <h1 className="flickName">Watchlist</h1>
         <div className="flickHeaderDiv">
-          <Search flicks={flicks} setFilteredFlicks={setFilteredFlicks} />
-          <Link href="/flicks/new" passHref>
-            <Button className="flickButton">Add A Flick</Button>
-          </Link>
+          <div className="watchlistSearchbar">
+            <Search flicks={flicks} setFilteredFlicks={setFilteredFlicks} />
+          </div>
         </div>
         <form className="filterGenre" onSubmit={(e) => e.preventDefault()}>
           <Form.Select
@@ -74,7 +73,10 @@ export default function Watchlist() {
           }
           </Form.Select>
         </form>
-        <div className="d-flex flex-wrap cardContainer">
+        <Link href="/flicks/new" passHref>
+          <Button className="flickButton">Add A Flick</Button>
+        </Link>
+        <div className="d-flex flex-wrap cardContainer watchlistCardDiv">
           {filteredFlicks.map((flix) => <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getAllTheFlicks} />)}
         </div>
       </div>
