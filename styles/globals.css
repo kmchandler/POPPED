@@ -413,3 +413,32 @@ body {
   padding: 0;
   margin: 0;
 }
+
+.noFlicksDiv {
+  display: block;
+  margin-top: 50px;
+}
+
+.noFlicksFound {
+  display: block;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.noFlicksBtn {
+  display: block;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.foundFlicksBtn {
+  margin-top: 50px;
+  margin-left: 130px;
+}
+
+.moodsCardsDiv {
+  margin-top: 50px;
+  margin-left: 120px;
+  margin-right: 120px;
+}
