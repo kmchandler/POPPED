@@ -52,164 +52,297 @@ body {
   margin-right: auto;
 }
 
+.mainMoodsDiv {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-left: 175px;
+  margin-right: 100px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color: white;
+}
+
 .anxiousIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+}
+
+.anxiousIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 100px;
 }
 
 .blahIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 170px;
+  width: 170px;
+  margin-top: 15px;
+  margin-bottom: 25px;
 }
 
-.blahIcon {
-  justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+.blahIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .boredIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+}
+
+.boredIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .buzzedIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+}
+
+.buzzedIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .chillIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 175px;
+  width: 175px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.chillIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .happyIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+}
+
+.happyIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .heartbrokenIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 175px;
+  width: 175px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.heartbrokenIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .highIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
 }
 
-.happyIcon {
-  justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+.highIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .mischievousIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 50px;
+  width: 50px;
+  margin-bottom: 15px;
+}
+
+.mischievousIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .moodyIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.moodyIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .nostalgicIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+}
+
+.nostalgicIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .mischievousIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+}
+
+.mischievousIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .sadIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+}
+
+.sadIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .sickIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+}
+
+.sickIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .sillyIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+}
+
+.sillyIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 80px;
 }
 
 .sadIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+}
+
+.sadIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 80px;
 }
 
 .stressedIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 200px;
+  width: 200px;
+}
+
+.stressedIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 80px;
 }
 
 .wistfulIcon {
   justify-self: center;
-  height: 35%;
-  width: 35%;
-  padding: 0;
-  margin: 0;
+  height: 175px;
+  width: 175px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.wistfulIconDiv {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 80px;
 }
 
 .loginPage {
@@ -218,6 +351,7 @@ body {
   align-items: center;
   flex-flow: column wrap;
   margin-top: 250px;
+  margin-top: 20px;
 }
 
 .loginButton {
