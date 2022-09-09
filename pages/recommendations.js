@@ -28,15 +28,15 @@ export default function Recommendations() {
 
   if (flicks.length <= 0) {
     return (
-      <>
-        <h1>recommendations</h1>
-        <h3>No recommendations found.</h3>
-      </>
+      <div className="noRecsDiv">
+        <h1 className="noRecommendationHeader">recommendations</h1>
+        <h3 className="noRecommendations">No recommendations found.</h3>
+      </div>
     );
   } return (
     <>
-      <h1>recommendations</h1>
-      <div className="d-flex flex-wrap cardContainer">
+      <h1 className="recommendationHeader">recommendations</h1>
+      <div className="d-flex flex-wrap cardContainer recommendationCardDiv">
         {flicks?.map((flix) => <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getRecommendedFlicks} />)}
       </div>
     </>

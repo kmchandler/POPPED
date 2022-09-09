@@ -464,3 +464,20 @@ body {
   margin-bottom: 30px;
   width: 300px;
 }
+
+.noRecsDiv {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.recommendationHeader {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.recommendationCardDiv {
+  margin-top: 50px;
+  margin-left: 120px;
+  margin-right: 120px;
+}

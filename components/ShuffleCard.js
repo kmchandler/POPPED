@@ -10,8 +10,8 @@ function ShuffleCard({ watchObj }) {
         <Card.Body className="cardBody">
           <Card.Title className="watchTitle">{watchObj.title}</Card.Title>
           <hr />
-          <p className="watchCardGenre">{watchObj.genres.length > 0 ? 'Genres: ' : ''}{watchObj.genres ? watchObj.genres.map((genre, index) => (index ? ', ' : '') + genre.genreName) : ''}</p>
-          <p className="playerCardJobs">{watchObj.moods.length > 0 ? 'Moods: ' : ''}{watchObj.moods ? watchObj.moods.map((mood, index) => (index ? ', ' : '') + mood.moodsName) : ''}</p>
+          <p className="watchCardGenre">{watchObj.genres?.length > 0 ? 'Genres: ' : ''}{watchObj.genres ? watchObj.genres.map((genre, index) => (index ? ', ' : '') + genre.genreName) : ''}</p>
+          <p className="playerCardJobs">{watchObj.moods?.length > 0 ? 'Moods: ' : ''}{watchObj.moods ? watchObj.moods.map((mood, index) => (index ? ', ' : '') + mood.moodsName) : ''}</p>
           <p className="watchCardCastCrew">{watchObj.castCrew ? 'Cast/Crew: ' : ''}{watchObj.castCrew ? watchObj.castCrew : ''}</p>
           <p className="watchCardRecommendedBy">{watchObj.recommendedBy ? 'Recommended By: ' : ''}{watchObj.recommendedBy ? watchObj.recommendedBy : ''}</p>
           <p className="watchCardWatched">{watchObj.watched ? 'Watched' : ''}</p>
