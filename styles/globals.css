@@ -223,5 +223,59 @@ body {
 .loginButton {
   border: none;
   background-color: none;
-  
+}
+
+.homePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  margin-top: 150px;
+}
+
+.linkIconDiv {
+  display: flex;
+  flex-direction: row;
+  margin-top: 60px;
+}
+
+.watchlistIconDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 70px;
+}
+
+.watchlistIcon {
+  height: 150px;
+  width: 150px;
+  padding: 0;
+  margin: 0;
+}
+
+.shuffleIconDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 70px;
+}
+
+.shuffleIcon {
+  height: 150px;
+  width: 150px;
+  padding: 0;
+  margin: 0;
+}
+
+.moodsIconDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.moodsIcon {
+  height: 150px;
+  width: 150px;
+  padding: 0;
+  margin: 0;
 }
