@@ -211,3 +211,17 @@ body {
   padding: 0;
   margin: 0;
 }
+
+.loginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  margin-top: 250px;
+}
+
+.loginButton {
+  border: none;
+  background-color: none;
+  
+}
