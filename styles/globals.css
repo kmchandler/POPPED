@@ -558,3 +558,13 @@ body {
  .photoUrlFlick {
   margin-top: 10px;
  }
+
+ .shuffleGenre {
+  margin-left: -390px;
+  margin-bottom: -10px;
+ }
+
+ .shuffleMood {
+  margin-left: -390px;
+  margin-bottom: -10px;
+ }

@@ -28,9 +28,9 @@ export default function ProfileCard({ userObj, flicksList }) {
       <Link href="/flicks/watchlist" passHref>
         <Button className="watchlistButton">VIEW WATCHLIST</Button>
       </Link>
-      <h3>Favorite Genres:</h3>
+      <h3>favorite genres:</h3>
       {userObj.genres?.map((genre) => <h4>{genre.genreName}</h4>)}
-      <h3>Favorited Flicks:</h3>
+      <h3>favorited flicks:</h3>
       {flicksList.map((flick) => {
         if (!flick.favorite) return null;
 
