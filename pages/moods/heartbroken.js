@@ -31,15 +31,15 @@ export default function Heartbroken() {
 
   if (flicks.length <= 0) {
     return (
-      <>
-        <button type="button" onClick={onClick} className="backToMoodsBtn">previous page</button>
-        <h3>No flicks found matching this mood.</h3>
-      </>
+      <div className="noFlicksDiv">
+        <h3 className="noFlicksFound">No flicks found matching this mood.</h3>
+        <button type="button" onClick={onClick} className="backToMoodsBtn noFlicksBtn">previous page</button>
+      </div>
     );
   } return (
     <>
-      <button type="button" onClick={onClick} className="backToMoodsBtn">previous page</button>
-      <div className="d-flex flex-wrap cardContainer">
+      <button type="button" onClick={onClick} className="backToMoodsBtn foundFlicksBtn">previous page</button>
+      <div className="d-flex flex-wrap cardContainer moodsCardsDiv">
         {flicks?.map((flix) => <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getHeartbrokenFlicks} />)}
       </div>
     </>
