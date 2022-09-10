@@ -3,7 +3,6 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { React, useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../utils/context/authContext';
 import ProfileCard from '../../components/ProfileCard';
@@ -39,7 +38,7 @@ export default function Profile() {
     <div className="userProfileDiv">
       <div className="profileBtn">
         <Link passHref href={`/users/edit/${profile.userFirebaseKey}`}>
-          <Button type="submit">{profile.userFirebaseKey ? 'update' : 'create'} profile</Button>
+          <button className="profileButton" type="submit">{profile.userFirebaseKey ? 'update' : 'create'} profile</button>
         </Link>
       </div>
       <ProfileCard userObj={profile} flicksList={flicks} />

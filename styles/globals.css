@@ -637,7 +637,12 @@ body {
   width: 185px;
  }
 
- .profileBtn {
-  border: none !important;
-  background-color: none !important;
+ .profileButton {
+  border: none;
+  background-color: transparent;
+ }
+
+ .watchlistButton {
+  border: none;
+  background-color: transparent;
  }
