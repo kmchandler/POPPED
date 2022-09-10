@@ -606,3 +606,11 @@ body {
  .recommendationTitle {
   text-align: center;
  }
+
+ .flickTitle {
+  text-align: center;
+ }
+
+ .recommendationCardDiv {
+  margin-bottom: 30px;
+ }
