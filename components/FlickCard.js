@@ -20,19 +20,19 @@ function FlickCard({
         <Card.Body className="cardBody flickCardBody">
           <Card.Title className="flickTitle">{flickObj.title}</Card.Title>
           <hr />
-          <p className="flickCardType">Type: {flickObj.type}</p>
-          <p className="flickCardGenre">{flickObj.genres?.length > 0 ? 'Genres: ' : ''}{flickObj.genres ? flickObj.genres.map((genre, index) => (index ? ', ' : '') + genre?.genreName) : ''}</p>
-          <p className="flickCardMood">{flickObj.moods?.length > 0 ? 'Moods: ' : ''}{flickObj.moods ? flickObj.moods.map((mood, index) => (index ? ', ' : '') + mood?.moodsName) : ''}</p>
-          <p className="flickCardCastCrew">{flickObj.castCrew ? 'Cast/Crew: ' : ''}{flickObj.castCrew ? flickObj.castCrew : null}</p>
-          <p className="flickCardRecommendedBy">{flickObj.recommendedBy ? 'Recommended By: ' : ''}{flickObj.recommendedBy ? flickObj.recommendedBy : ''}</p>
-          <p className="flickCardflicked">{flickObj.watched ? 'Watched' : null}</p>
-          <p className="flickCardFavorite">{flickObj.favorite ? 'Favorite' : null}</p>
+          <p className="flickCardType">type: {flickObj.type}</p>
+          <p className="flickCardGenre">{flickObj.genres?.length > 0 ? 'genres: ' : ''}{flickObj.genres ? flickObj.genres.map((genre, index) => (index ? ', ' : '') + genre?.genreName) : ''}</p>
+          <p className="flickCardMood">{flickObj.moods?.length > 0 ? 'moods: ' : ''}{flickObj.moods ? flickObj.moods.map((mood, index) => (index ? ', ' : '') + mood?.moodsName) : ''}</p>
+          <p className="flickCardCastCrew">{flickObj.castCrew ? 'cast/crew: ' : ''}{flickObj.castCrew ? flickObj.castCrew.toLowerCase() : null}</p>
+          <p className="flickCardRecommendedBy">{flickObj.recommendedBy ? 'recommended by: ' : ''}{flickObj.recommendedBy.toLowerCase() ? flickObj.recommendedBy : ''}</p>
+          <p className="flickCardflicked">{flickObj.watched ? 'watched' : null}</p>
+          <p className="flickCardFavorite">{flickObj.favorite ? 'favorite' : null}</p>
           <div className="flickCardBtns">
             <Link href={`/flicks/edit/${flickObj.flicksFirebaseKey}`} passHref>
-              <Button className="editButton">EDIT</Button>
+              <Button className="editButton">edit</Button>
             </Link>
             <Button className="deleteButton m-2" onClick={deleteThisFlick}>
-              DELETE
+              delete
             </Button>
           </div>
         </Card.Body>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 
 function ShuffleCard({ watchObj }) {
+  console.warn(watchObj.recommendedBy.toLowerCase());
   return (
     <>
       <Card className="ShuffleCardDiv" style={{ width: '25rem', margin: '10px', height: '45rem' }}>
@@ -10,14 +11,13 @@ function ShuffleCard({ watchObj }) {
         <Card.Body className="cardBody">
           <Card.Title className="watchTitle">{watchObj.title}</Card.Title>
           <hr />
-          <p className="watchCardGenre">{watchObj.genres?.length > 0 ? 'Genres: ' : ''}{watchObj.genres ? watchObj.genres.map((genre, index) => (index ? ', ' : '') + genre.genreName) : ''}</p>
-          <p className="playerCardJobs">{watchObj.moods?.length > 0 ? 'Moods: ' : ''}{watchObj.moods ? watchObj.moods.map((mood, index) => (index ? ', ' : '') + mood.moodsName) : ''}</p>
-          <p className="watchCardCastCrew">{watchObj.castCrew ? 'Cast/Crew: ' : ''}{watchObj.castCrew ? watchObj.castCrew : ''}</p>
-          <p className="watchCardRecommendedBy">{watchObj.recommendedBy ? 'Recommended By: ' : ''}{watchObj.recommendedBy ? watchObj.recommendedBy : ''}</p>
-          <p className="watchCardWatched">{watchObj.watched ? 'Watched' : ''}</p>
-          <p className="watchCardFavorite">{watchObj.favorite ? 'Favorite' : ''}</p>
-          <p className="watchCardWatched">{watchObj.watched}</p>
-          <p className="watchCardFavorite">{watchObj.favorite}</p>
+          <p className="flickCardType">type: {watchObj.type}</p>
+          <p className="watchCardGenre">{watchObj.genres?.length > 0 ? 'genres: ' : ''}{watchObj.genres ? watchObj.genres.map((genre, index) => (index ? ', ' : '') + genre.genreName) : ''}</p>
+          <p className="playerCardJobs">{watchObj.moods?.length > 0 ? 'moods: ' : ''}{watchObj.moods ? watchObj.moods.map((mood, index) => (index ? ', ' : '') + mood.moodsName) : ''}</p>
+          <p className="watchCardCastCrew">{watchObj.castCrew ? 'cast/crew: ' : ''}{watchObj.castCrew ? watchObj.castCrew.toLowerCase() : ''}</p>
+          <p className="watchCardRecommendedBy">{watchObj.recommendedBy ? 'recommended by: ' : ''}{watchObj.recommendedBy ? watchObj.recommendedBy.toLowerCase() : ''}</p>
+          <p className="watchCardWatched">{watchObj.watched ? 'watched' : ''}</p>
+          <p className="watchCardFavorite">{watchObj.favorite ? 'favorite' : ''}</p>
         </Card.Body>
       </Card>
     </>
