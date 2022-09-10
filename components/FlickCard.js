@@ -18,9 +18,9 @@ function FlickCard({
       <Card className="flickCardDiv" style={{ width: '25rem', margin: '10px', height: '45rem' }}>
         <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '300px' }} />
         <Card.Body className="cardBody flickCardBody">
-          <Card.Title className="flickTitle">{flickObj.title}</Card.Title>
+          <Card.Title className="flickTitle">{flickObj.title.toLowerCase()}</Card.Title>
           <hr />
-          <p className="flickCardType">type: {flickObj.type}</p>
+          <p className="flickCardType">type: {flickObj.type.toLowerCase()}</p>
           <p className="flickCardGenre">{flickObj.genres?.length > 0 ? 'genres: ' : ''}{flickObj.genres ? flickObj.genres.map((genre, index) => (index ? ', ' : '') + genre?.genreName) : ''}</p>
           <p className="flickCardMood">{flickObj.moods?.length > 0 ? 'moods: ' : ''}{flickObj.moods ? flickObj.moods.map((mood, index) => (index ? ', ' : '') + mood?.moodsName) : ''}</p>
           <p className="flickCardCastCrew">{flickObj.castCrew ? 'cast/crew: ' : ''}{flickObj.castCrew ? flickObj.castCrew.toLowerCase() : null}</p>

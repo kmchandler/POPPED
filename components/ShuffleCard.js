@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 
 function ShuffleCard({ watchObj }) {
-  console.warn(watchObj.recommendedBy.toLowerCase());
   return (
-    <>
-      <Card className="ShuffleCardDiv" style={{ width: '25rem', margin: '10px', height: '45rem' }}>
+    <div>
+      <Card className="shuffleCardDiv" style={{ width: '25rem', margin: '10px', height: '45rem' }}>
         <Card.Img className="cardImage" variant="top" src={watchObj.imageUrl} alt={watchObj.title} style={{ height: '300px' }} />
         <Card.Body className="cardBody">
-          <Card.Title className="watchTitle">{watchObj.title}</Card.Title>
+          <Card.Title className="watchTitle">{watchObj.title.toLowerCase()}</Card.Title>
           <hr />
-          <p className="flickCardType">type: {watchObj.type}</p>
+          <p className="flickCardType">type: {watchObj.type.toLowerCase()}</p>
           <p className="watchCardGenre">{watchObj.genres?.length > 0 ? 'genres: ' : ''}{watchObj.genres ? watchObj.genres.map((genre, index) => (index ? ', ' : '') + genre.genreName) : ''}</p>
           <p className="playerCardJobs">{watchObj.moods?.length > 0 ? 'moods: ' : ''}{watchObj.moods ? watchObj.moods.map((mood, index) => (index ? ', ' : '') + mood.moodsName) : ''}</p>
           <p className="watchCardCastCrew">{watchObj.castCrew ? 'cast/crew: ' : ''}{watchObj.castCrew ? watchObj.castCrew.toLowerCase() : ''}</p>
@@ -20,7 +19,7 @@ function ShuffleCard({ watchObj }) {
           <p className="watchCardFavorite">{watchObj.favorite ? 'favorite' : ''}</p>
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 }
 

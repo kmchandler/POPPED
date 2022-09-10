@@ -19,8 +19,8 @@ export default function WatchThis() {
     return null;
   }
   return (
-    <div>
-      <button type="button" onClick={onClick}>try again</button>
+    <div className="shuffleResultDiv">
+      <button className="tryAgainButton" type="button" onClick={onClick}>try again</button>
       <ShuffleCard watchObj={result} />
     </div>
   );
