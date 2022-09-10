@@ -16,7 +16,7 @@ export default function Moody() {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     const flickMoods = [];
     flicksWithMetaData.map((md) => md.moods.filter((mood) => {
-      if (mood.moodsName.includes('Moody')) {
+      if (mood.moodsName.includes('moody')) {
         flickMoods.push(md);
       }
     }));

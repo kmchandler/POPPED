@@ -16,7 +16,7 @@ export default function Chill() {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     const flickMoods = [];
     flicksWithMetaData.map((md) => md.moods.filter((mood) => {
-      if (mood.moodsName.includes('Chill')) {
+      if (mood.moodsName.includes('chill')) {
         flickMoods.push(md);
       }
     }));

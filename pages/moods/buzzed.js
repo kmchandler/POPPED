@@ -16,7 +16,7 @@ export default function Buzzed() {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     const flickMoods = [];
     flicksWithMetaData.map((md) => md.moods.filter((mood) => {
-      if (mood.moodsName.includes('Buzzed')) {
+      if (mood.moodsName.includes('buzzed')) {
         flickMoods.push(md);
       }
     }));

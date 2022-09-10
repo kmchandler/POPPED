@@ -16,7 +16,7 @@ export default function Blah() {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     const flickMoods = [];
     flicksWithMetaData.map((md) => md.moods.filter((mood) => {
-      if (mood.moodsName.includes('Blah')) {
+      if (mood.moodsName.includes('blah')) {
         flickMoods.push(md);
       }
     }));

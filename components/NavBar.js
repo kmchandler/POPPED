@@ -24,7 +24,7 @@ export default function NavBar({ navObj }) {
   }
 
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark .me-auto .ml-auto">
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark .me-auto .ml-auto navBarStyle">
       <div className="container-fluid navbarContents">
         <Link passHref href="/">
           <h3 className="navbar-brand" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
@@ -84,7 +84,7 @@ export default function NavBar({ navObj }) {
               <ul className="dropdown-menu dropdown-menu-end">
                 <div className="profileDropdownBottomDiv">
                   <ProfileDropdown userObj={navObj} />
-                  <button type="button" className="profileBtn btn" onClick={goToProfile}>
+                  <button type="button" className="goToProfileBtn btn" onClick={goToProfile}>
                     Profile
                   </button>
                   <button type="button" className="signOutBtn btn" onClick={signOut}>

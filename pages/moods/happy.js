@@ -16,7 +16,7 @@ export default function Happy() {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     const flickMoods = [];
     flicksWithMetaData.map((md) => md.moods.filter((mood) => {
-      if (mood.moodsName.includes('Happy')) {
+      if (mood.moodsName.includes('happy')) {
         flickMoods.push(md);
       }
     }));

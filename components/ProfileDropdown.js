@@ -8,7 +8,7 @@ export default function ProfileDropdown({ userObj }) {
   return (
     <div className="profileDropdown">
       <img src={userObj.imageUrl} alt={user.displayName} />
-      <h5>{user.displayName}</h5>
+      <h5 className="profileName">{user.displayName}</h5>
     </div>
   );
 }

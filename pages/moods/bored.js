@@ -16,7 +16,7 @@ export default function Bored() {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     const flickMoods = [];
     flicksWithMetaData.map((md) => md.moods.filter((mood) => {
-      if (mood.moodsName.includes('Bored')) {
+      if (mood.moodsName.includes('bored')) {
         flickMoods.push(md);
       }
     }));
