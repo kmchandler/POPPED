@@ -3,8 +3,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
-import FlickCard from '../components/FlickCard';
 import { getFlicksByUid } from '../api/flicksData';
+import RecommendationCard from '../components/recommendationCard';
 
 export default function Recommendations() {
   const [flicks, setFlicks] = useState([]);
@@ -37,7 +37,7 @@ export default function Recommendations() {
     <>
       <h1 className="recommendationHeader">recommendations</h1>
       <div className="d-flex flex-wrap cardContainer recommendationCardDiv">
-        {flicks?.map((flix) => <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getRecommendedFlicks} />)}
+        {flicks?.map((flix) => <RecommendationCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getRecommendedFlicks} />)}
       </div>
     </>
   );
