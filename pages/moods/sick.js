@@ -16,7 +16,7 @@ export default function Sick() {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     const flickMoods = [];
     flicksWithMetaData.map((md) => md.moods.filter((mood) => {
-      if (mood.moodsName.includes('Sick')) {
+      if (mood.moodsName.includes('sick')) {
         flickMoods.push(md);
       }
     }));

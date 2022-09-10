@@ -18,7 +18,7 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-color: #254343;
 }
 
 .cardImage {
@@ -31,12 +31,16 @@ body {
   box-shadow: #000000ad 4px 4px 8px;
   border: none;
   height: 100%;
+  background-color: #68797b;
+  color: #d3dfe1;
 }
 
 .shuffleCardDiv {
   box-shadow: #000000ad 4px 4px 8px;
   border: none;
   height: 100%;
+  background-color: #68797b;
+  color: #d3dfe1;
 }
 
 .cardBody {
@@ -60,7 +64,7 @@ body {
   margin-right: 100px;
   margin-top: 50px;
   margin-bottom: 50px;
-  color: white;
+  color: #b6c3c7;
 }
 
 .anxiousIcon {
@@ -417,12 +421,14 @@ body {
 .noFlicksDiv {
   display: block;
   margin-top: 50px;
+  color: #d3dfe1;
 }
 
 .noFlicksFound {
   display: block;
   text-align: center;
   margin-top: 100px;
+  color: #d3dfe1;
 }
 
 .noFlicksBtn {
@@ -474,6 +480,7 @@ body {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 30px;
+  color: #d3dfe1;
 }
 
 .recommendationCardDiv {
@@ -490,7 +497,8 @@ body {
  }
 
  .iFeelLike {
-  margin-bottom: 20px;;
+  margin-bottom: 20px;
+  color: #d3dfe1;
  }
 
  .typeSelect {
@@ -512,6 +520,7 @@ body {
   margin-top: 20px;
   column-gap: 100px;
   margin-left: 30px;
+  color: #d3dfe1;
  }
 
  .moodDiv {
@@ -520,6 +529,7 @@ body {
   margin-top: 20px;
   column-gap: 145px;
   margin-left: -5px;
+  color: #d3dfe1;
  }
 
  .flickFormContainer {
@@ -562,11 +572,13 @@ body {
  .shuffleGenre {
   margin-left: -390px;
   margin-bottom: -10px;
+  color: #d3dfe1;
  }
 
  .shuffleMood {
   margin-left: -390px;
   margin-bottom: -10px;
+  color: #d3dfe1;
  }
 
  .shuffleResultDiv {
@@ -588,6 +600,7 @@ body {
 
  .watchlistHeader {
   margin-top: 50px;
+  color: #d3dfe1;
  }
 
  .cardDetails {
@@ -619,6 +632,7 @@ body {
   display: flex;
   align-items: center;
   flex-flow: column wrap;
+  color: #b6c3c7;
  }
 
  .favoritedFlicksDiv {
@@ -640,9 +654,53 @@ body {
  .profileButton {
   border: none;
   background-color: transparent;
+  color: #b6c3c7;
  }
 
  .watchlistButton {
   border: none;
   background-color: transparent;
+  color: #b6c3c7;
+ }
+
+ .navBarStyle {
+  background-color: #1e1e1e;
+  color: #d3dfe1;
+ }
+
+ .moodsHeader {
+  color: #b6c3c7;
+ }
+
+ .homePage {
+  color: #b6c3c7;
+ }
+
+ .profileDropdown {
+  background-color: #68797b;
+  color: #d3dfe1;
+ }
+
+ .profileDropdownBottomDiv {
+  background-color: #68797b;
+  color: #d3dfe1;
+ }
+
+ .dropdown-menu {
+  background-color: #68797b;
+  color: #d3dfe1;
+  text-align: center;
+  margin-top: 10px;
+ }
+
+ .goToProfileBtn {
+  color: #d3dfe1;
+ }
+
+ .signOutBtn {
+  color: #d3dfe1;
+ }
+
+ .profileName {
+  margin-top: 15px;
  }

@@ -16,7 +16,7 @@ export default function High() {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     const flickMoods = [];
     flicksWithMetaData.map((md) => md.moods.filter((mood) => {
-      if (mood.moodsName.includes('High')) {
+      if (mood.moodsName.includes('high')) {
         flickMoods.push(md);
       }
     }));

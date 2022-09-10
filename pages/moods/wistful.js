@@ -16,7 +16,7 @@ export default function Wistful() {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     const flickMoods = [];
     flicksWithMetaData.map((md) => md.moods.filter((mood) => {
-      if (mood.moodsName.includes('Wistful')) {
+      if (mood.moodsName.includes('wistful')) {
         flickMoods.push(md);
       }
     }));

@@ -16,7 +16,7 @@ export default function Mischievous() {
     const flicksWithMetaData = await getFlicksByUidWithMetaData(user.uid);
     const flickMoods = [];
     flicksWithMetaData.map((md) => md.moods.filter((mood) => {
-      if (mood.moodsName.includes('Mischievous')) {
+      if (mood.moodsName.includes('mischievous')) {
         flickMoods.push(md);
       }
     }));
