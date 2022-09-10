@@ -37,11 +37,11 @@ export default function Profile() {
 
   return (
     <div className="userProfileDiv">
-      <>
+      <div className="profileBtn">
         <Link passHref href={`/users/edit/${profile.userFirebaseKey}`}>
-          <Button className="formButton" type="submit">{profile.userFirebaseKey ? 'Update' : 'Create'} Profile</Button>
+          <Button type="submit">{profile.userFirebaseKey ? 'update' : 'create'} profile</Button>
         </Link>
-      </>
+      </div>
       <ProfileCard userObj={profile} flicksList={flicks} />
     </div>
   );

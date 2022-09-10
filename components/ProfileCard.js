@@ -21,23 +21,28 @@ export default function ProfileCard({ userObj, flicksList }) {
   });
 
   return (
-    <div>
+    <div className="profileCardDiv">
       <img src={profileImage} alt={userObj.username} className="rounded-circle" />
+      <br />
       <h1>{userObj.firstName} {userObj.lastName}</h1>
       <h2>{userObj.username}</h2>
+      <br />
       <Link href="/flicks/watchlist" passHref>
-        <Button className="watchlistButton">VIEW WATCHLIST</Button>
+        <Button className="watchlistButton">view watchlist</Button>
       </Link>
+      <br />
       <h3>favorite genres:</h3>
-      {userObj.genres?.map((genre) => <h4>{genre.genreName}</h4>)}
+      {userObj.genres?.map((genre) => <h5 className="favGenres">-{genre.genreName}</h5>)}
+      <br />
       <h3>favorited flicks:</h3>
+      <br />
       {flicksList.map((flick) => {
         if (!flick.favorite) return null;
 
         return (
-          <>
+          <div className="favoritedFlicksDiv">
             {favoritedFlicks.map((flix) => <FavoritedFlicksCard key={flix.flicksFirebaseKey} flickObj={flix} />)}
-          </>
+          </div>
         );
       })}
     </div>
