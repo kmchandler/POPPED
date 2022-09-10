@@ -568,3 +568,15 @@ body {
   margin-left: -390px;
   margin-bottom: -10px;
  }
+
+ .shuffleResultDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+ }
+
+ .tryAgainButton {
+  margin-left: -315px;
+  margin-bottom: 20px;
+ }
