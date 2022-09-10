@@ -6,7 +6,7 @@ function RecommendationCard({ flickObj }) {
   return (
     <>
       <Card className="flickCardDiv recommendationCardDiv" style={{ width: '25rem', margin: '10px', height: '41rem' }}>
-        <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '300px' }} />
+        <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '400px' }} />
         <Card.Body className="cardBody flickCardBody">
           <Card.Title className="flickTitle">{flickObj.title.toLowerCase()}</Card.Title>
           <hr />

@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { updateFlick, createFlick } from '../api/flicksData';
 import {
@@ -172,7 +171,7 @@ function FlickForm({ obj }) {
 
         <Form.Check
           type="switch"
-          label="watched?"
+          label="watched"
           name="watched"
           id="watched"
           checked={formInput.watched}
@@ -184,7 +183,7 @@ function FlickForm({ obj }) {
 
         <Form.Check
           type="switch"
-          label="favorite?"
+          label="favorite"
           name="favorite"
           id="watched"
           checked={formInput.favorite}
@@ -198,7 +197,7 @@ function FlickForm({ obj }) {
           <Form.Control type="url" placeholder="photo url" name="imageUrl" value={formInput.imageUrl} onChange={handleChange} required />
         </FloatingLabel>
 
-        <Button className="flickFormButton" type="submit">{obj.flicksFirebaseKey ? 'update' : 'add'} flick</Button>
+        <button className="flickFormButton" type="submit">{obj.flicksFirebaseKey ? 'update' : 'add'} flick</button>
       </Form>
     </div>
   );

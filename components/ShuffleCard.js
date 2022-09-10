@@ -6,7 +6,7 @@ function ShuffleCard({ watchObj }) {
   return (
     <div>
       <Card className="shuffleCardDiv" style={{ width: '25rem', margin: '10px' }}>
-        <Card.Img className="cardImage" variant="top" src={watchObj.imageUrl} alt={watchObj.title} style={{ height: '300px' }} />
+        <Card.Img className="cardImage" variant="top" src={watchObj.imageUrl} alt={watchObj.title} style={{ height: '400px' }} />
         <Card.Body className="shuffleCard">
           <Card.Title className="watchTitleShuffle">{watchObj.title.toLowerCase()}</Card.Title>
           <hr />
