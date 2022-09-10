@@ -2,7 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import Link from 'next/link';
-import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import FavoritedFlicksCard from './FavoritedFlicksCard';
 
@@ -28,7 +27,7 @@ export default function ProfileCard({ userObj, flicksList }) {
       <h2>{userObj.username}</h2>
       <br />
       <Link href="/flicks/watchlist" passHref>
-        <Button className="watchlistButton">view watchlist</Button>
+        <button type="button" className="watchlistButton">view watchlist</button>
       </Link>
       <br />
       <h3>favorite genres:</h3>
