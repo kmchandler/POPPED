@@ -1,41 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Link from 'next/link';
-import { deleteSingleFlick } from '../api/flicksData';
 
-function FlickCard({
-  flickObj, onUpdate,
-}) {
-  const deleteThisFlick = () => {
-    if (window.confirm(`Delete ${flickObj.title}?`)) {
-      deleteSingleFlick(flickObj.flicksFirebaseKey).then(() => onUpdate());
-    }
-  };
+function RecommendationCard({ flickObj }) {
   return (
     <>
-      <Card className="flickCardDiv" style={{ width: '25rem', margin: '10px' }}>
+      <Card className="flickCardDiv recommendationCardDiv" style={{ width: '25rem', margin: '10px', height: '41rem' }}>
         <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '300px' }} />
         <Card.Body className="cardBody flickCardBody">
-          <Card.Title className="recommendationTitle">{flickObj.title.toLowerCase()}</Card.Title>
+          <Card.Title className="flickTitle">{flickObj.title.toLowerCase()}</Card.Title>
           <hr />
           <div className="cardDetails">
             <p className="flickCardType">type: {flickObj.type.toLowerCase()}</p>
             <p className="flickCardGenre">{flickObj.genres?.length > 0 ? 'genres: ' : ''}{flickObj.genres ? flickObj.genres.map((genre, index) => (index ? ', ' : '') + genre?.genreName) : ''}</p>
             <p className="flickCardMood">{flickObj.moods?.length > 0 ? 'moods: ' : ''}{flickObj.moods ? flickObj.moods.map((mood, index) => (index ? ', ' : '') + mood?.moodsName) : ''}</p>
             <p className="flickCardCastCrew">{flickObj.castCrew ? 'cast/crew: ' : ''}{flickObj.castCrew ? flickObj.castCrew.toLowerCase() : null}</p>
-            <p className="flickCardRecommendedBy">{flickObj.recommendedBy ? 'recommended by: ' : ''}{flickObj.recommendedBy ? flickObj.recommendedBy.toLowerCase() : ''}</p>
+            <p className="flickCardRecommendedBy">{flickObj.recommendedBy ? 'recommended by: ' : ''}{flickObj.recommendedBy.toLowerCase() ? flickObj.recommendedBy : ''}</p>
             <p className="flickCardflicked">{flickObj.watched ? 'watched' : null}</p>
             <p className="flickCardFavorite">{flickObj.favorite ? 'favorite' : null}</p>
-          </div>
-          <div className="flickCardBtns">
-            <Link href={`/flicks/edit/${flickObj.flicksFirebaseKey}`} passHref>
-              <Button className="editButton">edit</Button>
-            </Link>
-            <Button className="deleteButton m-2" onClick={deleteThisFlick}>
-              delete
-            </Button>
           </div>
         </Card.Body>
       </Card>
@@ -43,7 +25,7 @@ function FlickCard({
   );
 }
 
-FlickCard.propTypes = {
+RecommendationCard.propTypes = {
   flickObj: PropTypes.shape({
     flick: PropTypes.string,
     flicksFirebaseKey: PropTypes.string,
@@ -59,7 +41,6 @@ FlickCard.propTypes = {
     rating: PropTypes.string,
     uid: PropTypes.string,
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
 };
 
-export default FlickCard;
+export default RecommendationCard;

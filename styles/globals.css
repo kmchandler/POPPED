@@ -47,9 +47,9 @@ body {
 }
 
 .flickCardBtns {
-  align-self: flex-end;
   margin-left: auto;
   margin-right: auto;
+  margin-top: auto;
 }
 
 .mainMoodsDiv {
@@ -444,7 +444,7 @@ body {
 }
 
 .watchlistCardDiv {
-  margin-top: 50px;
+  margin-top: 30px;
   margin-left: 120px;
   margin-right: 120px;
 }
@@ -453,7 +453,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 300px;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 20px;
 }
 
@@ -461,7 +461,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   width: 300px;
 }
 
@@ -579,4 +579,38 @@ body {
  .tryAgainButton {
   margin-left: -315px;
   margin-bottom: 20px;
+ }
+
+ .moodsHeader {
+  text-align: center;
+  margin-top: 50px;
+ }
+
+ .watchlistHeader {
+  margin-top: 50px;
+ }
+
+ .cardDetails {
+  text-align: left;
+  margin-left: 20px;
+ }
+
+ .watchTitleShuffle {
+  text-align: center;
+ }
+
+ .flickCardBody {
+  height: 400px;
+ }
+
+ .recommendationTitle {
+  text-align: center;
+ }
+
+ .flickTitle {
+  text-align: center;
+ }
+
+ .recommendationCardDiv {
+  margin-bottom: 30px;
  }

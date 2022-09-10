@@ -96,7 +96,7 @@ export default function Shuffle() {
 
   return (
     <form className="shuffleFormDiv" onSubmit={(e) => e.preventDefault()}>
-      <h3 className="iFeelLike">i feel like watching...</h3>
+      <h1 className="iFeelLike">i feel like watching...</h1>
       <div>
         <div className="typeSelect">
           <Form.Select
