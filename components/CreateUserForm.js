@@ -75,29 +75,36 @@ function CreateUserForm({ obj }) {
   };
 
   return (
-    <div className="profilePage">
+    <div className="profilePage profilePageForm">
       <form onSubmit={handleSubmit}>
-        <h2>update profile</h2>
+        <h2 className="updateProfileHeader">update profile</h2>
         <input required type="text" name="firstName" value={formInput.firstName} className="form-control" placeholder="first name" onChange={handleChange} />
+        <br />
         <input required type="text" name="lastName" value={formInput.lastName} className="form-control" placeholder="last name" onChange={handleChange} />
+        <br />
         <input required type="text" name="username" value={formInput.username} className="form-control" placeholder="username" onChange={handleChange} />
+        <br />
         <input type="url" name="imageUrl" value={formInput.imageUrl} className="form-control" placeholder="image url" onChange={handleChange} />
-        <h5>favorite genres</h5>
-        {genres.map((genre) => (
-          <div key={genre.genreFirebaseKey} className="mb-3">
-            <Form.Check
-              type="checkbox"
-              id={genre.genreFirebaseKey}
-              label={genre.genreName}
-              defaultChecked={checkedGenre.find((cg) => cg?.genreName === genre.genreName)}
-              onChange={handleClickGenre}
-              name={genre.genreName}
-            />
-          </div>
-        ))}
-        <button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>
-          submit
-        </button>
+        <h5 className="favGenresHeader">favorite genres</h5>
+        <div className="favGenresList">
+          {genres.map((genre) => (
+            <div key={genre.genreFirebaseKey} className="mb-3">
+              <Form.Check
+                type="checkbox"
+                id={genre.genreFirebaseKey}
+                label={genre.genreName}
+                defaultChecked={checkedGenre.find((cg) => cg?.genreName === genre.genreName)}
+                onChange={handleClickGenre}
+                name={genre.genreName}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="submitProfileButtonDiv">
+          <button type="submit" className="submitProfileBtn" onSubmit={handleSubmit}>
+            submit
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -64,7 +64,7 @@ body {
   margin-right: 100px;
   margin-top: 50px;
   margin-bottom: 50px;
-  color: #b6c3c7;
+  color: #d3dfe1;
 }
 
 .anxiousIcon {
@@ -355,12 +355,22 @@ body {
   align-items: center;
   flex-flow: column wrap;
   margin-top: 250px;
-  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #d3dfe1;
 }
 
 .loginButton {
   border: none;
-  background-color: none;
+  background-color: transparent;
+  color: #d3dfe1;
+}
+
+.loginButton:hover {
+  border-style: solid;
+  border-color: #d3dfe1;
+  border-radius: 6px;
+  padding: 3px;
+  color: #d3dfe1;
 }
 
 .homePage {
@@ -369,6 +379,7 @@ body {
   align-items: center;
   flex-flow: column wrap;
   margin-top: 150px;
+  color: #d3dfe1;
 }
 
 .linkIconDiv {
@@ -499,6 +510,7 @@ body {
  .iFeelLike {
   margin-bottom: 20px;
   color: #d3dfe1;
+  margin-left: -100px;
  }
 
  .typeSelect {
@@ -563,6 +575,10 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  background-color: transparent;
+  border: none;
+  color: #b6c3c7;
+  margin-bottom: 30px;
  }
 
  .photoUrlFlick {
@@ -641,10 +657,15 @@ body {
  }
 
  .profileBtn {
-  display: block;
-  text-align: center;
   margin-top: 50px;
   margin-bottom: 30px;
+ }
+
+ .userProfileDiv {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+  color: #b6c3c7;
  }
 
  .favGenres {
@@ -664,12 +685,12 @@ body {
  }
 
  .navBarStyle {
-  background-color: #1e1e1e;
-  color: #d3dfe1;
+  background-color: #111b1b!important;
+  color: #d3dfe1 !important;
  }
 
  .moodsHeader {
-  color: #b6c3c7;
+  color: #d3dfe1;
  }
 
  .homePage {
@@ -703,4 +724,70 @@ body {
 
  .profileName {
   margin-top: 15px;
+ }
+
+ .profilePageForm {
+  color: #d3dfe1;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+ }
+
+ .favGenresList {
+  columns: 2 auto;
+  margin-bottom: 20px;
+ }
+
+ .favGenresHeader {
+  margin-top: 20px;
+  margin-bottom: 20px;
+ }
+
+ .submitProfileBtn {
+  margin-bottom: 30px;
+  border: none;
+  background-color: transparent;
+  color: #d3dfe1;
+ }
+
+ .updateProfileHeader {
+  margin-bottom: 20px;
+ }
+
+ .submitProfileButtonDiv {
+  display: flex;
+  justify-content: center;
+ }
+
+ .flickFormContainer {
+  color: #b6c3c7;
+ }
+
+ .submitShuffleFormBtn {
+  background-color: transparent;
+  border: none;
+  margin-bottom: 30px;
+  color: #d3dfe1;
+ }
+
+ .flickButton {
+  background-color: transparent;
+  border: none;
+  color: #d3dfe1;
+ }
+
+ .editButton {
+  border: none;
+  background-color: transparent;
+  color: #d3dfe1;
+ }
+
+ .deleteButton {
+  border: none;
+  background-color: transparent;
+  color: #d3dfe1;
+ }
+
+ .poppedTilte {
+  cursor: pointer !important;
  }

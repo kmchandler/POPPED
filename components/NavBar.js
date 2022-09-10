@@ -24,10 +24,10 @@ export default function NavBar({ navObj }) {
   }
 
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark .me-auto .ml-auto navBarStyle">
+    <nav className="navbar navbar-dark navbar-expand-md .me-auto .ml-auto navBarStyle">
       <div className="container-fluid navbarContents">
         <Link passHref href="/">
-          <h3 className="navbar-brand" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
+          <h3 className="poppedTitle pointer" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
             <b>POPPED</b>
           </h3>
         </Link>

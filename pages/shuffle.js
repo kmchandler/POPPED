@@ -162,7 +162,7 @@ export default function Shuffle() {
           <input type="text" name="recommendedBy" value={formInput.recommendedBy} className="form-control recommendedByField" placeholder="recommended by" onChange={handleChange} />
         </div>
       </div>
-      <button type="button" onClick={handleSubmit}>shuffle</button>
+      <button className="submitShuffleFormBtn" type="button" onClick={handleSubmit}>shuffle</button>
     </form>
   );
 }

@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { useAuth } from '../../utils/context/authContext';
 import Search from '../../components/Search';
@@ -74,7 +73,7 @@ export default function Watchlist() {
           </Form.Select>
         </form>
         <Link href="/flicks/new" passHref>
-          <Button className="flickButton">add a flick</Button>
+          <button type="button" className="flickButton">add a flick</button>
         </Link>
         <div className="d-flex flex-wrap cardContainer watchlistCardDiv">
           {filteredFlicks.map((flix) => <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getAllTheFlicks} />)}

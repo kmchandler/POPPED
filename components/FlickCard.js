@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { deleteSingleFlick } from '../api/flicksData';
@@ -16,7 +15,7 @@ function FlickCard({
   return (
     <>
       <Card className="flickCardDiv" style={{ width: '25rem', margin: '10px' }}>
-        <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '300px' }} />
+        <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '400px' }} />
         <Card.Body className="cardBody flickCardBody">
           <Card.Title className="recommendationTitle">{flickObj.title.toLowerCase()}</Card.Title>
           <hr />
@@ -31,11 +30,11 @@ function FlickCard({
           </div>
           <div className="flickCardBtns">
             <Link href={`/flicks/edit/${flickObj.flicksFirebaseKey}`} passHref>
-              <Button className="editButton">edit</Button>
+              <button type="button" className="editButton">edit</button>
             </Link>
-            <Button className="deleteButton m-2" onClick={deleteThisFlick}>
+            <button type="button" className="deleteButton m-2" onClick={deleteThisFlick}>
               delete
-            </Button>
+            </button>
           </div>
         </Card.Body>
       </Card>
