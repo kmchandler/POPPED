@@ -110,24 +110,21 @@ function FlickForm({ obj }) {
     <div className="flickFormContainer">
       <Form className="flickForm" onSubmit={handleSubmit}>
         <h2 className="flickHeaderText mt-5">{obj.flicksFirebaseKey ? 'update' : 'add'} flick</h2>
-        <FloatingLabel controlId="floatingInput1" label="title" className="mb-3">
-          <Form.Control type="text" placeholder="title" name="title" value={formInput.title} onChange={handleChange} required />
-        </FloatingLabel>
-        <FloatingLabel controlId="floatingSelect" label="type">
-          <Form.Select
-            aria-label="Type"
-            name="type"
-            type="select"
-            onChange={handleChange}
-            className="mb-3 typeSelect"
-            required
-            value={formInput.type}
-          >
-            <option value="">select type</option>
-            <option value="Movie">movie</option>
-            <option value="TV Show">tv show</option>
-          </Form.Select>
-        </FloatingLabel>
+        <Form.Control type="text" placeholder="title" name="title" value={formInput.title} onChange={handleChange} required />
+        <br />
+        <Form.Select
+          aria-label="Type"
+          name="type"
+          type="select"
+          onChange={handleChange}
+          className="mb-3 typeSelect"
+          required
+          value={formInput.type}
+        >
+          <option value="">select type</option>
+          <option value="Movie">movie</option>
+          <option value="TV Show">tv show</option>
+        </Form.Select>
 
         <h5>genre</h5>
         <div className="genreDivFlick">
