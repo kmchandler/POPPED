@@ -5,8 +5,10 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import Image from 'next/image';
 import { signOut } from '../utils/auth';
 import ProfileDropdown from './ProfileDropdown';
+import logo from './logo.png';
 
 export default function NavBar({ navObj }) {
   const router = useRouter();
@@ -28,7 +30,7 @@ export default function NavBar({ navObj }) {
       <div className="container-fluid navbarContents">
         <Link passHref href="/">
           <h3 className="poppedTitle pointer" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
-            <b>POPPED</b>
+            <Image src={logo} className="navLogo" alt="logo" style={{ width: '100px', height: '50px' }} />
           </h3>
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">

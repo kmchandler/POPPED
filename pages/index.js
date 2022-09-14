@@ -1,13 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { GiFilmSpool } from 'react-icons/gi';
 import { BsShuffle } from 'react-icons/bs';
 import { FaTheaterMasks } from 'react-icons/fa';
+import logo2 from '../components/logo2.png';
 
 export default function index() {
   return (
     <div className="homePage">
-      <h1>welcome to POPPED</h1>
+      <h1 className="welcomeMain">welcome to</h1>
+      <Image src={logo2} className="logoMain" />
       <br />
       <h3>pick your flick before the popcorn&apos;s ready</h3>
       <br />

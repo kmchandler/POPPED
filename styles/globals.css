@@ -1,4 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
 
 html,
 body {
@@ -844,4 +845,18 @@ body {
 
  .tryAgainButton:hover {
   border-width: 1.5px;
+ }
+
+ .poppedTitle {
+  margin-top: 5px;
+  margin-bottom: -2px;
+  margin-right: -5px;
+ }
+
+ .welcomeMain {
+  margin-bottom: -25px;
+ }
+
+ .loginWelcome {
+  margin-bottom: -25px;
  }
