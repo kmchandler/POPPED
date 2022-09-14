@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import { BsEyeglasses } from 'react-icons/bs';
 
 function FavoritedFlicksCard({ flickObj }) {
+  const glasses = <BsEyeglasses />;
+
   return (
     <>
-      <Card className="flickCardDiv" style={{ width: '25rem', margin: '10px', height: '45rem' }}>
-        <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '300px' }} />
+      <Card className="flickCardDiv" style={{ width: '25rem', margin: '10px', height: '55rem' }}>
+        <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '550px' }} />
         <Card.Body className="cardBody flickCardBody">
-          <Card.Title className="flickTitle">{flickObj.title}</Card.Title>
+          <Card.Title className="favFlickTitle">{flickObj.title.toLowerCase()} {flickObj.favorite ? '⭐' : null} {flickObj.watched ? glasses : null}</Card.Title>
           <hr />
           <p className="flickCardType">Type: {flickObj.type}</p>
           <p className="flickCardGenre">{flickObj.genres.length > 0 ? 'Genres: ' : ''}{flickObj.genres ? flickObj.genres.map((genre, index) => (index ? ', ' : '') + genre?.genreName) : ''}</p>
           <p className="flickCardMood">{flickObj.moods.length > 0 ? 'Moods: ' : ''}{flickObj.moods ? flickObj.moods.map((mood, index) => (index ? ', ' : '') + mood?.moodsName) : ''}</p>
           <p className="flickCardCastCrew">{flickObj.castCrew ? 'Cast/Crew: ' : ''}{flickObj.castCrew ? flickObj.castCrew : null}</p>
           <p className="flickCardRecommendedBy">{flickObj.recommendedBy ? 'Recommended By: ' : ''}{flickObj.recommendedBy ? flickObj.recommendedBy : ''}</p>
-          <p className="flickCardflicked">{flickObj.watched ? 'Watched' : null}</p>
-          <p className="flickCardFavorite">{flickObj.favorite ? 'Favorite' : null}</p>
         </Card.Body>
       </Card>
     </>

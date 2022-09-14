@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
 import { getFlicksByUid } from '../api/flicksData';
-import RecommendationCard from '../components/recommendationCard';
+import RecommendationCard from '../components/RecommendationCard';
 
 export default function Recommendations() {
   const [flicks, setFlicks] = useState([]);

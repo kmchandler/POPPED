@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
+import { BsEyeglasses } from 'react-icons/bs';
 import { deleteSingleFlick } from '../api/flicksData';
 
 function FlickCard({
@@ -12,12 +13,14 @@ function FlickCard({
       deleteSingleFlick(flickObj.flicksFirebaseKey).then(() => onUpdate());
     }
   };
+
+  const glasses = <BsEyeglasses />;
   return (
     <>
-      <Card className="flickCardDiv" style={{ width: '25rem', margin: '10px' }}>
-        <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '400px' }} />
+      <Card className="flickCardDiv" style={{ width: '25rem', margin: '10px', height: '55rem' }}>
+        <Card.Img className="cardImage" variant="top" src={flickObj.imageUrl} alt={flickObj.title} style={{ height: '550px' }} />
         <Card.Body className="cardBody flickCardBody">
-          <Card.Title className="recommendationTitle">{flickObj.title.toLowerCase()}</Card.Title>
+          <Card.Title className="recommendationTitle">{flickObj.title.toLowerCase()} {flickObj.favorite ? '⭐' : null} {flickObj.watched ? glasses : null}</Card.Title>
           <hr />
           <div className="cardDetails">
             <p className="flickCardType">type: {flickObj.type.toLowerCase()}</p>
@@ -25,8 +28,6 @@ function FlickCard({
             <p className="flickCardMood">{flickObj.moods?.length > 0 ? 'moods: ' : ''}{flickObj.moods ? flickObj.moods.map((mood, index) => (index ? ', ' : '') + mood?.moodsName) : ''}</p>
             <p className="flickCardCastCrew">{flickObj.castCrew ? 'cast/crew: ' : ''}{flickObj.castCrew ? flickObj.castCrew.toLowerCase() : null}</p>
             <p className="flickCardRecommendedBy">{flickObj.recommendedBy ? 'recommended by: ' : ''}{flickObj.recommendedBy ? flickObj.recommendedBy.toLowerCase() : ''}</p>
-            <p className="flickCardflicked">{flickObj.watched ? 'watched' : null}</p>
-            <p className="flickCardFavorite">{flickObj.favorite ? 'favorite' : null}</p>
           </div>
           <div className="flickCardBtns">
             <Link href={`/flicks/edit/${flickObj.flicksFirebaseKey}`} passHref>

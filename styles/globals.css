@@ -549,6 +549,7 @@ body {
   display: flex;
   flex-direction: column;  
   align-items: center;
+  color: #d3dfe1;
  }
 
  .genreDivFlick {
@@ -647,13 +648,16 @@ body {
  .profileCardDiv {
   display: flex;
   align-items: center;
-  flex-flow: column wrap;
+  flex-flow: column;
   color: #b6c3c7;
  }
 
  .favoritedFlicksDiv {
   display: flex;
-  flex-direction: row;
+  flex-direction: row wrap;
+  margin-left: 120px;
+  margin-right: 120px;
+  margin-top: 5px;
  }
 
  .profileBtn {
@@ -669,7 +673,8 @@ body {
  }
 
  .favGenres {
-  width: 185px;
+  width: 175px;
+  margin-bottom: 10px;
  }
 
  .profileButton {
@@ -790,4 +795,53 @@ body {
 
  .poppedTilte {
   cursor: pointer !important;
+ }
+
+ .tryAgainDiv {
+  text-align: center;
+  margin-top: 100px;
+ }
+
+ .noFlicksRec {
+  margin-bottom: 30px;
+  color: #d3dfe1;
+ }
+
+ .tryAgainBtn {
+  border-style: solid;
+  border-radius: 6px;
+  border-color: #d3dfe1;
+  background-color: transparent;
+  color: #d3dfe1;
+  border-width: 1px;
+ }
+
+ .tryAgainBtn:hover {
+  border-width: 1.5px;
+ }
+
+ .backToMoodsBtn {
+  border-style: solid;
+  border-radius: 6px;
+  border-color: #d3dfe1;
+  background-color: transparent;
+  color: #d3dfe1;
+  border-width: 1px;
+ }
+
+ .backToMoodsBtn:hover {
+  border-width: 1.5px;
+ }
+
+ .tryAgainButton {
+  border-style: solid;
+  border-radius: 6px;
+  border-color: #d3dfe1;
+  background-color: transparent;
+  color: #d3dfe1;
+  border-width: 1px;
+ }
+
+ .tryAgainButton:hover {
+  border-width: 1.5px;
  }

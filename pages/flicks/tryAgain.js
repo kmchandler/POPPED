@@ -5,9 +5,9 @@ export default function TryAgain() {
   const router = useRouter();
   const onClick = () => router.push('/shuffle');
   return (
-    <div>
-      <div>no flicks found matching this criteria. please go back and try again.</div>
-      <button type="button" onClick={onClick}>try again</button>
+    <div className="tryAgainDiv">
+      <h3 className="noFlicksRec">no flicks found matching this criteria. please go back and try again.</h3>
+      <button type="button" className="tryAgainBtn" onClick={onClick}>try again</button>
     </div>
   );
 }

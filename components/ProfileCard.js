@@ -14,9 +14,8 @@ export default function ProfileCard({ userObj, flicksList }) {
   }
 
   const favoritedFlicks = [];
-  flicksList.map((flick) => {
+  flicksList.forEach((flick) => {
     if (flick.favorite) favoritedFlicks.push(flick);
-    return favoritedFlicks;
   });
 
   return (
@@ -31,19 +30,12 @@ export default function ProfileCard({ userObj, flicksList }) {
       </Link>
       <br />
       <h3>favorite genres:</h3>
-      {userObj.genres?.map((genre) => <h5 className="favGenres">-{genre.genreName}</h5>)}
+      {userObj.genres?.map((genre) => <h6 className="favGenres">- {genre.genreName}</h6>)}
       <br />
       <h3>favorited flicks:</h3>
-      <br />
-      {flicksList.map((flick) => {
-        if (!flick.favorite) return null;
-
-        return (
-          <div className="favoritedFlicksDiv">
-            {favoritedFlicks.map((flix) => <FavoritedFlicksCard key={flix.flicksFirebaseKey} flickObj={flix} />)}
-          </div>
-        );
-      })}
+      <div className="d-flex flex-wrap cardContainer favoritedFlicksDiv">
+        {favoritedFlicks.map((flick) => <FavoritedFlicksCard key={flick.flicksFirebaseKey} flickObj={flick} />)}
+      </div>
     </div>
   );
 }
