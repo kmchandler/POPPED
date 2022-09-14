@@ -71,7 +71,7 @@ export default function Shuffle() {
         if (!moodFound) return acc;
       }
       if (formInput.watched) {
-        const watchedFlick = flick.watched === formInput.watched;
+        const watchedFlick = (flick.watched === true && formInput.watched === 'true') || (flick.watched === false && formInput.watched === 'false');
         if (!watchedFlick) return acc;
       }
       if (formInput.type) {
