@@ -20,7 +20,7 @@ a {
 }
 
 body {
-  background-color: #254343;
+  background-color: #254343 !important;
 }
 
 .cardImage {

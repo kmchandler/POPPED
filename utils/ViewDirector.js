@@ -8,7 +8,7 @@ import { getUserByUid } from '../api/userData';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
-  const [profile, setProfile] = useState(false);
+  const [profile, setProfile] = useState({});
 
   useEffect(() => {
     if (user) {
