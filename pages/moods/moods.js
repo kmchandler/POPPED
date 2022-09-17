@@ -14,14 +14,13 @@ import {
   BsFillCloudLightningRainFill, BsFillMoonStarsFill, BsEmojiExpressionless, BsEmojiWink, BsSkipBackward, BsSnow2,
 } from 'react-icons/bs';
 
-  <Head>
-    <title>POPPED:moods</title>
-    <meta name="description" content="Meta description for the team page" />
-  </Head>;
-
 export default function moods() {
   return (
     <div className="moodBoardPage">
+      <Head>
+        <title>POPPED:moods</title>
+        <meta name="description" content="Meta description for the team page" />
+      </Head>;
       <h1 className="moodsHeader">moods</h1>
       <div className="mainMoodsDiv">
         <Link className="anxiousDiv" passHref href="/moods/anxious">

@@ -38,12 +38,20 @@ export default function Heartbroken() {
   if (flicks.length <= 0) {
     return (
       <div className="noFlicksDiv">
+        <Head>
+          <title>POPPED:happy</title>
+          <meta name="description" content="Meta description for the team page" />
+        </Head>;
         <h3 className="noFlicksFound">No flicks found matching this mood.</h3>
         <button type="button" onClick={onClick} className="backToMoodsBtn noFlicksBtn">previous page</button>
       </div>
     );
   } return (
     <>
+      <Head>
+        <title>POPPED:happy</title>
+        <meta name="description" content="Meta description for the team page" />
+      </Head>;
       <button type="button" onClick={onClick} className="backToMoodsBtn foundFlicksBtn">previous page</button>
       <div className="d-flex flex-wrap cardContainer moodsCardsDiv">
         {flicks?.map((flix) => <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getHeartbrokenFlicks} />)}

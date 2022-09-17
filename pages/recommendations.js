@@ -7,11 +7,6 @@ import { useAuth } from '../utils/context/authContext';
 import { getFlicksByUid } from '../api/flicksData';
 import RecommendationCard from '../components/RecommendationCard';
 
-  <Head>
-    <title>POPPED:recommendations</title>
-    <meta name="description" content="Meta description for the team page" />
-  </Head>;
-
 export default function Recommendations() {
   const [flicks, setFlicks] = useState([]);
   const { user } = useAuth();
@@ -35,12 +30,20 @@ export default function Recommendations() {
   if (flicks.length <= 0) {
     return (
       <div className="noRecsDiv">
+        <Head>
+          <title>POPPED:recommendations</title>
+          <meta name="description" content="Meta description for the team page" />
+        </Head>;
         <h1 className="noRecommendationHeader">recommendations</h1>
         <h3 className="noRecommendations">no recommendations found.</h3>
       </div>
     );
   } return (
     <>
+      <Head>
+        <title>POPPED:recommendations</title>
+        <meta name="description" content="Meta description for the team page" />
+      </Head>;
       <h1 className="recommendationHeader">recommendations</h1>
       <div className="d-flex flex-wrap cardContainer recommendationCardDiv">
         {flicks?.map((flix) => <RecommendationCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getRecommendedFlicks} />)}

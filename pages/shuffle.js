@@ -8,11 +8,6 @@ import { getGenres } from '../api/genresData';
 import { getMoods } from '../api/moodsData';
 import { getFlicksByUidWithMetaData } from '../api/mergedData';
 
-  <Head>
-    <title>POPPED:shuffle</title>
-    <meta name="description" content="Meta description for the team page" />
-  </Head>;
-
 export default function Shuffle() {
   const [formInput, setFormInput] = useState([]);
   const [checkedGenre, setCheckedGenre] = useState([]);
@@ -102,6 +97,10 @@ export default function Shuffle() {
 
   return (
     <form className="shuffleFormDiv" onSubmit={(e) => e.preventDefault()}>
+      <Head>
+        <title>POPPED:shuffle</title>
+        <meta name="description" content="Meta description for the team page" />
+      </Head>;
       <h1 className="iFeelLike">i feel like watching...</h1>
       <div>
         <div className="typeSelect">

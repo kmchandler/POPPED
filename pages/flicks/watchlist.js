@@ -9,11 +9,6 @@ import FlickCard from '../../components/FlickCard';
 import { getFlicksByUidWithMetaData } from '../../api/mergedData';
 import { getGenres } from '../../api/genresData';
 
-  <Head>
-    <title>POPPED:watchlist</title>
-    <meta name="description" content="Meta description for the team page" />
-  </Head>;
-
 export default function Watchlist() {
   const [formInput, setFormInput] = useState([]);
   const [flicks, setFlicks] = useState([]);
@@ -48,6 +43,10 @@ export default function Watchlist() {
 
   return (
     <>
+      <Head>
+        <title>POPPED:watchlist</title>
+        <meta name="description" content="Meta description for the team page" />
+      </Head>;
       <div className="text-center my-4 flickCardsDiv">
         <h1 className="watchlistHeader">watchlist</h1>
         <div className="flickHeaderDiv">

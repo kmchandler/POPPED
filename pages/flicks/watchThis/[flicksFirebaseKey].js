@@ -4,11 +4,6 @@ import Head from 'next/head';
 import { getSingleFlickWithMetaData } from '../../../api/mergedData';
 import ShuffleCard from '../../../components/ShuffleCard';
 
-  <Head>
-    <title>POPPED:watch this</title>
-    <meta name="description" content="Meta description for the team page" />
-  </Head>;
-
 export default function WatchThis() {
   const [result, setResult] = useState({});
   const router = useRouter();
@@ -25,6 +20,10 @@ export default function WatchThis() {
   }
   return (
     <div className="shuffleResultDiv">
+      <Head>
+        <title>POPPED:watch this</title>
+        <meta name="description" content="Meta description for the team page" />
+      </Head>;
       <button className="tryAgainButton" type="button" onClick={onClick}>try again</button>
       <ShuffleCard watchObj={result} />
     </div>
