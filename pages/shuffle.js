@@ -2,10 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Form from 'react-bootstrap/Form';
+import Head from 'next/head';
 import { useAuth } from '../utils/context/authContext';
 import { getGenres } from '../api/genresData';
 import { getMoods } from '../api/moodsData';
 import { getFlicksByUidWithMetaData } from '../api/mergedData';
+
+  <Head>
+    <title>POPPED:shuffle</title>
+    <meta name="description" content="Meta description for the team page" />
+  </Head>;
 
 export default function Shuffle() {
   const [formInput, setFormInput] = useState([]);

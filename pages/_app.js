@@ -1,9 +1,15 @@
 /* eslint-disable react/prop-types */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from 'react';
+import Head from 'next/head';
 import '../styles/globals.css';
 import { AuthProvider } from '../utils/context/authContext';
 import ViewDirectorBasedOnUserAuthStatus from '../utils/ViewDirector';
+
+  <Head>
+    <title>POPPED</title>
+    <meta name="description" content="Meta description for the team page" />
+  </Head>;
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
