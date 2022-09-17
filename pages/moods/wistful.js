@@ -8,11 +8,6 @@ import { useAuth } from '../../utils/context/authContext';
 import FlickCard from '../../components/FlickCard';
 import { getFlicksByUidWithMetaData } from '../../api/mergedData';
 
-  <Head>
-    <title>POPPED:wistful</title>
-    <meta name="description" content="Meta description for the team page" />
-  </Head>;
-
 export default function Wistful() {
   const [flicks, setFlicks] = useState([]);
   const { user } = useAuth();
@@ -38,12 +33,20 @@ export default function Wistful() {
   if (flicks.length <= 0) {
     return (
       <div className="noFlicksDiv">
+        <Head>
+          <title>POPPED:wistful</title>
+          <meta name="description" content="Meta description for the team page" />
+        </Head>;
         <h3 className="noFlicksFound">No flicks found matching this mood.</h3>
         <button type="button" onClick={onClick} className="backToMoodsBtn noFlicksBtn">previous page</button>
       </div>
     );
   } return (
     <>
+      <Head>
+        <title>POPPED:wistful</title>
+        <meta name="description" content="Meta description for the team page" />
+      </Head>;
       <button type="button" onClick={onClick} className="backToMoodsBtn foundFlicksBtn">previous page</button>
       <div className="d-flex flex-wrap cardContainer moodsCardsDiv">
         {flicks?.map((flix) => <FlickCard key={flix.flicksFirebaseKey} flickObj={flix} onUpdate={getWistfulFlicks} />)}

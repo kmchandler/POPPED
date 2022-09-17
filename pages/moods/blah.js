@@ -8,11 +8,6 @@ import { useAuth } from '../../utils/context/authContext';
 import FlickCard from '../../components/FlickCard';
 import { getFlicksByUidWithMetaData } from '../../api/mergedData';
 
-  <Head>
-    <title>POPPED:blah</title>
-    <meta name="description" content="Meta description for the team page" />
-  </Head>;
-
 export default function Blah() {
   const [flicks, setFlicks] = useState([]);
   const { user } = useAuth();
@@ -38,6 +33,11 @@ export default function Blah() {
   if (flicks.length <= 0) {
     return (
       <div className="noFlicksDiv">
+        <Head>
+          <title>POPPED:blah</title>
+          <meta name="description" content="Meta description for the team page" />
+        </Head>;
+
         <h3 className="noFlicksFound">No flicks found matching this mood.</h3>
         <button type="button" onClick={onClick} className="backToMoodsBtn noFlicksBtn">previous page</button>
       </div>

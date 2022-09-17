@@ -33,16 +33,16 @@ body {
   box-shadow: #000000ad 4px 4px 8px;
   border: none;
   height: 100%;
-  background-color: #68797b;
-  color: #d3dfe1;
+  background-color: #68797b !important;
+  color: #d3dfe1 !important;
 }
 
 .shuffleCardDiv {
-  box-shadow: #000000ad 4px 4px 8px;
+  box-shadow: #000000ad 4px 4px 8px !important;
   border: none;
   height: 100%;
-  background-color: #68797b;
-  color: #d3dfe1;
+  background-color: #68797b !important;
+  color: #d3dfe1 !important;
 }
 
 .cardBody {
@@ -66,7 +66,7 @@ body {
   margin-right: 100px;
   margin-top: 50px;
   margin-bottom: 50px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
 }
 
 .anxiousIcon {
@@ -358,21 +358,21 @@ body {
   flex-flow: column wrap;
   margin-top: 250px;
   margin-bottom: 20px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
 }
 
 .loginButton {
   border: none;
   background-color: transparent;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
 }
 
 .loginButton:hover {
   border-style: solid;
-  border-color: #d3dfe1;
+  border-color: #d3dfe1 !important;
   border-radius: 6px;
   padding: 3px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
 }
 
 .homePage {
@@ -381,7 +381,7 @@ body {
   align-items: center;
   flex-flow: column wrap;
   margin-top: 150px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
 }
 
 .linkIconDiv {
@@ -434,14 +434,14 @@ body {
 .noFlicksDiv {
   display: block;
   margin-top: 50px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
 }
 
 .noFlicksFound {
   display: block;
   text-align: center;
   margin-top: 100px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
 }
 
 .noFlicksBtn {
@@ -493,7 +493,7 @@ body {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 30px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
 }
 
 .recommendationCardDiv {
@@ -511,7 +511,7 @@ body {
 
  .iFeelLike {
   margin-bottom: 20px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
   margin-left: -100px;
  }
 
@@ -534,7 +534,7 @@ body {
   margin-top: 20px;
   column-gap: 100px;
   margin-left: 30px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .moodDiv {
@@ -543,7 +543,7 @@ body {
   margin-top: 20px;
   column-gap: 145px;
   margin-left: -5px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .flickFormContainer {
@@ -551,7 +551,7 @@ body {
   display: flex;
   flex-direction: column;  
   align-items: center;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .genreDivFlick {
@@ -580,7 +580,7 @@ body {
   margin-right: auto;
   background-color: transparent;
   border: none;
-  color: #b6c3c7;
+  color: #b6c3c7 !important;
   margin-bottom: 30px;
  }
 
@@ -591,13 +591,13 @@ body {
  .shuffleGenre {
   margin-left: -390px;
   margin-bottom: -10px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .shuffleMood {
   margin-left: -390px;
   margin-bottom: -10px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .shuffleResultDiv {
@@ -619,7 +619,7 @@ body {
 
  .watchlistHeader {
   margin-top: 50px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .cardDetails {
@@ -651,7 +651,7 @@ body {
   display: flex;
   align-items: center;
   flex-flow: column;
-  color: #b6c3c7;
+  color: #b6c3c7 !important;
  }
 
  .favoritedFlicksDiv {
@@ -671,7 +671,7 @@ body {
   display: flex;
   align-items: center;
   flex-flow: column wrap;
-  color: #b6c3c7;
+  color: #b6c3c7 !important;
  }
 
  .favGenres {
@@ -682,13 +682,13 @@ body {
  .profileButton {
   border: none;
   background-color: transparent;
-  color: #b6c3c7;
+  color: #b6c3c7 !important;
  }
 
  .watchlistButton {
   border: none;
   background-color: transparent;
-  color: #b6c3c7;
+  color: #b6c3c7 !important;
  }
 
  .navBarStyle {
@@ -697,36 +697,36 @@ body {
  }
 
  .moodsHeader {
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .homePage {
-  color: #b6c3c7;
+  color: #b6c3c7 !important;
  }
 
  .profileDropdown {
-  background-color: #68797b;
-  color: #d3dfe1;
+  background-color: #68797b !important;
+  color: #d3dfe1 !important;
  }
 
  .profileDropdownBottomDiv {
-  background-color: #68797b;
-  color: #d3dfe1;
+  background-color: #68797b !important;
+  color: #d3dfe1 !important;
  }
 
  .dropdown-menu {
-  background-color: #68797b;
-  color: #d3dfe1;
+  background-color: #68797b !important;
+  color: #d3dfe1 !important;
   text-align: center;
   margin-top: 10px;
  }
 
  .goToProfileBtn {
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .signOutBtn {
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .profileName {
@@ -734,7 +734,7 @@ body {
  }
 
  .profilePageForm {
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
   display: flex;
   justify-content: center;
   margin-top: 50px;
@@ -754,7 +754,7 @@ body {
   margin-bottom: 30px;
   border: none;
   background-color: transparent;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .updateProfileHeader {
@@ -767,32 +767,32 @@ body {
  }
 
  .flickFormContainer {
-  color: #b6c3c7;
+  color: #b6c3c7 !important;
  }
 
  .submitShuffleFormBtn {
   background-color: transparent;
   border: none;
   margin-bottom: 30px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .flickButton {
   background-color: transparent;
   border: none;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .editButton {
   border: none;
   background-color: transparent;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .deleteButton {
   border: none;
   background-color: transparent;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .poppedTilte {
@@ -806,15 +806,15 @@ body {
 
  .noFlicksRec {
   margin-bottom: 30px;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
  }
 
  .tryAgainBtn {
   border-style: solid;
   border-radius: 6px;
-  border-color: #d3dfe1;
+  border-color: #d3dfe1 !important;
   background-color: transparent;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
   border-width: 1px;
  }
 
@@ -825,9 +825,9 @@ body {
  .backToMoodsBtn {
   border-style: solid;
   border-radius: 6px;
-  border-color: #d3dfe1;
+  border-color: #d3dfe1 !important;
   background-color: transparent;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
   border-width: 1px;
  }
 
@@ -838,9 +838,9 @@ body {
  .tryAgainButton {
   border-style: solid;
   border-radius: 6px;
-  border-color: #d3dfe1;
+  border-color: #d3dfe1 !important;
   background-color: transparent;
-  color: #d3dfe1;
+  color: #d3dfe1 !important;
   border-width: 1px;
  }
 

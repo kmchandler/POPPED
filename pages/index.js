@@ -7,17 +7,16 @@ import { BsShuffle } from 'react-icons/bs';
 import { FaTheaterMasks } from 'react-icons/fa';
 import logo2 from '../components/logo2.png';
 
-  <Head>
-    <meta charset="UTF-8" />
-    <meta name="keywords" content="title, meta, nextjs" />
-    <meta name="author" content="Kristen Chandler" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>POPPED</title>
-  </Head>;
-
 export default function index() {
   return (
     <div className="homePage">
+      <Head>
+        <meta charset="UTF-8" />
+        <meta name="keywords" content="title, meta, nextjs" />
+        <meta name="author" content="Kristen Chandler" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>POPPED</title>
+      </Head>;
       <Image src={logo2} className="logoMain" />
       <br />
       <h3>pick your flick before the popcorn&apos;s ready</h3>
