@@ -16,7 +16,7 @@ export default function index() {
         <meta name="author" content="Kristen Chandler" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>POPPED</title>
-      </Head>;
+      </Head>
       <Image src={logo2} className="logoMain" />
       <br />
       <h3>pick your flick before the popcorn&apos;s ready</h3>
