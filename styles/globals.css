@@ -458,14 +458,14 @@ body {
 
 .moodsCardsDiv {
   margin-top: 50px;
-  margin-left: 120px;
-  margin-right: 120px;
+  margin-left: 110px;
+  margin-right: 100px;
 }
 
 .watchlistCardDiv {
   margin-top: 30px;
-  margin-left: 120px;
-  margin-right: 120px;
+  margin-left: 110px;
+  margin-right: 100px;
 }
 
 .watchlistSearchbar {
@@ -498,8 +498,8 @@ body {
 
 .recommendationCardDiv {
   margin-top: 50px;
-  margin-left: 120px;
-  margin-right: 120px;
+  margin-left: 110px;
+  margin-right: 100px;
 }
 
  .shuffleFormDiv {
