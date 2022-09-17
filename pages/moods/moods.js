@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 import {
   CloudIcon, SunIcon, BellIcon, Battery0Icon,
 } from '@heroicons/react/24/outline';
@@ -12,6 +13,11 @@ import { IoIosWine } from 'react-icons/io';
 import {
   BsFillCloudLightningRainFill, BsFillMoonStarsFill, BsEmojiExpressionless, BsEmojiWink, BsSkipBackward, BsSnow2,
 } from 'react-icons/bs';
+
+  <Head>
+    <title>POPPED:moods</title>
+    <meta name="description" content="Meta description for the team page" />
+  </Head>;
 
 export default function moods() {
   return (

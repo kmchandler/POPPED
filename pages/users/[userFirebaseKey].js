@@ -3,10 +3,16 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { React, useEffect, useState } from 'react';
+import Head from 'next/head';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../utils/context/authContext';
 import ProfileCard from '../../components/ProfileCard';
 import { getFlicksByUidWithMetaData, getSingleUserWithMetaData } from '../../api/mergedData';
+
+  <Head>
+    <title>POPPED:profile</title>
+    <meta name="description" content="Meta description for the team page" />
+  </Head>;
 
 export default function Profile() {
   const [profile, setProfile] = useState({});

@@ -3,9 +3,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { useAuth } from '../../utils/context/authContext';
 import FlickCard from '../../components/FlickCard';
 import { getFlicksByUidWithMetaData } from '../../api/mergedData';
+
+  <Head>
+    <title>POPPED:bored</title>
+    <meta name="description" content="Meta description for the team page" />
+  </Head>;
 
 export default function Bored() {
   const [flicks, setFlicks] = useState([]);

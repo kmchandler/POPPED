@@ -2,11 +2,17 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Form from 'react-bootstrap/Form';
+import Head from 'next/head';
 import { useAuth } from '../../utils/context/authContext';
 import Search from '../../components/Search';
 import FlickCard from '../../components/FlickCard';
 import { getFlicksByUidWithMetaData } from '../../api/mergedData';
 import { getGenres } from '../../api/genresData';
+
+  <Head>
+    <title>POPPED:watchlist</title>
+    <meta name="description" content="Meta description for the team page" />
+  </Head>;
 
 export default function Watchlist() {
   const [formInput, setFormInput] = useState([]);

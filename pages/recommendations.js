@@ -2,9 +2,15 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { useAuth } from '../utils/context/authContext';
 import { getFlicksByUid } from '../api/flicksData';
 import RecommendationCard from '../components/RecommendationCard';
+
+  <Head>
+    <title>POPPED:recommendations</title>
+    <meta name="description" content="Meta description for the team page" />
+  </Head>;
 
 export default function Recommendations() {
   const [flicks, setFlicks] = useState([]);
