@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { BsEyeglasses } from 'react-icons/bs';
+import StarRating from './StarRating';
 
 function ShuffleCard({ watchObj }) {
   const glasses = <BsEyeglasses />;
@@ -19,6 +20,7 @@ function ShuffleCard({ watchObj }) {
             <p className="playerCardJobs">{watchObj.moods?.length > 0 ? 'moods: ' : ''}{watchObj.moods ? watchObj.moods.map((mood, index) => (index ? ', ' : '') + mood.moodsName) : ''}</p>
             <p className="watchCardCastCrew">{watchObj.castCrew ? 'cast/crew: ' : ''}{watchObj.castCrew ? watchObj.castCrew.toLowerCase() : ''}</p>
             <p className="watchCardRecommendedBy">{watchObj.recommendedBy ? 'recommended by: ' : ''}{watchObj.recommendedBy ? watchObj.recommendedBy.toLowerCase() : ''}</p>
+            <div>{watchObj.watched ? <StarRating flickObj={watchObj} /> : null }</div>
           </div>
         </Card.Body>
       </Card>
