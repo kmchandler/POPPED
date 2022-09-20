@@ -657,8 +657,8 @@ body {
  .favoritedFlicksDiv {
   display: flex;
   flex-direction: row wrap;
-  margin-left: 120px;
-  margin-right: 120px;
+  margin-left: 100px;
+  margin-right: 100px;
   margin-top: 5px;
  }
 
