@@ -15,10 +15,6 @@ function FlickCard({
     }
   };
 
-  const handleClick = () => {
-
-  };
-
   const glasses = <BsEyeglasses />;
   return (
     <>
@@ -33,7 +29,7 @@ function FlickCard({
             <p className="flickCardMood">{flickObj.moods?.length > 0 ? 'moods: ' : ''}{flickObj.moods ? flickObj.moods.map((mood, index) => (index ? ', ' : '') + mood?.moodsName) : ''}</p>
             <p className="flickCardCastCrew">{flickObj.castCrew ? 'cast/crew: ' : ''}{flickObj.castCrew ? flickObj.castCrew.toLowerCase() : null}</p>
             <p className="flickCardRecommendedBy">{flickObj.recommendedBy ? 'recommended by: ' : ''}{flickObj.recommendedBy ? flickObj.recommendedBy.toLowerCase() : ''}</p>
-            <StarRating value={flickObj.rating} onClick={handleClick} />
+            <div>{flickObj.watched ? <StarRating flickObj={flickObj} /> : null }</div>
           </div>
           <div className="flickCardBtns">
             <Link href={`/flicks/edit/${flickObj.flicksFirebaseKey}`} passHref>
