@@ -7,7 +7,7 @@ export default function ProfileDropdown({ userObj }) {
   const { user } = useAuth();
   return (
     <div className="profileDropdown">
-      <img src={userObj.imageUrl} alt={user.displayName} />
+      <img src={userObj.imageUrl} alt={user.displayName} className="profileDropdownPic rounded-circle" />
       <h5 className="profileName">{user.displayName}</h5>
     </div>
   );

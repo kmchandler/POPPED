@@ -731,6 +731,8 @@ body {
 
  .profileName {
   margin-top: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
  }
 
  .profilePageForm {
@@ -875,4 +877,24 @@ body {
 
 .off {
   color: #849597;
+}
+
+.profilePagePic {
+  object-fit: cover;
+  height: 300px;
+  width: 300px;
+}
+
+.profileDropdownPic {
+  object-fit: cover;
+  height: 100px;
+  width: 100px;
+}
+
+.user-icon {
+  object-fit: cover;
+}
+
+.dropdown-menu {
+  width: 200px;
 }

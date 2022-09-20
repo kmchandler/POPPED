@@ -19,7 +19,7 @@ export default function NavBar({ navObj }) {
 
   let profileImage = '';
 
-  if (navObj.imageUrl !== '') {
+  if (navObj && navObj.imageUrl !== '') {
     profileImage = navObj.imageUrl;
   } else {
     profileImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png';
@@ -81,7 +81,7 @@ export default function NavBar({ navObj }) {
           <ul className="navbar-nav">
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <img src={profileImage} width="35px" height="35px" alt="user" className="user-icon rounded-circle" />
+                <img src={profileImage} width="45px" height="45px" alt="user" className="user-icon rounded-circle" />
               </a>
               <ul className="dropdown-menu dropdown-menu-end">
                 <div className="profileDropdownBottomDiv">

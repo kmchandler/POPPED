@@ -20,7 +20,7 @@ export default function ProfileCard({ userObj, flicksList }) {
 
   return (
     <div className="profileCardDiv">
-      <img src={profileImage} alt={userObj.username} className="rounded-circle" />
+      <img src={profileImage} alt={userObj.username} className="rounded-circle profilePagePic" />
       <br />
       <h1>{userObj.firstName} {userObj.lastName}</h1>
       <h2>{userObj.username}</h2>
