@@ -60,13 +60,13 @@ export default function NavBar({ navObj }) {
                 </a>
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link passHref href="/friends">
                 <a className="nav-link">
                   friends
                 </a>
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link passHref href="/moods/moods">
                 <a className="nav-link">
