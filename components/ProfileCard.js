@@ -29,10 +29,10 @@ export default function ProfileCard({ userObj, flicksList }) {
         <button type="button" className="watchlistButton">view watchlist</button>
       </Link>
       <br />
-      <h3>favorite genres:</h3>
+      {userObj.genres?.length > 0 ? <h3>favorite genres:</h3> : null}
       {userObj.genres?.map((genre) => <h6 className="favGenres">- {genre.genreName}</h6>)}
       <br />
-      <h3>favorited flicks:</h3>
+      {favoritedFlicks.length > 0 ? <h3>favorited flicks:</h3> : null}
       <div className="d-flex flex-wrap cardContainer favoritedFlicksDiv">
         {favoritedFlicks.map((flick) => <FavoritedFlicksCard key={flick.flicksFirebaseKey} flickObj={flick} />)}
       </div>
